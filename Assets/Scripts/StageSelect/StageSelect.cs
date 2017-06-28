@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageSelect : MonoBehaviour {
-	public void OnStageButtonClick(int stage)
-	{
-		SceneLoader.LoadStage(stage);
-	}
+public class StageSelect : MonoBehaviour
+{
+    public void OnStageButtonClick(int stage)
+    {
+        SceneLoader.LoadStage(stage);
+    }
 
-	public void OnClearAllButtonClick()
-	{
-		SaveManager.ClearAllStage();
-		SceneLoader.LoadStageSelect();
-	}
+    public void OnClearAllButtonClick()
+    {
+        SaveManager.ClearAllStage();
+        SceneLoader.LoadStageSelect();
+    }
 
-	public void OnLockAllButtonClick()
-	{
-		SaveManager.ResetSave();
-		SceneLoader.LoadStageSelect();
-	}
+    public void OnLockAllButtonClick()
+    {
+        SaveManager.ResetSave();
+        SceneLoader.LoadStageSelect();
+    }
 }
