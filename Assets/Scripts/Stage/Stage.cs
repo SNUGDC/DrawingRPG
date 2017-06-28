@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Stage : MonoBehaviour
 {
-    public static int? currentStage = null;
     public int stage;
     void Awake()
     {
@@ -13,12 +12,14 @@ public class Stage : MonoBehaviour
 			Debug.LogError("Invalid stage");
 			return;
         }
-
-		currentStage = stage;
     }
 
 	public void MoveNextStage()
 	{
+		int lastClearedStage = SaveManager.LoadLastClearedStage();
+		if (stage > lastClearedStage) {
+			SaveManager.SaveLastClearedStage(stage);
+		}
 		SceneLoader.LoadStage(stage + 1);
 	}
 

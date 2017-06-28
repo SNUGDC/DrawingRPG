@@ -7,4 +7,16 @@ public class StageSelect : MonoBehaviour {
 	{
 		SceneLoader.LoadStage(stage);
 	}
+
+	public void OnClearAllButtonClick()
+	{
+		SaveManager.ClearAllStage();
+		SceneLoader.LoadStageSelect();
+	}
+
+	public void OnLockAllButtonClick()
+	{
+		SaveManager.ResetSave();
+		SceneLoader.LoadStageSelect();
+	}
 }
