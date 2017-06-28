@@ -47,7 +47,7 @@ public class LineDrawer : MonoBehaviour
 		Debug.Log("조작모드 시작");
 		isInControlMode = true;
 		startPos = transform.position;
-		Instantiate(LineEnd, transform.position, Quaternion.identity);
+		//Instantiate(LineEnd, transform.position, Quaternion.identity);
 		nowLine = CreateLine();
 	}
 
