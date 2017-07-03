@@ -7,9 +7,9 @@ public class LineDrawer : MonoBehaviour
 	public GameObject LineEnd;
 	public GameObject Line;
 	public int maxLineNum;
-
-
+	public float maxLineLength;
 	public GameObject[] myLine;
+
 	private GameObject Player;
 	private GameObject nowLine;
 	private Vector2 mousePos;
@@ -34,7 +34,7 @@ public class LineDrawer : MonoBehaviour
 		if(isInControlMode == true)
 		{
 			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			transform.position = mousePos;
+			transform.position = endPos;
 			ControlLine(nowLine);
 		}
 	}
@@ -58,7 +58,11 @@ public class LineDrawer : MonoBehaviour
 			Debug.Log("조작모드 끝");
 			isInControlMode = false;
 			myLine[NewLineNum().Value] = nowLine;
-			Instantiate(LineEnd, mousePos, Quaternion.identity);
+			nowLine.GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
+			//nowLine.GetComponent<LineController>().startPos = startPos;
+			//nowLine.GetComponent<LineController>().startPos = endPos;
+			Player.GetComponent<PlayerMover>().moveToGoal.Add(new MoveToGoal(endPos));
+			//Instantiate(LineEnd, endPos, Quaternion.identity);
 		}
 	}
 
@@ -75,10 +79,22 @@ public class LineDrawer : MonoBehaviour
 		if(Line == null)
 			return;
 
-		endPos = mousePos;
-		Vector2 midPos = (startPos + endPos) / 2;
+		float lineLength;
 
-		Line.transform.position = midPos;
+		lineLength = Vector2.Distance(startPos, mousePos);
+		if(lineLength > maxLineLength)
+		{
+			lineLength = maxLineLength;
+			endPos = startPos + (mousePos - startPos).normalized * maxLineLength;
+			Line.GetComponent<SpriteRenderer>().color = new Color (1, 0.2f, 0.2f, 1);
+		}
+		else
+		{
+			nowLine.GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
+			endPos = mousePos;
+		}
+
+		Line.transform.position = (startPos + endPos) / 2;
 		Line.transform.localScale = new Vector2 (Vector2.Distance(startPos, endPos), 1);
 		Line.transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan((endPos.y - startPos.y) / (endPos.x - startPos.x)));
 	}

@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1354005055564936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.47, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -71,6 +71,7 @@ MonoBehaviour:
   LineEnd: {fileID: 1533636127601034, guid: 69161fd462fd5374abde5343ce656cf4, type: 2}
   Line: {fileID: 1165411601190780, guid: 47b60a1d0a024ca4f97b32d1c67512d2, type: 2}
   maxLineNum: 3
+  maxLineLength: 15
   myLine: []
 --- !u!212 &212578238146904282
 SpriteRenderer:
@@ -112,3 +113,4 @@ SpriteRenderer:
   m_Size: {x: 3.55, y: 3.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
