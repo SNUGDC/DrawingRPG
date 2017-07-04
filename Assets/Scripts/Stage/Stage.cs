@@ -13,7 +13,6 @@ public class Stage : MonoBehaviour
 			return;
         }
     }
-
 	public void MoveNextStage()
 	{
 		int lastClearedStage = SaveManager.LoadLastClearedStage();
@@ -27,4 +26,6 @@ public class Stage : MonoBehaviour
 	{
 		SceneLoader.LoadStageSelect();
 	}
+
+    
 }

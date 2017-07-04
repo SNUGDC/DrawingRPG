@@ -17,6 +17,11 @@ public static class SceneLoader
         LoadScene("StageSelect");
     }
 
+    public static void LoadMenu(string menu_component)
+    {
+        LoadScene(menu_component);
+    }
+
     private static void LoadScene(string sceneName)
     {
         if (sceneLoadSetup == false)
