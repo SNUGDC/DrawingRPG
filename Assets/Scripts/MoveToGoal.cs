@@ -10,7 +10,6 @@ public class MoveToGoal
     {
         this.goal = goal;
     }
-
     public bool IsArrive(Transform transform)
     {
         Vector2 playerPos = transform.position;
@@ -19,7 +18,27 @@ public class MoveToGoal
         return distance < 0.1f;
     }
 
-    public void Move(Transform transform)
+    public float check_speed(bool check)
+    {
+        if (check == true)
+            return moveSpeed;
+        else
+            return 0f;
+    }
+    public void Move(Transform transform, bool check_move)
+    {
+        Vector2 playerPos = transform.position;
+        float distance = (playerPos - goal).magnitude;
+        float buffer = 0.01f;
+
+        if (distance >= buffer)
+        {
+            transform.position = (Vector2)transform.position + (goal - playerPos).normalized * check_speed(check_move) * Time.deltaTime;
+        }
+
+    }
+    //// **/안에 있는게 원본
+    /*public void Move(Transform transform)
     {
         Vector2 playerPos = transform.position;
         float distance = (playerPos - goal).magnitude;
@@ -29,5 +48,6 @@ public class MoveToGoal
         {
             transform.position = (Vector2)transform.position + (goal - playerPos).normalized * moveSpeed * Time.deltaTime;
         }
-    }
+    }*/
+    
 }
