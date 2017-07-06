@@ -253,6 +253,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b695564ca8b7cdb44a761da26722238d, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &224816877 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114613627533818028, guid: 8ec480475210c824f9ddd5b2eedd8909,
+    type: 2}
+  m_PrefabInternal: {fileID: 493295214}
+  m_Script: {fileID: 11500000, guid: a4ddd8ec826516e40b03dfb7acc31b74, type: 3}
 --- !u!1 &304011182
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,6 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0cb4b3680a3604da1775daa15f608a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LineDrawer: {fileID: 224816877}
   Limit_Lines: 3
 --- !u!114 &1077380052
 MonoBehaviour:

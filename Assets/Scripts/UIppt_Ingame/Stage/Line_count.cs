@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Line_count : MonoBehaviour {
+    public LineDrawer LineDrawer;
     int count_Lines=0;
     public int Limit_Lines;
 
@@ -15,7 +16,7 @@ public class Line_count : MonoBehaviour {
     }
 	void Update () {
         
-        if (Input.GetMouseButtonDown(0) && count_Lines < Limit_Lines)
+        if (LineDrawer.myLine[count_Lines] != null)
         {
             count_Lines++;
         }
