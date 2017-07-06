@@ -7,19 +7,28 @@ public class PlayerMover : MonoBehaviour
 	private LineDrawer LineDrawer;
 	private bool startmove;
 	public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
-    
+
+    public int move_count;
+
 	private void Start()
 	{
+        move_count = 0;
 		startmove = false;
 		LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
 	}
 
 	private void Update()
 	{
-        //임의로 추가햇으니 없애도 됩니다
+        //임의로 추가햇습니다
         if (Input.GetMouseButtonDown(0) && LineDrawer.return_line_num())
         {
-            startmove = !startmove;
+            if (startmove == true)
+            {
+                startmove = false;
+                move_count++;
+            }
+            else
+                startmove = true;
         }
         
             if (moveToGoal.Count != 0)
@@ -53,10 +62,6 @@ public class PlayerMover : MonoBehaviour
           
     }
     
-    public bool return_startmove()
-    {
-        return startmove;
-    }
     //요까지..
 
 

@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Turn_Count : Player_stop {
-    private int Turn_count;
-
+public class Turn_Count : MonoBehaviour{
+    public PlayerMover player;
+    public int Limit_turn;
     Text text;
 
     void Start()
     {
-        Turn_count = 0;
         text = GetComponent<Text>();
     }
     void Update()
     {
-        text.text = "Line " + Turn_count + "/" + Limit_turn;
+        text.text = "Turn " + player.move_count + "/" + Limit_turn;
     }
 }
