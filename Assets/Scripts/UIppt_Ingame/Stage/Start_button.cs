@@ -10,7 +10,11 @@ public class Start_button : MonoBehaviour {
     private void Start()
     {
         Button this_one = start_button.GetComponent<Button>();
-        this_one.onClick.AddListener(OnClicked);
+    }
+
+    private void Update()
+    {
+        OnClicked();
     }
 
     void OnClicked()
