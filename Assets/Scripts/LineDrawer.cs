@@ -112,4 +112,14 @@ public class LineDrawer : MonoBehaviour
 		Debug.Log("Can't Create More Line");
 		return null;
 	}
+
+    //여기도 임의로 추가했습니다....
+
+    public bool return_line_num()
+    {
+        if (myLine[maxLineNum - 1] != null)
+            return true;
+        else
+            return false;
+    }
 }
