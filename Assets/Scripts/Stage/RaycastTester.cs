@@ -14,10 +14,12 @@ public class RaycastTester : MonoBehaviour
 
     }
 
-    private List<Vector2> collisionPositions = new List<Vector2> ();
+    private List<Enemy> collisionEnemyList = new List<Enemy>();
+    private List<Vector2> collisionPositionList = new List<Vector2>();
     void FixedUpdate()
     {
-        collisionPositions.Clear();
+        collisionPositionList.Clear();
+        collisionEnemyList.Clear();
         if (startPos == null)
         {
             return;
@@ -29,28 +31,58 @@ public class RaycastTester : MonoBehaviour
 
         Vector2 direction = startPos.Value - mousePos;
         RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, direction, distance: Mathf.Infinity, layerMask: LayerMask.GetMask("Enemy"));
-        
+
         if (hits.Length != 0)
         {
             for (int i = 0; i < hits.Length; i++)
             {
-                collisionPositions.Add(hits[i].point);
-
-                Debug.Log(i.ToString() + hits[i].collider);
-                
+                RaycastHit2D hit = hits[i];
+                collisionPositionList.Add(hit.point);
+                GameObject enemyGameObject = hit.collider.gameObject;
+                collisionEnemyList.Add(enemyGameObject.GetComponent<Enemy>());
+                //Debug.Log(i.ToString() + hit.collider);
             }
         }
     }
 
-    public Vector2? GetNeariestEnemy()
+    public Vector2? GetNeariestEnemyPosition(List<Enemy> ignoreList)
     {
-        if(collisionPositions.Count == 0)
+        if (collisionPositionList.Count == 0)
         {
             return null;
         }
 
-        return collisionPositions[collisionPositions.Count-1];
+        for (int i = collisionPositionList.Count - 1; i >= 0; i--)
+        {
+            Enemy enemy = collisionEnemyList[i];
+            if (ignoreList.Contains(enemy))
+            {
+                continue;
+            }
+            return collisionPositionList[i];
+        }
 
+        return null;
+    }
+
+    public Enemy GetNeariestEnemy(List<Enemy> ignoreList)
+    {
+        if (collisionEnemyList.Count == 0)
+        {
+            return null;
+        }
+
+        for (int i = collisionEnemyList.Count - 1; i >= 0; i--)
+        {
+            Enemy enemy = collisionEnemyList[i];
+            if (ignoreList.Contains(enemy))
+            {
+                continue;
+            }
+            return collisionEnemyList[i];
+        }
+
+        return null;
     }
 
     void OnDrawGizmos()
@@ -58,7 +90,7 @@ public class RaycastTester : MonoBehaviour
         Gizmos.color = Color.yellow;
         //Gizmos.DrawSphere(transform.position, 1);
 
-        foreach (var position in collisionPositions)
+        foreach (var position in collisionPositionList)
         {
             Gizmos.DrawSphere(position, 0.5f);
         }

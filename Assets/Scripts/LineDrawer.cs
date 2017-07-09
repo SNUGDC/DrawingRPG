@@ -17,13 +17,15 @@ public class LineDrawer : MonoBehaviour
 	private Vector2 startPos;
 	private Vector2 endPos;
 	private bool isInControlMode;
+    private List<Enemy> allEncountedEnemyList = new List<Enemy>();
 
 	private void Start()
 	{
 		isInControlMode = false;
 		myLine = new GameObject[maxLineNum];
+        allEncountedEnemyList.Clear();
 
-		if(myLine[0] == null)
+        if (myLine[0] == null)
 		{
 			Player = GameObject.Find("Player");
 			transform.position = Player.transform.position;
@@ -62,11 +64,19 @@ public class LineDrawer : MonoBehaviour
 			isInControlMode = false;
 			myLine[NewLineNum().Value] = nowLine;
 			nowLine.GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
-			//nowLine.GetComponent<LineController>().startPos = startPos;
-			//nowLine.GetComponent<LineController>().startPos = endPos;
-			Player.GetComponent<PlayerMover>().moveToGoal.Add(new MoveToGoal(endPos));
-			//Instantiate(LineEnd, endPos, Quaternion.identity);
-		}
+            //nowLine.GetComponent<LineController>().startPos = startPos;
+            //nowLine.GetComponent<LineController>().startPos = endPos;
+            Player.GetComponent<PlayerMover>().moveToGoal.Add(new MoveToGoal(endPos));
+            //Instantiate(LineEnd, endPos, Quaternion.identity);
+
+            if (EncountEnemy() != null)
+            {
+                Debug.Log("Encounter enemy in onmouseup");
+                RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
+                Enemy nearestEnemy = raycastTester.GetNeariestEnemy(allEncountedEnemyList);
+                allEncountedEnemyList.Add(nearestEnemy);
+            }
+        }
 	}
 
 	private GameObject CreateLine()
@@ -112,7 +122,7 @@ public class LineDrawer : MonoBehaviour
     {
         RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
 
-        return raycastTester.GetNeariestEnemy();
+        return raycastTester.GetNeariestEnemyPosition(ignoreList: allEncountedEnemyList);
     }
 
     private int? NewLineNum()
