@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,8 +48,10 @@ public class LineDrawer : MonoBehaviour
 		Debug.Log("조작모드 시작");
 		isInControlMode = true;
 		startPos = transform.position;
-		//Instantiate(LineEnd, transform.position, Quaternion.identity);
-		nowLine = CreateLine();
+        RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
+        raycastTester.startPos = startPos;
+        //Instantiate(LineEnd, transform.position, Quaternion.identity);
+        nowLine = CreateLine();
 	}
 
 	private void OnMouseUp()
@@ -82,13 +85,19 @@ public class LineDrawer : MonoBehaviour
 		float lineLength;
 
 		lineLength = Vector2.Distance(startPos, mousePos);
-		if(lineLength > maxLineLength)
+        if (EncountEnemy() != null)
+        {
+            lineLength = Vector2.Distance(EncountEnemy().Value, startPos);
+            endPos = EncountEnemy().Value;
+            Line.GetComponent<SpriteRenderer>().color = new Color(1, 0.2f, 0.2f, 1);
+        }
+        else if(lineLength > maxLineLength)
 		{
 			lineLength = maxLineLength;
 			endPos = startPos + (mousePos - startPos).normalized * maxLineLength;
 			Line.GetComponent<SpriteRenderer>().color = new Color (1, 0.2f, 0.2f, 1);
 		}
-		else
+        else
 		{
 			nowLine.GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
 			endPos = mousePos;
@@ -99,7 +108,14 @@ public class LineDrawer : MonoBehaviour
 		Line.transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan((endPos.y - startPos.y) / (endPos.x - startPos.x)));
 	}
 
-	private int? NewLineNum()
+    private Vector2? EncountEnemy()
+    {
+        RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
+
+        return raycastTester.GetNeariestEnemy();
+    }
+
+    private int? NewLineNum()
 	{
 		for(int num = 0; num < maxLineNum; num++)
 		{
