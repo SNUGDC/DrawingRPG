@@ -16,10 +16,19 @@ public class RaycastTester : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Debug.Log(mousePos);
 
-        //RaycastHit2D hit = Physics2D.Raycast(transform.position, );
-        //if (hit.collider != null)
-        //{
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, mousePos - new Vector2(transform.position.x ,transform.position.y));
 
-        
+        if (hits.Length != 0)
+        {
+            for (int i = 0; i < hits.Length; i++)
+            {
+                Debug.Log(hits[i].collider);
+            }
+        }
+
+        else
+        {
+         //   Debug.Log(hits[].collider);
+        }
     }
 }
