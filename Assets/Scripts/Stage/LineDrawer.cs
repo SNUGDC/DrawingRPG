@@ -52,7 +52,6 @@ public class LineDrawer : MonoBehaviour
 		startPos = transform.position;
         RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
         raycastTester.startPos = startPos;
-        //Instantiate(LineEnd, transform.position, Quaternion.identity);
         nowLine = CreateLine();
 	}
 
@@ -64,17 +63,13 @@ public class LineDrawer : MonoBehaviour
 			isInControlMode = false;
 			myLine[NewLineNum().Value] = nowLine;
 			nowLine.GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
-            //nowLine.GetComponent<LineController>().startPos = startPos;
-            //nowLine.GetComponent<LineController>().startPos = endPos;
-            Player.GetComponent<PlayerMover>().moveToGoal.Add(new MoveToGoal(endPos));
-            //Instantiate(LineEnd, endPos, Quaternion.identity);
 
-            if (EncountEnemy() != null)
+            Enemy encounteredEnemy = EncountEnemy();
+            Player.GetComponent<PlayerMover>().moveToGoal.Add(new MoveToGoal(endPos, encounteredEnemy));
+
+            if (encounteredEnemy != null)
             {
-                Debug.Log("Encounter enemy in onmouseup");
-                RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
-                Enemy nearestEnemy = raycastTester.GetNeariestEnemy(allEncountedEnemyList);
-                allEncountedEnemyList.Add(nearestEnemy);
+                allEncountedEnemyList.Add(encounteredEnemy);
             }
         }
 	}
@@ -95,10 +90,10 @@ public class LineDrawer : MonoBehaviour
 		float lineLength;
 
 		lineLength = Vector2.Distance(startPos, mousePos);
-        if (EncountEnemy() != null)
+        if (EncountEnemyPosition() != null)
         {
-            lineLength = Vector2.Distance(EncountEnemy().Value, startPos);
-            endPos = EncountEnemy().Value;
+            lineLength = Vector2.Distance(EncountEnemyPosition().Value, startPos);
+            endPos = EncountEnemyPosition().Value;
             Line.GetComponent<SpriteRenderer>().color = new Color(1, 0.2f, 0.2f, 1);
         }
         else if(lineLength > maxLineLength)
@@ -118,11 +113,18 @@ public class LineDrawer : MonoBehaviour
 		Line.transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan((endPos.y - startPos.y) / (endPos.x - startPos.x)));
 	}
 
-    private Vector2? EncountEnemy()
+    private Vector2? EncountEnemyPosition()
     {
         RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
 
         return raycastTester.GetNeariestEnemyPosition(ignoreList: allEncountedEnemyList);
+    }
+
+    private Enemy EncountEnemy()
+    {
+        RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
+
+        return raycastTester.GetNeariestEnemy(ignoreList: allEncountedEnemyList);
     }
 
     private int? NewLineNum()

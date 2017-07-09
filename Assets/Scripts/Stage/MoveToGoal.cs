@@ -6,10 +6,18 @@ public class MoveToGoal
 {
     public Vector2 goal;
     public float moveSpeed = 5.0f;
+    public Enemy encounteredEnemy;
+
     public MoveToGoal(Vector2 goal)
     {
         this.goal = goal;
     }
+
+    public MoveToGoal(Vector2 goal, Enemy encounteredEnemy) : this(goal)
+    {
+        this.encounteredEnemy = encounteredEnemy;
+    }
+
     public bool IsArrive(Transform transform)
     {
         Vector2 playerPos = transform.position;
@@ -28,7 +36,6 @@ public class MoveToGoal
         {
             transform.position = (Vector2)transform.position + (goal - playerPos).normalized * moveSpeed * Time.deltaTime;
         }
-
     }
     //// **/안에 있는게 원본
     /*public void Move(Transform transform)

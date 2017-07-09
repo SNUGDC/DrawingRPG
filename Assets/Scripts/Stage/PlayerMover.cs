@@ -30,6 +30,7 @@ public class PlayerMover : MonoBehaviour
         {
             yield return StartCoroutine(RunMovePhase());
             yield return StartCoroutine(RunBattlePhase());
+            moveToGoal.RemoveAt(0);
         }
     }
 
@@ -44,7 +45,6 @@ public class PlayerMover : MonoBehaviour
             }
             else
             {
-                moveToGoal.RemoveAt(0);
                 yield break;
             }
 
@@ -55,6 +55,11 @@ public class PlayerMover : MonoBehaviour
     private IEnumerator RunBattlePhase()
     {
         Debug.Log("Here is battle phase");
+        Enemy encounteredEnemy = moveToGoal[0].encounteredEnemy;
+        if (encounteredEnemy != null)
+        {
+            Destroy(encounteredEnemy.gameObject);
+        }
         yield return new WaitForSeconds(1.0f);
     }
 
