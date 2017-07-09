@@ -14,7 +14,7 @@ public class Start_button : MonoBehaviour {
 
     private void Update()
     {
-        OnClicked();
+   //     OnClicked();
     }
 
     void OnClicked()
