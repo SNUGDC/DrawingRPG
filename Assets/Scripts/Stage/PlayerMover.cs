@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,12 @@ public class PlayerMover : MonoBehaviour
 
     public int move_count;
 
+    public void StartMove()
+    {
+        startmove = true;
+        StartCoroutine(RunTurn());
+    }
+
     private void Start()
     {
         move_count = 0;
@@ -17,53 +24,39 @@ public class PlayerMover : MonoBehaviour
         LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
     }
 
-    private void Update()
+    IEnumerator RunTurn()
     {
-        //임의로 추가햇습니다
-        if (Input.GetMouseButtonDown(0) && LineDrawer.return_line_num())
+        while (moveToGoal.Count > 0)
         {
-            if (startmove == true)
-            {
-                startmove = false;
-                move_count++;
-            }
-            else
-                startmove = true;
+            yield return StartCoroutine(RunMovePhase());
+            yield return StartCoroutine(RunBattlePhase());
         }
-
-        if (moveToGoal.Count != 0)
-        {
-            if (moveToGoal[0].IsArrive(transform) == false)
-            {
-                moveToGoal[0].Move(transform, startmove);
-            }
-            else if (moveToGoal[0].IsArrive(transform) == true)
-            {
-                moveToGoal.RemoveAt(0);
-            }
-        }
-
-        ///**/이 안에 있는게 원본
-        /*
-     if(startmove == true)
-       {   
-        if (moveToGoal.Count != 0)
-        {
-            if (moveToGoal[0].IsArrive(transform) == false)
-            {
-                moveToGoal[0].Move(transform);
-            }
-            else if (moveToGoal[0].IsArrive(transform) == true)
-            {
-                moveToGoal.RemoveAt(0);
-            }
-        }
-      }*/
-
     }
 
-    //요까지..
+    private IEnumerator RunMovePhase()
+    {
+        while (true)
+        {
+            bool isArrive = moveToGoal[0].IsArrive(transform);
+            if (isArrive == false)
+            {
+                moveToGoal[0].Move1Frame(transform);
+            }
+            else
+            {
+                moveToGoal.RemoveAt(0);
+                yield break;
+            }
 
+            yield return null;
+        }
+    }
+
+    private IEnumerator RunBattlePhase()
+    {
+        Debug.Log("Here is battle phase");
+        yield return new WaitForSeconds(1.0f);
+    }
 
     private GameObject NowLine()
     {

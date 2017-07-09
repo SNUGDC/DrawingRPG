@@ -18,14 +18,7 @@ public class MoveToGoal
         return distance < 0.1f;
     }
 
-    public float check_speed(bool check)
-    {
-        if (check == true)
-            return moveSpeed;
-        else
-            return 0f;
-    }
-    public void Move(Transform transform, bool check_move)
+    public void Move1Frame(Transform transform)
     {
         Vector2 playerPos = transform.position;
         float distance = (playerPos - goal).magnitude;
@@ -33,7 +26,7 @@ public class MoveToGoal
 
         if (distance >= buffer)
         {
-            transform.position = (Vector2)transform.position + (goal - playerPos).normalized * check_speed(check_move) * Time.deltaTime;
+            transform.position = (Vector2)transform.position + (goal - playerPos).normalized * moveSpeed * Time.deltaTime;
         }
 
     }

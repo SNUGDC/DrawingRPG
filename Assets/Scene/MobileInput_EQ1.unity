@@ -1493,7 +1493,7 @@ Prefab:
     - target: {fileID: 114152417179787764, guid: 06a855a90d171fe4c9b85e84631dd970,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224005895390919856, guid: 06a855a90d171fe4c9b85e84631dd970,
         type: 2}
@@ -1672,6 +1672,36 @@ Prefab:
     - target: {fileID: 114152417179787764, guid: 06a855a90d171fe4c9b85e84631dd970,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152417179787764, guid: 06a855a90d171fe4c9b85e84631dd970,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152417179787764, guid: 06a855a90d171fe4c9b85e84631dd970,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152417179787764, guid: 06a855a90d171fe4c9b85e84631dd970,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152417179787764, guid: 06a855a90d171fe4c9b85e84631dd970,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 403504062}
+    - target: {fileID: 114152417179787764, guid: 06a855a90d171fe4c9b85e84631dd970,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: StartMove
+      objectReference: {fileID: 0}
+    - target: {fileID: 114152417179787764, guid: 06a855a90d171fe4c9b85e84631dd970,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
