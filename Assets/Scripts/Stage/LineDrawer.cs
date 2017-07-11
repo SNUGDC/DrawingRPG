@@ -10,6 +10,7 @@ public class LineDrawer : MonoBehaviour
 	public int maxLineNum;
 	public float maxLineLength;
 	public GameObject[] myLine;
+    public int this_num = 0;
 
 	private GameObject Player;
 	private GameObject nowLine;
@@ -18,7 +19,28 @@ public class LineDrawer : MonoBehaviour
 	private Vector2 endPos;
 	private bool isInControlMode;
     private List<Enemy> allEncountedEnemyList = new List<Enemy>();
+    
 
+    public void Delete_Line()
+    {
+        if (myLine[0] != null && myLine[maxLineNum-1] ==null)
+        {
+            Debug.Log("Delete_Done");
+            this_num--;
+            transform.position = 2 * myLine[NewLineNum().Value - 1].transform.position - transform.position;
+            Destroy(myLine[NewLineNum().Value - 1]);
+            myLine[NewLineNum().Value - 1] = null;
+        }
+        else if(myLine[maxLineNum-1] != null)
+        {
+            Debug.Log("null");
+            this_num--;
+            transform.position = 2 * myLine[maxLineNum-1].transform.position - transform.position;
+            Destroy(myLine[maxLineNum-1]);
+            myLine[maxLineNum-1] = null;
+
+        }
+    }
 	private void Start()
 	{
 		isInControlMode = false;
@@ -59,10 +81,13 @@ public class LineDrawer : MonoBehaviour
 	{
 		if(isInControlMode == true)
 		{
+            this_num++;
 			Debug.Log("조작모드 끝");
+            Debug.Log(NewLineNum().Value);
 			isInControlMode = false;
-			myLine[NewLineNum().Value] = nowLine;
-			nowLine.GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
+            myLine[NewLineNum().Value] = nowLine;
+            
+            nowLine.GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
 
             Enemy encounteredEnemy = EncountEnemy();
             Player.GetComponent<PlayerMover>().moveToGoal.Add(new MoveToGoal(endPos, encounteredEnemy));
@@ -84,9 +109,10 @@ public class LineDrawer : MonoBehaviour
 
 	private void ControlLine(GameObject Line)
 	{
-		if(Line == null)
-			return;
-
+        if (Line == null)
+        {
+            return;
+        }
 		float lineLength;
 
 		lineLength = Vector2.Distance(startPos, mousePos);
@@ -126,7 +152,7 @@ public class LineDrawer : MonoBehaviour
 
         return raycastTester.GetNeariestEnemy(ignoreList: allEncountedEnemyList);
     }
-
+    
     private int? NewLineNum()
 	{
 		for(int num = 0; num < maxLineNum; num++)
@@ -141,11 +167,5 @@ public class LineDrawer : MonoBehaviour
 		return null;
 	}
     
-    public bool return_line_num()
-    {
-        if (myLine[maxLineNum - 1] != null)
-            return true;
-        else
-            return false;
-    }
+    
 }
