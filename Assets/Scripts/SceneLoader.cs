@@ -12,15 +12,20 @@ public static class SceneLoader
         LoadScene("Stage" + stage);
     }
 
+    public static void LoadProto()
+    {
+        LoadScene("MobileInput_EQ1");
+    }
     public static void LoadStageSelect()
     {
         LoadScene("StageSelect");
     }
 
-    public static void LoadMenu(string menu_component)
+    public static void LoadScene_using_string(string scene)
     {
-        LoadScene(menu_component);
+        LoadScene(scene);
     }
+    
 
     private static void LoadScene(string sceneName)
     {
