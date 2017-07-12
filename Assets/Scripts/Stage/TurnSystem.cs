@@ -24,8 +24,13 @@ public class TurnSystem : MonoBehaviour
         {
             yield return StartCoroutine(RunMovePhase());
             yield return StartCoroutine(RunBattlePhase());
+            if (playerMover == null)
+            {
+                yield break;
+            }
             playerMover.PhaseEnd();
         }
+        Debug.Log("TurnEnd");
     }
 
     private IEnumerator RunMovePhase()
