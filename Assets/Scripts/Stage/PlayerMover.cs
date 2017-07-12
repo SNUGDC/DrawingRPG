@@ -6,35 +6,27 @@ using UnityEngine;
 public class PlayerMover : MonoBehaviour
 {
     private LineDrawer LineDrawer;
-    private bool startmove;
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
 
     public int move_count;
 
-    public void StartMove()
-    {
-        startmove = true;
-        StartCoroutine(RunTurn());
-    }
-
     private void Start()
     {
         move_count = 0;
-        startmove = false;
         LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
     }
 
-    IEnumerator RunTurn()
+    public bool NeedTurnPhase()
     {
-        while (moveToGoal.Count > 0)
-        {
-            yield return StartCoroutine(RunMovePhase());
-            yield return StartCoroutine(RunBattlePhase());
-            moveToGoal.RemoveAt(0);
-        }
+        return moveToGoal.Count > 0;
     }
 
-    private IEnumerator RunMovePhase()
+    public void PhaseEnd()
+    {
+        moveToGoal.RemoveAt(0);
+    }
+
+    public IEnumerator RunMovePhase()
     {
         while (true)
         {
@@ -52,7 +44,7 @@ public class PlayerMover : MonoBehaviour
         }
     }
 
-    private IEnumerator RunBattlePhase()
+    public IEnumerator RunBattlePhase()
     {
         Debug.Log("Here is battle phase");
         Enemy encounteredEnemy = moveToGoal[0].encounteredEnemy;
