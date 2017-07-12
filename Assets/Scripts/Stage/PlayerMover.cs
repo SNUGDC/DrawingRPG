@@ -47,12 +47,12 @@ public class PlayerMover : MonoBehaviour
     public IEnumerator RunBattlePhase()
     {
         Debug.Log("Here is battle phase");
+        yield return new WaitForSeconds(1.0f);
         Enemy encounteredEnemy = moveToGoal[0].encounteredEnemy;
         if (encounteredEnemy != null)
         {
             Destroy(encounteredEnemy.gameObject);
         }
-        yield return new WaitForSeconds(1.0f);
     }
 
     private GameObject NowLine()
