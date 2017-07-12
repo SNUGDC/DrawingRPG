@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     private LineDrawer LineDrawer;
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
 
+    public int atk;
+    public int hp;
+
     public int move_count;
 
     private void Start()
@@ -48,10 +51,11 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Here is battle phase");
         yield return new WaitForSeconds(1.0f);
+
         Enemy encounteredEnemy = moveToGoal[0].encounteredEnemy;
         if (encounteredEnemy != null)
         {
-            Destroy(encounteredEnemy.gameObject);
+            BattleSystem.Battle(this, encounteredEnemy);
         }
     }
 
