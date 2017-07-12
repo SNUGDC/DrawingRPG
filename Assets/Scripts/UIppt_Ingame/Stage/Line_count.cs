@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Line_count : MonoBehaviour {
-    public LineDrawer LineDrawer;
+    private LineDrawer LineDrawer;
     //int count_Lines=0;
 
     Text text;
@@ -12,6 +12,7 @@ public class Line_count : MonoBehaviour {
     void Start()
     {
         text = GetComponent<Text>();
+        LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
     }
 	void Update () {
 

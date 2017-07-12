@@ -6,15 +6,20 @@ using UnityEngine.UI;
 public class Start_button : MonoBehaviour {
 
     public Button start_button;
+    private LineDrawer LineDrawer;
 
     private void Start()
     {
-        Button this_one = start_button.GetComponent<Button>();
+        start_button.interactable = false;
+        LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
     }
 
     private void Update()
     {
-   //     OnClicked();
+        if (LineDrawer.this_num != 0)
+        {
+            start_button.interactable = true;
+        }
     }
 
     void OnClicked()
