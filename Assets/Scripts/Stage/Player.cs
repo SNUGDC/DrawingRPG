@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     private LineDrawer LineDrawer;
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
-
+    
     public int atk;
     public int hp;
 
