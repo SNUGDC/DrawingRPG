@@ -1601,7 +1601,7 @@ Prefab:
     - target: {fileID: 114243174826870596, guid: 675fe4dc3361bd143aa9767335342701,
         type: 2}
       propertyPath: hp
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114243174826870596, guid: 675fe4dc3361bd143aa9767335342701,
         type: 2}

@@ -24,11 +24,6 @@ public class Player : MonoBehaviour
         return moveToGoal.Count > 0;
     }
 
-    public void PhaseEnd()
-    {
-        moveToGoal.RemoveAt(0);
-    }
-
     public IEnumerator RunMovePhase()
     {
         while (true)
@@ -49,13 +44,21 @@ public class Player : MonoBehaviour
 
     public IEnumerator RunBattlePhase()
     {
-        Debug.Log("Here is battle phase");
         yield return new WaitForSeconds(1.0f);
 
         Enemy encounteredEnemy = moveToGoal[0].encounteredEnemy;
         if (encounteredEnemy != null)
         {
             BattleSystem.Battle(this, encounteredEnemy);
+        }
+        yield return null;
+    }
+
+    public void PhaseEnd()
+    {
+        if (moveToGoal[0].encounteredEnemy == null)
+        {
+            moveToGoal.RemoveAt(0);
         }
     }
 
