@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private LineDrawer LineDrawer;
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();

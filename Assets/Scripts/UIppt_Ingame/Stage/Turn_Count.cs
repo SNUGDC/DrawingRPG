@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Turn_Count : MonoBehaviour{
-    public PlayerMover player;
+    public Player player;
     public int Limit_turn;
     Text text;
 

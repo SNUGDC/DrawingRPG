@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurnSystem : MonoBehaviour
 {
     private bool startmove;
-    public PlayerMover playerMover;
+    public Player playerMover;
 
     public void StartMove()
     {

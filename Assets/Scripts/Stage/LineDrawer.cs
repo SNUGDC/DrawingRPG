@@ -90,7 +90,7 @@ public class LineDrawer : MonoBehaviour
             nowLine.GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
 
             Enemy encounteredEnemy = EncountEnemy();
-            Player.GetComponent<PlayerMover>().moveToGoal.Add(new MoveToGoal(endPos, encounteredEnemy));
+            Player.GetComponent<Player>().moveToGoal.Add(new MoveToGoal(endPos, encounteredEnemy));
 
             if (encounteredEnemy != null)
             {
