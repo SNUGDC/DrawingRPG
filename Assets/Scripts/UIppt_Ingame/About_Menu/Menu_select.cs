@@ -15,6 +15,11 @@ public class Menu_select : MonoBehaviour {
     {
         SceneLoader.LoadScene_using_string("Option");
     }
+    public void OnClickQuit()
+    {
+        Application.Quit();
+
+    }
     private void Start()
     {
         Screen.SetResolution(600, 1080, true);

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class StageSelect : MonoBehaviour
 {
+    public void OnClickQuit()
+    {
+        Application.Quit();
+
+    }
     public void OnProtoButton()
     {
         SceneLoader.LoadProto();
