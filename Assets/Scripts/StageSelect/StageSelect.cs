@@ -9,6 +9,11 @@ public class StageSelect : MonoBehaviour
         SceneLoader.LoadProto();
     }
 
+    public void OnClickMainMenu()
+    {
+        SceneLoader.LoadScene_using_string("Main_Menu");
+    }
+
     public void OnStageButtonClick(int stage)
     {
         SceneLoader.LoadStage(stage);
