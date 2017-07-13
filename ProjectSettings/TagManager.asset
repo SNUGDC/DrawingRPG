@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Line
   - Line End
+  - goal
   layers:
   - Default
   - TransparentFX

@@ -2,15 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     private LineDrawer LineDrawer;
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
-    
+    public GameObject goal_Image;
+    private float duration = 3.0f;
     public int atk;
     public int hp;
-
     public int move_count;
 
     private void Start()
@@ -19,6 +20,16 @@ public class Player : MonoBehaviour
         LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
     }
 
+    void OnTriggerEnter2D(Collider2D goal)
+    {
+        if (goal.gameObject.tag == "goal")
+        {
+            goal_Image.GetComponent<Image>().canvasRenderer.SetAlpha(0);
+            goal_Image.SetActive(true);
+            goal_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
+        }
+    }
+    
     public bool NeedTurnPhase()
     {
         return moveToGoal.Count > 0;
