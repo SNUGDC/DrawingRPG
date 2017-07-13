@@ -9,7 +9,9 @@ public class Player : MonoBehaviour
     private LineDrawer LineDrawer;
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
     public GameObject goal_Image;
+    public GameObject black;
     private float duration = 3.0f;
+    public bool is_over = false;
     public int atk;
     public int hp;
     public int move_count;
@@ -24,6 +26,9 @@ public class Player : MonoBehaviour
     {
         if (goal.gameObject.tag == "goal")
         {
+            black.GetComponent<Image>().canvasRenderer.SetAlpha(0);
+            black.SetActive(true);
+            black.GetComponent<Image>().CrossFadeAlpha(1, 1.0f, true);
             goal_Image.GetComponent<Image>().canvasRenderer.SetAlpha(0);
             goal_Image.SetActive(true);
             goal_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
@@ -40,9 +45,13 @@ public class Player : MonoBehaviour
         while (true)
         {
             bool isArrive = moveToGoal[0].IsArrive(transform);
-            if (isArrive == false)
+            if (isArrive == false && is_over == false)
             {
                 moveToGoal[0].Move1Frame(transform);
+            }
+            else if (is_over == true)
+            {
+
             }
             else
             {
