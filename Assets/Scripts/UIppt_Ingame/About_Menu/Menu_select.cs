@@ -22,6 +22,6 @@ public class Menu_select : MonoBehaviour {
     }
     private void Start()
     {
-        Screen.SetResolution(600, 1080, true);
+        Screen.SetResolution(360, 640, false);
     }
 }
