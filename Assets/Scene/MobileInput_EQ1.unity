@@ -2746,7 +2746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 403504062}
-  Limit_turn: 6
+  Limit_turn: 3
+  Game_Over_Image: {fileID: 2059901164}
 --- !u!114 &1123216374
 MonoBehaviour:
   m_ObjectHideFlags: 0

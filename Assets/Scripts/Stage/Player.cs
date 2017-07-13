@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                move_count++;
                 yield break;
             }
 
