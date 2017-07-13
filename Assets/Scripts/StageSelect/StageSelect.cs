@@ -38,6 +38,6 @@ public class StageSelect : MonoBehaviour
 
     private void Start()
     {
-        Screen.SetResolution(600, 1080, false); 
+        Screen.SetResolution(360, 640, false);
     }
 }
