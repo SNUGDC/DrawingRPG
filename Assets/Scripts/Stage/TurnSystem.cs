@@ -16,6 +16,7 @@ public class TurnSystem : MonoBehaviour
     private void Start()
     {
         startmove = false;
+        Screen.SetResolution(600, 1080, true);
     }
 
     IEnumerator RunTurn()

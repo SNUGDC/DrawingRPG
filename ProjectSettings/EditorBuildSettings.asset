@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scene/UIppt/Main_Menu.unity
+    guid: 49f3c7a2d4efb924293ecb1af814e91a
+  - enabled: 1
     path: Assets/Scene/MobileInput_EQ1.unity
     guid: 4278fb9e173a29a498c335d0ee5cffaa
   - enabled: 1
@@ -23,9 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Stages/Stage4.unity
     guid: 46523e063f7824bc89a6e39ef9def719
-  - enabled: 1
-    path: Assets/Scene/UIppt/Main_Menu.unity
-    guid: 49f3c7a2d4efb924293ecb1af814e91a
   - enabled: 0
     path: 
     guid: c53e4a8a412a1c3489fa1ba6853d66a1

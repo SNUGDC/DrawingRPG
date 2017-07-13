@@ -25,4 +25,9 @@ public class StageSelect : MonoBehaviour
         SaveManager.ResetSave();
         SceneLoader.LoadStageSelect();
     }
+
+    private void Start()
+    {
+        Screen.SetResolution(600, 1080, true); 
+    }
 }
