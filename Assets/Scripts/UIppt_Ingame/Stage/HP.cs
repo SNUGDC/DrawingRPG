@@ -14,6 +14,7 @@ public class HP : MonoBehaviour {
     public Sprite full_hp;
     public GameObject Game_Over_Image;
     public GameObject black;
+    public GameObject again;
     public Image[] player_hp_bar;
 	// Use this for initialization
 	void Start () {
@@ -37,7 +38,9 @@ public class HP : MonoBehaviour {
             Game_Over_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
             is_game_over = true;
         }
-            
+        if (is_game_over == true)
+            again.SetActive(true);
+
     }
 
     void check_HP()

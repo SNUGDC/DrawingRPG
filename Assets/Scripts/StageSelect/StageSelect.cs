@@ -9,6 +9,10 @@ public class StageSelect : MonoBehaviour
         Application.Quit();
 
     }
+    public void OnClick_mid()
+    {
+        SceneLoader.LoadScene_using_string("none");
+    }
     public void OnProtoButton()
     {
         SceneLoader.LoadProto();

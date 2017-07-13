@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
     public GameObject goal_Image;
     public GameObject black;
+    public GameObject next;
     private float duration = 3.0f;
-    public bool is_over = false;
     public int atk;
     public int hp;
     public int move_count;
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
             goal_Image.SetActive(true);
             goal_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
         }
+        next.SetActive(true);
     }
     
     public bool NeedTurnPhase()
@@ -45,13 +46,9 @@ public class Player : MonoBehaviour
         while (true)
         {
             bool isArrive = moveToGoal[0].IsArrive(transform);
-            if (isArrive == false && is_over == false)
+            if (isArrive == false)
             {
                 moveToGoal[0].Move1Frame(transform);
-            }
-            else if (is_over == true)
-            {
-
             }
             else
             {

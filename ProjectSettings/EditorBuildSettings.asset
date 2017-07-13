@@ -38,3 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/UIppt/Option.unity
     guid: 52a4777899f1bd3469d3e2d2f23421bc
+  - enabled: 1
+    path: Assets/Scene/UIppt/none.unity
+    guid: 6d2b33fbe46fb4b4487c59001aa6f46c
