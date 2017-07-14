@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Turn_Count : MonoBehaviour{
+public class Turn_Count : MonoBehaviour
+{
     public Player player;
     public int Limit_turn;
     public GameObject Game_Over_Image;
