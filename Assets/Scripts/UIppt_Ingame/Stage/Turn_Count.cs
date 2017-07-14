@@ -34,6 +34,6 @@ public class Turn_Count : MonoBehaviour
         }
         if (turn_over == true)
             again.SetActive(true);
-        text.text = "Turn " + player.move_count + "/" + Limit_turn;
+        text.text = player.move_count + "/" + Limit_turn;
     }
 }

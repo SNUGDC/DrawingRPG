@@ -23,7 +23,7 @@ public class Line_count : MonoBehaviour {
         else if (count_Lines != 0 && LineDrawer.myLine[count_Lines] == null)
             count_Lines--;
     */    
-        text.text = "Line " + LineDrawer.this_num +  "/" + LineDrawer.maxLineNum;
+        text.text = LineDrawer.this_num +  "/" + LineDrawer.maxLineNum;
 	}
 
 }

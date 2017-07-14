@@ -26,6 +26,7 @@ public class TurnSystem : MonoBehaviour
     {
         while (player.NeedTurnPhase())
         {
+            player.move_count++;
             yield return StartCoroutine(StartMovePhase());
             yield return StartCoroutine(RunMovePhase());
             yield return StartCoroutine(StartBattlePhase());
@@ -101,7 +102,7 @@ public class TurnSystem : MonoBehaviour
                 for(int i = 0; i < movingVector.Length; i++)
                 {
                     MovePhaseImage[i].color -= new Color(0, 0, 0, Time.deltaTime);
-                    MovePhaseImage[i].rectTransform.anchoredPosition -= movingVector[i] * Time.deltaTime;
+                    MovePhaseImage[i].rectTransform.anchoredPosition += movingVector[i] * Time.deltaTime;
                 }
             }
             else
@@ -162,7 +163,7 @@ public class TurnSystem : MonoBehaviour
                 for(int i = 0; i < movingVector.Length; i++)
                 {
                     BattlePhaseImage[i].color -= new Color(0, 0, 0, Time.deltaTime);
-                    BattlePhaseImage[i].rectTransform.anchoredPosition -= movingVector[i] * Time.deltaTime;
+                    BattlePhaseImage[i].rectTransform.anchoredPosition += movingVector[i] * Time.deltaTime;
                 }
             }
             else
