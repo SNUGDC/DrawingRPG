@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
 
     public IEnumerator RunMovePhase()
     {
+        //move_count++;
+
         while (true)
         {
             bool isArrive = moveToGoal[0].IsArrive(transform);
