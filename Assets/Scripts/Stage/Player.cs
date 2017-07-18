@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public int atk;
     public int hp;
     public int move_count;
+    public string element;
 
     private void Start()
     {
