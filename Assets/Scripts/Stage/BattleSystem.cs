@@ -11,28 +11,24 @@ public class BattleSystem
         List<string> element = new List<string>() { "water", "fire", "gold", "wood", "earth" };
         int enemyIndex;
         int playerIndex;
-        int IncreasedElementalDamage = 1;
-        int DecreasedElemnetalDamage = 1;
+        float IncreasedElementalDamage = 1.2f;
+        float DecreasedElementalDamage = 0.8f;
 
         //player 공격phase
-        enemy.hp -= player.atk;
-
         enemyIndex = element.IndexOf(enemy.element);
-        Debug.Log("적인덱스" + enemyIndex);
         playerIndex = element.IndexOf(player.element);
-        Debug.Log("플레이어인덱스" + playerIndex);
         if (playerIndex + 1 == enemyIndex || (playerIndex == 4 && enemyIndex == 0))
         {
-            enemy.hp -= IncreasedElementalDamage;
-            Debug.Log("속성추가대미지" + 1);
+            enemy.hp -= (int)(player.atk * IncreasedElementalDamage);
         }
-
         else if (playerIndex - 1 == enemyIndex || (playerIndex == 0 && enemyIndex == 4))
         {
-            enemy.hp += DecreasedElemnetalDamage;
-            Debug.Log("속성감소대미지" + enemy.hp);
+            enemy.hp -= (int)(player.atk * DecreasedElementalDamage);
+        }  
+        else
+        {
+            enemy.hp -= player.atk;
         }
-        Debug.Log("플레이어 공격턴 끝 적 남은체력"+ enemy.hp);
 
         //enemy 사망 check
         if (enemy.hp <= 0)
@@ -42,21 +38,19 @@ public class BattleSystem
         }
 
         //enemy 공격phase
-        player.hp -= enemy.atk;
-
         if (enemyIndex + 1 == playerIndex || (enemyIndex == 4 && playerIndex == 0))
         {
-            player.hp -= IncreasedElementalDamage;
-            Debug.Log("속성추가대미지");
+            player.hp -= (int)(enemy.atk*IncreasedElementalDamage);
         }
-
         else if (enemyIndex - 1 == playerIndex || (enemyIndex == 0 && playerIndex == 4))
         {
-            player.hp += DecreasedElemnetalDamage;
-            Debug.Log("속성감소대미지");
+            player.hp -= (int)(enemy.atk*DecreasedElementalDamage);
         }
-        Debug.Log("적공격끝 플레이어 남은체력" + player.hp);
-
+        else
+        {
+            player.hp -= enemy.atk;
+        }
+        
         //player 사망 check
         if (player.hp <= 0)
         {
