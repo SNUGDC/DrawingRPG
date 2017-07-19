@@ -16,6 +16,7 @@ public class HP : MonoBehaviour {
     public GameObject black;
     public GameObject again;
     public Image[] player_hp_bar;
+    public GameObject next;
 	// Use this for initialization
 	void Start () {
         maxHP = 5;
@@ -38,7 +39,7 @@ public class HP : MonoBehaviour {
             Game_Over_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
             is_game_over = true;
         }
-        if (is_game_over == true)
+        if (is_game_over == true && player.is_clear == false)
             again.SetActive(true);
 
     }

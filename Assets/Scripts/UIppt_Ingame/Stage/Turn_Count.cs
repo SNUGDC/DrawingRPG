@@ -32,7 +32,7 @@ public class Turn_Count : MonoBehaviour
             Game_Over_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
             turn_over = true;
         }
-        if (turn_over == true)
+        if (turn_over == true && player.is_clear == false)
             again.SetActive(true);
         text.text = player.move_count + "/" + Limit_turn;
     }

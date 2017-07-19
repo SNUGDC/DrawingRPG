@@ -15,11 +15,13 @@ public class Player : MonoBehaviour
     public int atk;
     public int hp;
     public int move_count;
+    public bool is_clear;
 
     private void Start()
     {
         move_count = 0;
         LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
+        is_clear = false;
     }
 
     void OnTriggerEnter2D(Collider2D goal)
@@ -33,7 +35,9 @@ public class Player : MonoBehaviour
             goal_Image.SetActive(true);
             goal_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
         }
+        is_clear = true;
         next.SetActive(true);
+
     }
     
     public bool NeedTurnPhase()

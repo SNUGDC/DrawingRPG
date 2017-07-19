@@ -41,3 +41,6 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 6d2b33fbe46fb4b4487c59001aa6f46c
+  - enabled: 1
+    path: Assets/Scene/UIppt/Credits.unity
+    guid: 266e1fb75b91bd0428a0b704de85872a
