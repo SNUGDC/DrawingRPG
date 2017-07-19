@@ -422,6 +422,11 @@ Prefab:
       propertyPath: next
       value: 
       objectReference: {fileID: 2075748393}
+    - target: {fileID: 114625280802989468, guid: b695564ca8b7cdb44a761da26722238d,
+        type: 2}
+      propertyPath: element
+      value: earth
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b695564ca8b7cdb44a761da26722238d, type: 2}
   m_IsPrefabParent: 0
@@ -4006,6 +4011,11 @@ Prefab:
       propertyPath: m_Radius
       value: 4.7
       objectReference: {fileID: 0}
+    - target: {fileID: 114243174826870596, guid: 675fe4dc3361bd143aa9767335342701,
+        type: 2}
+      propertyPath: element
+      value: water
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 675fe4dc3361bd143aa9767335342701, type: 2}
   m_IsPrefabParent: 0
@@ -4744,6 +4754,11 @@ Prefab:
         type: 2}
       propertyPath: m_Radius
       value: 4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243174826870596, guid: 675fe4dc3361bd143aa9767335342701,
+        type: 2}
+      propertyPath: element
+      value: gold
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 675fe4dc3361bd143aa9767335342701, type: 2}
