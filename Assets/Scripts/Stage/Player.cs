@@ -16,7 +16,8 @@ public class Player : MonoBehaviour
     public int hp;
     public int move_count;
     public bool is_clear;
-    public string element;
+    //public string element;
+    public Element element;
 
     private void Start()
     {

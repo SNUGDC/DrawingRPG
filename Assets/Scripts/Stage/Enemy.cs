@@ -6,7 +6,8 @@ public class Enemy : MonoBehaviour
 {
     public int atk;
     public int hp;
-    public string element;
+    //public string element;
+    public Element element;
 
     // Use this for initialization
     void Start()
