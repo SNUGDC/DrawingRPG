@@ -14,7 +14,7 @@ public static class SceneLoader
 
     public static void LoadProto()
     {
-        LoadScene("MobileInput_EQ1");
+        LoadScene("Stage0");
     }
     public static void LoadStageSelect()
     {
