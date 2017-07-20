@@ -102,6 +102,7 @@ public class BattleSystem
         
         if (enemy.hp <= 0)
         {
+            enemy.enemy_object.SetActive(false);
             GameObject.Destroy(enemy.gameObject);
             return;
         }

@@ -17,12 +17,25 @@ public class HP : MonoBehaviour {
     public GameObject again;
     public Image[] player_hp_bar;
     public GameObject next;
-	// Use this for initialization
-	void Start () {
-        maxHP = 5;
+    // Use this for initialization
+    private void make_max_hp()
+    {
+        for (int i = 0; i < maxHP; i++)
+        {
+            player_hp_bar[i].sprite = full_hp;
+        }
+        for (int i = maxHP; i < 5; i++)
+        {
+            Destroy(player_hp_bar[i]);
+        }
+    }
+
+    void Start () {
+        maxHP = player.max_hp;
         current_HP = player.hp;
-        check_HP();
+        make_max_hp();
 	}
+    
     
     
     void Update()

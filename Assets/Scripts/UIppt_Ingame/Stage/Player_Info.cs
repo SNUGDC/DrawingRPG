@@ -8,6 +8,7 @@ public class Player_Info : MonoBehaviour {
     
     public Player player;
     public Image player_element;
+    public Text player_atk;
     public List<Sprite> player_element_Image;
 	// Use this for initialization
     private void this_element()
@@ -22,6 +23,8 @@ public class Player_Info : MonoBehaviour {
             player_element.sprite = player_element_Image[3];
         else
             player_element.sprite = player_element_Image[4];
+
+        player_atk.text = "공격력 : " + player.atk;
     }
 
 	void Start () {

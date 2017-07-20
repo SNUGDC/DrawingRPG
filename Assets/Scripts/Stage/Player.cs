@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public GameObject next;
     private float duration = 3.0f;
     public int atk;
+    public int max_hp;
     public int hp;
     public int move_count;
     public bool is_clear;
