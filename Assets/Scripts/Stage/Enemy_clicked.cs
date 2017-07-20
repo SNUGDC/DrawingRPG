@@ -9,6 +9,8 @@ public class Enemy_clicked : MonoBehaviour {
     public Image enemy_portrait;
     public Text enemy_atk;
     public List<Sprite> enemy_element_Image;
+
+    public Animator animator;
     
     private bool check_active=false;
     private int maxHP;
@@ -33,7 +35,7 @@ public class Enemy_clicked : MonoBehaviour {
 
         enemy_atk.text = "공격력 : " + enemy.atk;
     }
-
+    
     private void make_maxhp()
     {
         for (int i = 0; i < maxHP; i++)

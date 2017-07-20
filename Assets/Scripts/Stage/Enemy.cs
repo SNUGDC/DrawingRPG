@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     //public string element;
     public Element element;
     public GameObject enemy_object;
+    
 
     private void check_else_enemy_click()
     {

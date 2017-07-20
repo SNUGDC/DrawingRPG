@@ -427,6 +427,11 @@ Prefab:
       propertyPath: max_hp
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114625280802989468, guid: b695564ca8b7cdb44a761da26722238d,
+        type: 2}
+      propertyPath: enemy_info_animation
+      value: 
+      objectReference: {fileID: 2091629107}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b695564ca8b7cdb44a761da26722238d, type: 2}
   m_IsPrefabParent: 0
@@ -3528,7 +3533,6 @@ GameObject:
   - component: {fileID: 736324199}
   - component: {fileID: 736324202}
   - component: {fileID: 736324201}
-  - component: {fileID: 736324200}
   m_Layer: 5
   m_Name: hp_bar
   m_TagString: Untagged
@@ -3564,30 +3568,6 @@ RectTransform:
   m_AnchoredPosition: {x: 8.825008, y: -188.6}
   m_SizeDelta: {x: -17.65, y: 41}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &736324200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 736324198}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb6aeaf2fd5b5f541960b7afa4562f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blank_hp: {fileID: 21300000, guid: a7fc4f7d8b5b08a40b0eebdb74e03ea0, type: 3}
-  full_hp: {fileID: 21300000, guid: 464d2f4a72a4703498c722982e80735b, type: 3}
-  enemy_hp_bar:
-  - {fileID: 1234385522}
-  - {fileID: 1373973908}
-  - {fileID: 1566633819}
-  - {fileID: 1467760684}
-  - {fileID: 1474008858}
-  - {fileID: 1330149417}
-  - {fileID: 1951386417}
-  - {fileID: 397599413}
-  - {fileID: 757511613}
-  - {fileID: 523534594}
 --- !u!114 &736324201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3745,6 +3725,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 08768638e8ac3644a803addbd247679f, type: 3}
   - {fileID: 21300000, guid: cdd9500c2a2ab5a4e93569c959be123c, type: 3}
   - {fileID: 21300000, guid: 591037a9fa7ec0740b19eedd900082bb, type: 3}
+  animator: {fileID: 0}
   blank_hp: {fileID: 21300000, guid: a7fc4f7d8b5b08a40b0eebdb74e03ea0, type: 3}
   full_hp: {fileID: 21300000, guid: 464d2f4a72a4703498c722982e80735b, type: 3}
   enemy_hp_bar:
@@ -4926,7 +4907,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 995776143}
-  - component: {fileID: 995776144}
   m_Layer: 5
   m_Name: enemy_Info
   m_TagString: Untagged
@@ -4955,26 +4935,6 @@ RectTransform:
   m_AnchoredPosition: {x: 8.825001, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &995776144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 995776142}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c0a59ab9d83ab4fa63a3ae193a6c49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy_element: {fileID: 366508193}
-  enemy_portrait: {fileID: 1269889711}
-  enemy_atk: {fileID: 1001225911}
-  enemy_element_Image:
-  - {fileID: 21300000, guid: b6ab1f4af9974e64ebca75981bd87d77, type: 3}
-  - {fileID: 21300000, guid: 2c4a70732e0705646aacd36cf9458e24, type: 3}
-  - {fileID: 21300000, guid: 08768638e8ac3644a803addbd247679f, type: 3}
-  - {fileID: 21300000, guid: cdd9500c2a2ab5a4e93569c959be123c, type: 3}
-  - {fileID: 21300000, guid: 591037a9fa7ec0740b19eedd900082bb, type: 3}
 --- !u!1 &1001225909
 GameObject:
   m_ObjectHideFlags: 0
@@ -9997,6 +9957,7 @@ GameObject:
   - component: {fileID: 2091629104}
   - component: {fileID: 2091629106}
   - component: {fileID: 2091629105}
+  - component: {fileID: 2091629107}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -10057,6 +10018,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2091629103}
+--- !u!95 &2091629107
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2091629103}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 016a299d9be91794597e1641366f8955, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &2092162327
 GameObject:
   m_ObjectHideFlags: 0

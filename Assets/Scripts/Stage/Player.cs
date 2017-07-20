@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     //public string element;
     public Element element;
 
+    public Animator enemy_info_animation;
+
     private void Start()
     {
         move_count = 0;
@@ -75,6 +77,23 @@ public class Player : MonoBehaviour
         Enemy encounteredEnemy = moveToGoal[0].encounteredEnemy;
         if (encounteredEnemy != null)
         {
+            ////////////
+            if (BattleSystem.check_Element(this.element, encounteredEnemy.element) == 1.2f)
+            {
+                enemy_info_animation.SetTrigger("huge_attack");
+                Debug.Log("attacked");
+            }
+            else if (BattleSystem.check_Element(this.element, encounteredEnemy.element) == 1.0f)
+            {
+                enemy_info_animation.SetTrigger("attack");
+                Debug.Log("attacked");
+            }
+            else if (BattleSystem.check_Element(this.element, encounteredEnemy.element) == 0.8f)
+            {
+                enemy_info_animation.SetTrigger("small_attack");
+                Debug.Log("attacked");
+            }
+            /////////////
             BattleSystem.Battle(this, encounteredEnemy);
         }
         yield return null;
