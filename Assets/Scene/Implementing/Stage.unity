@@ -354,7 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0cb4b3680a3604da1775daa15f608a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Limit_Lines: 6
 --- !u!1 &602579531
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bfc95f7361d9f419f37c78f5306ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_button: {fileID: 0}
 --- !u!1 &1742131958
 GameObject:
   m_ObjectHideFlags: 0

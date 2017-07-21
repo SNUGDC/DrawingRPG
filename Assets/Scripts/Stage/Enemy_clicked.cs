@@ -92,7 +92,4 @@ public class Enemy_clicked : MonoBehaviour {
         }
        
     }
-
-    
-    
 }

@@ -39,10 +39,9 @@ public class Player : MonoBehaviour
             goal_Image.GetComponent<Image>().canvasRenderer.SetAlpha(0);
             goal_Image.SetActive(true);
             goal_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
+            is_clear = true;
+            next.SetActive(true);
         }
-        is_clear = true;
-        next.SetActive(true);
-
     }
     
     public bool NeedTurnPhase()

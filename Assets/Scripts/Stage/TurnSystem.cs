@@ -7,18 +7,15 @@ public class TurnSystem : MonoBehaviour
 {
     public Image[] MovePhaseImage;
     public Image[] BattlePhaseImage;
-    private bool startmove;
     public Player player;
 
     public void StartMove()
     {
-        startmove = true;
         StartCoroutine(RunTurn());
     }
 
     private void Start()
     {
-        startmove = false;
         Screen.SetResolution(360, 640, false);
     }
 
