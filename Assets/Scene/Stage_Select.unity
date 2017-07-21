@@ -1029,6 +1029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9437925104f841b79f0b2bfa016ff52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundmusic: {fileID: 0}
 --- !u!4 &901573019
 Transform:
   m_ObjectHideFlags: 0
@@ -1454,7 +1455,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2082,6 +2083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9437925104f841b79f0b2bfa016ff52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundmusic: {fileID: 0}
 --- !u!4 &1950592593
 Transform:
   m_ObjectHideFlags: 0
