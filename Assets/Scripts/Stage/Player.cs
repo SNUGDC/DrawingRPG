@@ -8,17 +8,17 @@ public class Player : MonoBehaviour
 {
     private LineDrawer LineDrawer;
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
-    public GameObject goal_Image;
-    public GameObject black;
-    public GameObject next;
-    private float duration = 3.0f;
+    //public GameObject goal_Image;
+    //public GameObject black;
+    //public GameObject next;
+    //private float duration = 3.0f;
     public int atk;
     public int max_hp;
     public int hp;
     public int move_count;
     public bool is_clear;
-    //public string element;
     public Element element;
+    public bool checkCollideWithGoal;
 
     public Animator enemy_info_animation;
 
@@ -26,21 +26,25 @@ public class Player : MonoBehaviour
     {
         move_count = 0;
         LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
-        is_clear = false;
+        checkCollideWithGoal = false;
+        //is_clear = false;
     }
 
     void OnTriggerEnter2D(Collider2D goal)
     {
         if (goal.gameObject.tag == "goal")
         {
-            black.GetComponent<Image>().canvasRenderer.SetAlpha(0);
-            black.SetActive(true);
-            black.GetComponent<Image>().CrossFadeAlpha(1, 1.0f, true);
-            goal_Image.GetComponent<Image>().canvasRenderer.SetAlpha(0);
-            goal_Image.SetActive(true);
-            goal_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
-            is_clear = true;
-            next.SetActive(true);
+            checkCollideWithGoal = true;
+            //MissionClear.MissionComplete();
+            //black.GetComponent<Image>().canvasRenderer.SetAlpha(0);
+            //black.SetActive(true);
+            //black.GetComponent<Image>().CrossFadeAlpha(1, 1.0f, true);
+            //goal_Image.GetComponent<Image>().canvasRenderer.SetAlpha(0);
+            //goal_Image.SetActive(true);
+            //goal_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
+            //is_clear = true;
+            //next.SetActive(true);
+            //일단 MissiionClear script로 이동시켜둠//
         }
     }
     

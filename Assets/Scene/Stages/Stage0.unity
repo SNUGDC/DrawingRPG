@@ -1496,7 +1496,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &314928776
 GameObject:
@@ -1756,7 +1756,7 @@ RectTransform:
   - {fileID: 2075748394}
   - {fileID: 265065388}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2218,15 +2218,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b4d5681bf262549afe0a5dfba45100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal_Image: {fileID: 9738281}
-  black: {fileID: 2124866915}
-  next: {fileID: 2075748393}
   atk: 5
   max_hp: 3
   hp: 3
   move_count: 0
   is_clear: 0
   element: 0
+  checkCollision: 0
   enemy_info_animation: {fileID: 2091629107}
 --- !u!1 &404946225
 GameObject:
@@ -2477,7 +2475,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4005232639864594, guid: 8ec480475210c824f9ddd5b2eedd8909, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114613627533818028, guid: 8ec480475210c824f9ddd5b2eedd8909,
+        type: 2}
+      propertyPath: maxLineNum
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ec480475210c824f9ddd5b2eedd8909, type: 2}
@@ -4414,7 +4417,7 @@ Transform:
   - {fileID: 1452721692}
   - {fileID: 529783023}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &865596108
 GameObject:
@@ -4634,6 +4637,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 881072709}
+--- !u!1 &883494478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 883494480}
+  - component: {fileID: 883494479}
+  m_Layer: 0
+  m_Name: MissionClearChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &883494479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 883494478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b941754f7f50e240ac1313b9f326bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 403504062}
+  enemy1: {fileID: 1452721689}
+  enemy2: {fileID: 529783020}
+  goal_Image: {fileID: 9738281}
+  black: {fileID: 2124866915}
+  next: {fileID: 2075748393}
+  is_clear: 0
+--- !u!4 &883494480
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 883494478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &911368416
 GameObject:
   m_ObjectHideFlags: 0
@@ -4673,7 +4723,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &923289066
 GameObject:
@@ -7381,7 +7431,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1545750973
 GameObject:
@@ -8716,7 +8766,7 @@ Transform:
   m_LocalScale: {x: 2.7081633, y: 2.6601202, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1881295972
 GameObject:
@@ -9672,7 +9722,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2010511833
 SpriteRenderer:

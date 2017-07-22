@@ -20,8 +20,7 @@ public class Turn_Count : MonoBehaviour
     }
     void Update()
     {
-        
-        if (player.move_count>Limit_turn && turn_over == false)
+        if (player.move_count> Limit_turn+1 && turn_over == false) //미션클리어 확인용으로 Limit_Turn +1 해둠
         {
             turn_over = true;
             black.GetComponent<Image>().canvasRenderer.SetAlpha(0);
