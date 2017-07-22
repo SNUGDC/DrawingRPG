@@ -24,12 +24,13 @@ public class Enemy : MonoBehaviour
     {
         RectTransform CanvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
         Vector3 UI_camera = Camera.main.WorldToViewportPoint(transform.position);
-        Debug.Log(UI_camera);
 
         Vector3 WorldObject_ScreenPosition = new Vector3(
-        ((UI_camera.x * CanvasRect.sizeDelta.x)), (UI_camera.y * CanvasRect.sizeDelta.y), 0);
+        (UI_camera.x * CanvasRect.sizeDelta.x), (UI_camera.y * CanvasRect.sizeDelta.y)-100, 0);
 
         GameObject about_enemy = GameObject.Find("Enemy_Info");
+
+        Debug.Log(WorldObject_ScreenPosition);
 
         hp_bar = Instantiate(origin_hpbar, WorldObject_ScreenPosition, this.transform.rotation);
         hp_bar.maxValue = max_hp;
