@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class TurnSystem : MonoBehaviour
 {
+    public MaxLine_Turn max_one;
+    public Text text;
+
     public Image[] MovePhaseImage;
     public Image[] BattlePhaseImage;
     public Player player;
@@ -23,6 +26,7 @@ public class TurnSystem : MonoBehaviour
     {
         while (player.NeedTurnPhase())
         {
+            Line_and_Turn_count.Turn_Counting(player, max_one, text);
             player.move_count++;
             yield return StartCoroutine(StartMovePhase());
             yield return StartCoroutine(RunMovePhase());

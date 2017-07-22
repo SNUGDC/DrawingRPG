@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class LineDrawer : MonoBehaviour
 {
+    public GameObject max_line;
+    public GameObject Line_text;
 	public GameObject LineEnd;
 	public GameObject Line;
-	public int maxLineNum;
 	public float maxLineLength;
 	public GameObject[] myLine;
     public int this_num = 0;
@@ -23,7 +24,7 @@ public class LineDrawer : MonoBehaviour
 
     public void Delete_Line()
     {
-        if (myLine[0] != null && myLine[maxLineNum-1] ==null)
+        if (myLine[0] != null && myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1] ==null)
         {
             Debug.Log("Delete_Done");
             this_num--;
@@ -31,20 +32,20 @@ public class LineDrawer : MonoBehaviour
             Destroy(myLine[NewLineNum().Value - 1]);
             myLine[NewLineNum().Value - 1] = null;
         }
-        else if(myLine[maxLineNum-1] != null)
+        else if(myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1] != null)
         {
             Debug.Log("null");
             this_num--;
-            transform.position = 2 * myLine[maxLineNum-1].transform.position - transform.position;
-            Destroy(myLine[maxLineNum-1]);
-            myLine[maxLineNum-1] = null;
+            transform.position = 2 * myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1].transform.position - transform.position;
+            Destroy(myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1]);
+            myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1] = null;
 
         }
     }
 	private void Start()
 	{
 		isInControlMode = false;
-		myLine = new GameObject[maxLineNum];
+		myLine = new GameObject[max_line.GetComponent<MaxLine_Turn>().Max_Line];
         allEncountedEnemyList.Clear();
 
         if (myLine[0] == null)
@@ -81,8 +82,11 @@ public class LineDrawer : MonoBehaviour
 	{
 		if(isInControlMode == true)
 		{
+            
             this_num++;
-			Debug.Log("조작모드 끝");
+            Line_and_Turn_count.Line_Counting(this, max_line.GetComponent<MaxLine_Turn>(), Line_text.GetComponent<UnityEngine.UI.Text>());
+
+            Debug.Log("조작모드 끝");
             Debug.Log(NewLineNum().Value);
 			isInControlMode = false;
             myLine[NewLineNum().Value] = nowLine;
@@ -155,7 +159,7 @@ public class LineDrawer : MonoBehaviour
     
     private int? NewLineNum()
 	{
-		for(int num = 0; num < maxLineNum; num++)
+		for(int num = 0; num < max_line.GetComponent<MaxLine_Turn>().Max_Line; num++)
 		{
 			if(myLine[num] == null)
 			{

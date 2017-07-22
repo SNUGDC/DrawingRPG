@@ -4,31 +4,62 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy_Info : MonoBehaviour {
-    public Image enemy_element;
-    public Image enemy_portrait;
-    public Text enemy_atk;
-    public List<Sprite> enemy_element_Image;
-    // Use this for initialization
-    private void this_element()
-    {
-        if (this.GetComponent<Enemy>().element == Element.Water)
-            enemy_element.sprite = enemy_element_Image[0];
-        else if (this.GetComponent<Enemy>().element == Element.Wood)
-            enemy_element.sprite = enemy_element_Image[1];
-        else if (this.GetComponent<Enemy>().element == Element.Fire)
-            enemy_element.sprite = enemy_element_Image[2];
-        else if (this.GetComponent<Enemy>().element == Element.Earth)
-            enemy_element.sprite = enemy_element_Image[3];
-        else
-            enemy_element.sprite = enemy_element_Image[4];
+    public Image enemy_Element;
+    public Image enemy_Portrait;
+    public Text enemy_Atk;
+    public List<Sprite> enemy_Element_Image;
 
-        enemy_atk.text = "공격력 : " + this.GetComponent<Enemy>().atk;
+    public Animator animator;
+    
+    // Use this for initialization
+    private void this_Element(Enemy enemy)
+    {
+        if (enemy.element == Element.Water)
+            enemy_Element.sprite = enemy_Element_Image[0];
+        else if (enemy.element == Element.Wood)
+            enemy_Element.sprite = enemy_Element_Image[1];
+        else if (enemy.element == Element.Fire)
+            enemy_Element.sprite = enemy_Element_Image[2];
+        else if (enemy.element == Element.Earth)
+            enemy_Element.sprite = enemy_Element_Image[3];
+        else
+            enemy_Element.sprite = enemy_Element_Image[4];
+
+        enemy_Atk.text = "공격력 : " + enemy.atk;
     }
     
+    public void Active(Enemy new_enemy)
+    {
+        enemy_Portrait.sprite = new_enemy.portrait;
+        this_Element(new_enemy);
+        /*GameObject[] Enemy_List = GameObject.FindGameObjectsWithTag("enemy");
+        foreach (GameObject child in Enemy_List)
+        {
+            if (child.GetComponent<Enemy>().clicked == true)
+            {
+                enemy = child.GetComponent<Enemy>();
+                this_Element();
+                enemy_Portrait.sprite = enemy.GetComponent<Sprite>();
+            }
+        }*/
+    }
+
     void Start()
     {
-        enemy_portrait.sprite = this.GetComponent<Sprite>();
-        this_element();
+        this.gameObject.SetActive(false);
     }
-    
+
+    /*void Update()
+    {
+        if (Active() == true)
+        {
+            this_element();
+            enemy_portrait.sprite = enemy.GetComponent<Sprite>();
+            maxHP = enemy.max_hp;
+            make_maxhp();
+            current_HP = enemy.hp;
+            check_HP();
+        }
+       
+    }*/
 }

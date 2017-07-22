@@ -67,67 +67,44 @@ public class BattleSystem
             return 1.0f;
         
     }
-
-    public static void Battle(Player player, Enemy enemy)
+    
+    public static void Containment_offensive_Player(Player player, Enemy enemy, Enemy_HP enemy_hp_Bar)
     {
-        //List<string> element = new List<string>() { "water", "fire", "gold", "wood", "earth" };
-        
-        /*int enemyIndex;
-        int playerIndex;
-        float IncreasedElementalDamage = 1.2f;
-        float DecreasedElementalDamage = 0.8f;
-        */
-
-        //player 공격phase
         enemy.hp -= (int)(player.atk * check_Element(player.element, enemy.element));
-        /*enemyIndex = element.IndexOf(enemy.element);
-
-        playerIndex = element.IndexOf(player.element);
-        if (playerIndex + 1 == enemyIndex || (playerIndex == 4 && enemyIndex == 0))
-        {
-            enemy.hp -= (int)(player.atk * IncreasedElementalDamage);
-        }
-        else if (playerIndex - 1 == enemyIndex || (playerIndex == 0 && enemyIndex == 4))
-        {
-            enemy.hp -= (int)(player.atk * DecreasedElementalDamage);
-        }  
-        else
-        {
-            enemy.hp -= player.atk;
-        }*/
-
-
-
-        //enemy 사망 check
+        enemy.check_hp();
+        enemy_hp_Bar.check_HP(enemy);
         
         if (enemy.hp <= 0)
         {
-            enemy.enemy_object.SetActive(false);
+            enemy.Enemy_Information.SetActive(false);
             enemy.Destroy_hpbar();
             GameObject.Destroy(enemy.gameObject);
             return;
         }
-
-        //enemy 공격phase
+    }
+    public static void Containment_offensive_Enemy(Player player, Enemy enemy, HP player_hp_Bar)
+    {
         player.hp -= (int)(enemy.atk * check_Element(enemy.element, player.element));
-        /*if (enemyIndex + 1 == playerIndex || (enemyIndex == 4 && playerIndex == 0))
+        player.check_hp(player_hp_Bar);
+
+        if (player.hp <= 0)
         {
-            player.hp -= (int)(enemy.atk*IncreasedElementalDamage);
+            //GameObject.Destroy(player.gameObject);
+            Debug.Log("GameOver");
         }
-        else if (enemyIndex - 1 == playerIndex || (enemyIndex == 0 && playerIndex == 4))
+    }
+
+    public static void Battle(Player player, Enemy enemy, HP player_hp_Bar, Enemy_HP enemy_hp_Bar)
+    {
+        if (enemy.speed > player.speed)
         {
-            player.hp -= (int)(enemy.atk*DecreasedElementalDamage);
+            Containment_offensive_Enemy(player, enemy, player_hp_Bar);
+            Containment_offensive_Player(player, enemy, enemy_hp_Bar);
         }
         else
         {
-            player.hp -= enemy.atk;
-        }*/
-        
-        //player 사망 check
-        if (player.hp <= 0)
-        {
-            GameObject.Destroy(player.gameObject);
-            Debug.Log("GameOver");
+            Containment_offensive_Player(player, enemy, enemy_hp_Bar);
+            Containment_offensive_Enemy(player, enemy, player_hp_Bar);
         }
     }
 }
