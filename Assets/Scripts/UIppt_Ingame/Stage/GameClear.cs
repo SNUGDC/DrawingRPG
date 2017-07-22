@@ -16,7 +16,7 @@ public class GameClear : MonoBehaviour {
     public static void game_Over(Player player)
     {
         FadeOut.particle_fade_out(player.Black, 1.0f);
-        FadeOut.particle_fade_out(player.Clear, 3.0f);
+        FadeOut.particle_fade_out(player.Fail, 3.0f);
         player.Again_Stage.SetActive(true);
         player.Move_Battle_Panel.SetActive(false);
     }
