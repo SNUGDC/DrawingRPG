@@ -18,8 +18,8 @@ TagManager:
   - 
   - 
   - Enemy
-  - 
-  - 
+  - Phase canvas
+  - canvas
   - 
   - 
   - 
@@ -44,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Phase canvas
+    uniqueID: 3383332825
+    locked: 0
+  - name: canvas
+    uniqueID: 269227647
     locked: 0
