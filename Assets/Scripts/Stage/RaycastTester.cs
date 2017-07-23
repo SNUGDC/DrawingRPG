@@ -30,7 +30,8 @@ public class RaycastTester : MonoBehaviour
 
 
         Vector2 direction = startPos.Value - mousePos;
-        RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, direction, distance: Mathf.Infinity, layerMask: LayerMask.GetMask("Enemy"));
+        float distance = (mousePos - startPos.Value).magnitude;
+        RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, direction, distance: distance, layerMask: LayerMask.GetMask("Enemy"));
 
         if (hits.Length != 0)
         {
