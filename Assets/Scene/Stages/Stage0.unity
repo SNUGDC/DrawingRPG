@@ -2888,7 +2888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_hp: 6
-  atk: 2
+  atk: 0
   hp: 6
   speed: 7
   clicked: 0
