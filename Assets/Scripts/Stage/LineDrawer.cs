@@ -11,7 +11,7 @@ public class LineDrawer : MonoBehaviour
 	public GameObject Line;
 	public float maxLineLength;
 	public GameObject[] myLine;
-    public int this_num = 0;
+    public int used_line_count = 0;
 
 	private GameObject Player;
 	private GameObject nowLine;
@@ -19,29 +19,30 @@ public class LineDrawer : MonoBehaviour
 	private Vector2 startPos;
 	private Vector2 endPos;
 	private bool isInControlMode;
+
+    public List<Vector2> player_passed_position = new List<Vector2>(); 
     private List<Enemy> allEncountedEnemyList = new List<Enemy>();
     
 
     public void Delete_Line()
     {
+        Debug.Log("Delete_Done");
+        used_line_count--;
+        player_passed_position.RemoveAt(player_passed_position.Count - 1);
+        Destroy(myLine[NewLineNum().Value - 1]);
+
         if (myLine[0] != null && myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1] ==null)
         {
-            Debug.Log("Delete_Done");
-            this_num--;
-            transform.position = 2 * myLine[NewLineNum().Value - 1].transform.position - transform.position;
-            Destroy(myLine[NewLineNum().Value - 1]);
             myLine[NewLineNum().Value - 1] = null;
         }
         else if(myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1] != null)
         {
-            Debug.Log("null");
-            this_num--;
-            transform.position = 2 * myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1].transform.position - transform.position;
-            Destroy(myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1]);
+            
             myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1] = null;
 
         }
     }
+
 	private void Start()
 	{
 		isInControlMode = false;
@@ -69,7 +70,7 @@ public class LineDrawer : MonoBehaviour
 	{
 		if(NewLineNum() == null)
 			return;
-
+        player_passed_position.Add(transform.position);
 		Debug.Log("조작모드 시작");
 		isInControlMode = true;
 		startPos = transform.position;
@@ -83,7 +84,7 @@ public class LineDrawer : MonoBehaviour
 		if(isInControlMode == true)
 		{
             
-            this_num++;
+            used_line_count++;
             Line_and_Turn_count.Line_Counting(this, max_line.GetComponent<MaxLine_Turn>(), Line_text.GetComponent<UnityEngine.UI.Text>());
 
             Debug.Log("조작모드 끝");
@@ -108,6 +109,7 @@ public class LineDrawer : MonoBehaviour
 		if(NewLineNum() == null)
 			return null;
 		GameObject ControlLine = Instantiate(Line);
+
 		return ControlLine;
 	}
 
