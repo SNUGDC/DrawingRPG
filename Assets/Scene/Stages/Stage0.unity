@@ -1407,7 +1407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 960}
+  m_AnchoredPosition: {x: 540, y: 959.99994}
   m_SizeDelta: {x: 1080, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &280676621
@@ -2314,6 +2314,7 @@ MonoBehaviour:
   move_count: 0
   is_clear: 0
   element: 0
+  checkCollideWithGoal: 0
   enemy_info_animation: {fileID: 2091629107}
 --- !u!1 &404946225
 GameObject:
@@ -3871,19 +3872,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983ec9a529d2d5845af62a7db11d6069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blank_hp: {fileID: 21300000, guid: a7fc4f7d8b5b08a40b0eebdb74e03ea0, type: 3}
-  full_hp: {fileID: 21300000, guid: 464d2f4a72a4703498c722982e80735b, type: 3}
-  enemy_hp_bar:
-  - {fileID: 1234385522}
-  - {fileID: 1373973908}
-  - {fileID: 1566633819}
-  - {fileID: 1467760684}
-  - {fileID: 1474008858}
-  - {fileID: 1330149417}
-  - {fileID: 1951386417}
-  - {fileID: 397599413}
-  - {fileID: 757511613}
-  - {fileID: 523534594}
+  blank_hp: {fileID: 0}
+  full_hp: {fileID: 0}
+  enemy_hp_bar: []
 --- !u!1 &757511611
 GameObject:
   m_ObjectHideFlags: 0
@@ -5563,7 +5554,6 @@ GameObject:
   - component: {fileID: 1123216372}
   - component: {fileID: 1123216375}
   - component: {fileID: 1123216374}
-  - component: {fileID: 1123216373}
   m_Layer: 5
   m_Name: Turn_text
   m_TagString: Untagged
@@ -5589,17 +5579,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1123216373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123216371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a814b4dddd37734ab5966a74459ec32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1123216374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8879,6 +8858,50 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1881295972}
+--- !u!1 &1886376567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1886376569}
+  - component: {fileID: 1886376568}
+  m_Layer: 0
+  m_Name: MissionClearChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1886376568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886376567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b941754f7f50e240ac1313b9f326bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 403504062}
+  enemy1: {fileID: 1452721689}
+  enemy2: {fileID: 529783020}
+  is_clear: 0
+--- !u!4 &1886376569
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886376567}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1889382218
 GameObject:
   m_ObjectHideFlags: 0
