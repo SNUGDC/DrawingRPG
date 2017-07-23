@@ -6,15 +6,10 @@ using UnityEngine.UI;
 public class HP : MonoBehaviour {
     private int maxHP;
     private int current_HP;
-
-    private float duration = 3.0f;
-    private bool is_game_over = false;
+    
     public Player player;
     public Sprite blank_hp;
     public Sprite full_hp;
-    public GameObject Game_Over_Image;
-    public GameObject black;
-    public GameObject again;
     public Image[] player_hp_bar;
     public GameObject next;
     // Use this for initialization
@@ -36,28 +31,18 @@ public class HP : MonoBehaviour {
         make_max_hp();
 	}
     
-    
-    
-    void Update()
+    public static void check_hp(HP hp_bar, Player player)
     {
-        current_HP = player.hp;
-        check_HP();
-        if (current_HP <= 0 && is_game_over == false)
+        hp_bar.current_HP = player.hp;
+        hp_bar.check_HP(player);
+        if (hp_bar.current_HP <= 0 && player.is_clear == false)
         {
-            black.GetComponent<Image>().canvasRenderer.SetAlpha(0);
-            black.SetActive(true);
-            black.GetComponent<Image>().CrossFadeAlpha(1, 1.0f, true);
-            Game_Over_Image.GetComponent<Image>().canvasRenderer.SetAlpha(0);
-            Game_Over_Image.SetActive(true);
-            Game_Over_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
-            is_game_over = true;
+            GameClear.game_Over(player);
         }
-        if (is_game_over == true && player.is_clear == false)
-            again.SetActive(true);
-
     }
+    
 
-    void check_HP()
+    void check_HP(Player player)
     {
         for (int i = 0; i < maxHP; i++)
         {

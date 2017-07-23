@@ -7,15 +7,18 @@ public class Enemy : MonoBehaviour
     public int max_hp;
     public int atk;
     public int hp;
+    public int speed;
     public bool clicked = false;
     //public string element;
     public Element element;
-    public GameObject enemy_object;
     public UnityEngine.UI.Slider origin_hpbar;
-    public GameObject enemy_info;
-    public UnityEngine.UI.Slider hp_bar;
+    public GameObject Enemy_Information;
+    public Sprite portrait;
 
-   private void Start()
+    private UnityEngine.UI.Slider hp_bar;
+
+    
+    private void Start()
     {
         make_hpbar();
     }
@@ -28,7 +31,7 @@ public class Enemy : MonoBehaviour
         Vector3 WorldObject_ScreenPosition = new Vector3(
         (UI_camera.x * CanvasRect.sizeDelta.x), (UI_camera.y * CanvasRect.sizeDelta.y)-100, 0);
 
-        GameObject about_enemy = GameObject.Find("Enemy_Info");
+        GameObject about_enemy = GameObject.Find("About_enemy");
 
         Debug.Log(WorldObject_ScreenPosition);
 
@@ -48,39 +51,37 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void check_hp()
+    public void check_hp()
     {
-        while (hp > 0)
-        {
-            hp_bar.value = hp;
-        }
-        return;
+        hp_bar.value = hp;
     }
-
-    /*void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            check_hp();
-            Destroy(hp_bar);
-        }
-    }*/
 
     public void Destroy_hpbar()
     {
         Destroy(hp_bar.gameObject);
     }
 
-    private void Update()
+   /* public void Active()
     {
-        if (hp > 0)
-            hp_bar.value = hp;
-    }
-
+        GameObject[] Enemy_List = GameObject.FindGameObjectsWithTag("enemy");
+        foreach (GameObject child in Enemy_List)
+        {
+            if (child.GetComponent<Enemy>().clicked == true)
+            {
+                enemy = child.GetComponent<Enemy>();
+                this_Element();
+                enemy_Portrait.sprite = enemy.GetComponent<Sprite>();
+            }
+        }
+    }*/
     private void OnMouseDown()
     {
-        check_else_enemy_click();
-        clicked = !clicked;
-        enemy_object.SetActive(true);
+        //check_else_enemy_click();
+        //clicked = !clicked;
+        Enemy_Information.SetActive(true);
+        Enemy_Information.GetComponent<Enemy_HP>().Set_Enemy(this);
+        Enemy_Information.GetComponent<Enemy_Info>().Active(this);
+        
+
     }
 }
