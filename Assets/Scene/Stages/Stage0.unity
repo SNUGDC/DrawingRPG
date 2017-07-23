@@ -3872,9 +3872,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983ec9a529d2d5845af62a7db11d6069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blank_hp: {fileID: 0}
-  full_hp: {fileID: 0}
-  enemy_hp_bar: []
+  blank_hp: {fileID: 21300000, guid: a7fc4f7d8b5b08a40b0eebdb74e03ea0, type: 3}
+  full_hp: {fileID: 21300000, guid: 464d2f4a72a4703498c722982e80735b, type: 3}
+  enemy_hp_bar:
+  - {fileID: 1234385522}
+  - {fileID: 1373973908}
+  - {fileID: 1566633819}
+  - {fileID: 1467760684}
+  - {fileID: 1474008858}
+  - {fileID: 1330149417}
+  - {fileID: 1951386417}
+  - {fileID: 397599413}
+  - {fileID: 757511613}
+  - {fileID: 523534594}
 --- !u!1 &757511611
 GameObject:
   m_ObjectHideFlags: 0
@@ -8888,6 +8898,9 @@ MonoBehaviour:
   player: {fileID: 403504062}
   enemy1: {fileID: 1452721689}
   enemy2: {fileID: 529783020}
+  goal_Image: {fileID: 0}
+  black: {fileID: 0}
+  next: {fileID: 0}
   is_clear: 0
 --- !u!4 &1886376569
 Transform:
