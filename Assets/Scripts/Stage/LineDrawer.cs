@@ -10,10 +10,11 @@ public class LineDrawer : MonoBehaviour
 	public GameObject LineEnd;
 	public GameObject Line;
 	public float maxLineLength;
-	public GameObject[] myLine;
+	public List<GameObject> myLine = new List<GameObject>();
+
     public int used_line_count = 0;
 
-	private GameObject Player;
+	public GameObject Player;
 	private GameObject nowLine;
 	private Vector2 mousePos;
 	private Vector2 startPos;
@@ -27,11 +28,16 @@ public class LineDrawer : MonoBehaviour
     public void Delete_Line()
     {
         Debug.Log("Delete_Done");
+        if (used_line_count <= 0)
+            return;
+
         used_line_count--;
         player_passed_position.RemoveAt(player_passed_position.Count - 1);
-        Destroy(myLine[NewLineNum().Value - 1]);
+        transform.position = player_passed_position[player_passed_position.Count-1];
+        Destroy(myLine[myLine.Count -1]);
+        myLine.RemoveAt(myLine.Count - 1);
 
-        if (myLine[0] != null && myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1] ==null)
+/*        if (myLine[0] != null && myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1] ==null)
         {
             myLine[NewLineNum().Value - 1] = null;
         }
@@ -40,21 +46,23 @@ public class LineDrawer : MonoBehaviour
             
             myLine[max_line.GetComponent<MaxLine_Turn>().Max_Line-1] = null;
 
-        }
+        }*/
     }
 
 	private void Start()
 	{
 		isInControlMode = false;
-		myLine = new GameObject[max_line.GetComponent<MaxLine_Turn>().Max_Line];
+		//myLine = new GameObject[max_line.GetComponent<MaxLine_Turn>().Max_Line];
         allEncountedEnemyList.Clear();
-
-        if (myLine[0] == null)
+        //if (myLine[0] == null)
+        /*if (myLine.Count == 0)    
 		{
 			Player = GameObject.Find("Player");
 			transform.position = Player.transform.position;
-		}
-	}
+		}*/
+        transform.position = Player.transform.position;
+        player_passed_position.Add(transform.position);
+    }
 
 	private void Update()
 	{
@@ -68,9 +76,11 @@ public class LineDrawer : MonoBehaviour
 
 	private void OnMouseDown()
 	{
-		if(NewLineNum() == null)
-			return;
-        player_passed_position.Add(transform.position);
+		//if(NewLineNum() == null)
+			//return;
+        if (used_line_count >= max_line.GetComponent<MaxLine_Turn>().Max_Line)
+            return;
+        
 		Debug.Log("조작모드 시작");
 		isInControlMode = true;
 		startPos = transform.position;
@@ -83,14 +93,15 @@ public class LineDrawer : MonoBehaviour
 	{
 		if(isInControlMode == true)
 		{
-            
+            player_passed_position.Add(transform.position);
             used_line_count++;
             Line_and_Turn_count.Line_Counting(this, max_line.GetComponent<MaxLine_Turn>(), Line_text.GetComponent<UnityEngine.UI.Text>());
 
             Debug.Log("조작모드 끝");
-            Debug.Log(NewLineNum().Value);
+            //Debug.Log(NewLineNum().Value);
 			isInControlMode = false;
-            myLine[NewLineNum().Value] = nowLine;
+            //myLine[NewLineNum().Value] = nowLine;
+            
             
             nowLine.GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
 
@@ -101,14 +112,19 @@ public class LineDrawer : MonoBehaviour
             {
                 allEncountedEnemyList.Add(encounteredEnemy);
             }
+            myLine.Add(nowLine);
         }
 	}
 
 	private GameObject CreateLine()
 	{
-		if(NewLineNum() == null)
-			return null;
+        //if(NewLineNum() == null)
+        //return null;
+        if (used_line_count >= max_line.GetComponent<MaxLine_Turn>().Max_Line)
+            return null;
+
 		GameObject ControlLine = Instantiate(Line);
+        ControlLine.transform.parent = Player.transform;
 
 		return ControlLine;
 	}
@@ -159,11 +175,12 @@ public class LineDrawer : MonoBehaviour
         return raycastTester.GetNearestEnemy(ignoreList: allEncountedEnemyList);
     }
     
-    private int? NewLineNum()
+    /*private int? NewLineNum()
 	{
 		for(int num = 0; num < max_line.GetComponent<MaxLine_Turn>().Max_Line; num++)
 		{
-			if(myLine[num] == null)
+			//if(myLine[num] == null)
+            if (myLine.Last() == null)
 			{
 				return num;
 			}
@@ -172,6 +189,6 @@ public class LineDrawer : MonoBehaviour
 		Debug.Log("Can't Create More Line");
 		return null;
 	}
-    
+    */
     
 }
