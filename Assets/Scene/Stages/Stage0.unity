@@ -1970,7 +1970,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.5, y: -654.4995}
+  m_AnchoredPosition: {x: 10.5, y: -654.49963}
   m_SizeDelta: {x: 0, y: -1377}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &353390695
@@ -2308,8 +2308,8 @@ MonoBehaviour:
   Again_Stage: {fileID: 353390693}
   Move_Battle_Panel: {fileID: 265065384}
   atk: 5
-  max_hp: 3
-  hp: 3
+  max_hp: 5
+  hp: 5
   speed: 5
   move_count: 0
   is_clear: 0
@@ -8898,9 +8898,6 @@ MonoBehaviour:
   player: {fileID: 403504062}
   enemy1: {fileID: 1452721689}
   enemy2: {fileID: 529783020}
-  goal_Image: {fileID: 0}
-  black: {fileID: 0}
-  next: {fileID: 0}
   is_clear: 0
 --- !u!4 &1886376569
 Transform:
@@ -10159,7 +10156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.5, y: -654.4995}
+  m_AnchoredPosition: {x: 10.5, y: -654.49963}
   m_SizeDelta: {x: 0, y: -1377}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2075748395

@@ -20,7 +20,7 @@ public class MissionClear : MonoBehaviour {
         is_clear = false;
     }
 
-    private void Update()
+    private void Update ()
     {
         if (player.checkCollideWithGoal == true)
         {
@@ -32,7 +32,11 @@ public class MissionClear : MonoBehaviour {
             MissionCompleteEvent();
         }
     }
-  
+
+   // public void checkMissionComplete()
+
+
+
     public void MissionCompleteEvent()
     {
         GameClear.cleard(player);
