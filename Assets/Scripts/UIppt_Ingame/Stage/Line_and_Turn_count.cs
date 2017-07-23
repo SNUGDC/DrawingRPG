@@ -7,7 +7,7 @@ public class Line_and_Turn_count : MonoBehaviour {
     
     public static void Line_Counting(LineDrawer LineDrawer, MaxLine_Turn maxline, Text text)
     {
-        text.text = LineDrawer.this_num + "/" + maxline.Max_Line;
+        text.text = LineDrawer.used_line_count + "/" + maxline.Max_Line;
     }
     public static void Turn_Counting(Player player, MaxLine_Turn maxturn, Text text)
     {

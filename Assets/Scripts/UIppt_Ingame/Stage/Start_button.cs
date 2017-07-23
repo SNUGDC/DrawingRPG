@@ -16,7 +16,7 @@ public class Start_button : MonoBehaviour {
 
     private void Update()
     {
-        if (LineDrawer.this_num != 0)
+        if (LineDrawer.used_line_count != 0)
         {
             start_button.interactable = true;
         }
