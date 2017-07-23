@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private LineDrawer LineDrawer;
+    public LineDrawer LineDrawer;
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
     //public GameObject goal_Image;
     //public GameObject black;
@@ -37,7 +37,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         move_count = 0;
-        LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
         checkCollideWithGoal = false;
         //is_clear = false;
     }

@@ -2300,6 +2300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b4d5681bf262549afe0a5dfba45100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LineDrawer: {fileID: 224816877}
   hp_bar: {fileID: 1192047514}
   Black: {fileID: 2124866915}
   Clear: {fileID: 9738281}
