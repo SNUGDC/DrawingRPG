@@ -45,7 +45,7 @@ public class RaycastTester : MonoBehaviour
         }
     }
 
-    public Vector2? GetNeariestEnemyPosition(List<Enemy> ignoreList)
+    public Vector2? GetNearestEnemyPosition(List<Enemy> ignoreList)
     {
         if (collisionPositionList.Count == 0)
         {
@@ -65,7 +65,7 @@ public class RaycastTester : MonoBehaviour
         return null;
     }
 
-    public Enemy GetNeariestEnemy(List<Enemy> ignoreList)
+    public Enemy GetNearestEnemy(List<Enemy> ignoreList)
     {
         if (collisionEnemyList.Count == 0)
         {

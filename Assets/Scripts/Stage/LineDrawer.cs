@@ -147,14 +147,14 @@ public class LineDrawer : MonoBehaviour
     {
         RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
 
-        return raycastTester.GetNeariestEnemyPosition(ignoreList: allEncountedEnemyList);
+        return raycastTester.GetNearestEnemyPosition(ignoreList: allEncountedEnemyList);
     }
 
     private Enemy EncountEnemy()
     {
         RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
 
-        return raycastTester.GetNeariestEnemy(ignoreList: allEncountedEnemyList);
+        return raycastTester.GetNearestEnemy(ignoreList: allEncountedEnemyList);
     }
     
     private int? NewLineNum()
