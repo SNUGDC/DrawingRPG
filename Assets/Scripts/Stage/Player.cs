@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public LineDrawer LineDrawer;
+    public List<Vector2> Lines = new List<Vector2>();
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
+    public GameObject line;
+    public List<GameObject> passed_Lines = new List<GameObject>();
     //public GameObject goal_Image;
     //public GameObject black;
     //public GameObject next;
@@ -41,6 +44,7 @@ public class Player : MonoBehaviour
         //is_clear = false;
     }
     
+
     public void check_hp(HP hp_bar)
     {
         HP.check_hp(hp_bar, this.GetComponent<Player>());
@@ -51,16 +55,7 @@ public class Player : MonoBehaviour
         if (goal.gameObject.tag == "goal")
         {
             checkCollideWithGoal = true;
-            //MissionClear.MissionComplete();
-            //black.GetComponent<Image>().canvasRenderer.SetAlpha(0);
-            //black.SetActive(true);
-            //black.GetComponent<Image>().CrossFadeAlpha(1, 1.0f, true);
-            //goal_Image.GetComponent<Image>().canvasRenderer.SetAlpha(0);
-            //goal_Image.SetActive(true);
-            //goal_Image.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
-            //is_clear = true;
-            //next.SetActive(true);
-            //일단 MissiionClear script로 이동시켜둠//
+           
             is_clear = true;
             GameClear.cleard(this);
         }
@@ -73,16 +68,23 @@ public class Player : MonoBehaviour
 
     public IEnumerator RunMovePhase()
     {
-
+        GameObject passed_line = Instantiate(line);
+        passed_line.transform.parent = this.transform;
+        passed_line.GetComponent<LineRenderer>().SetPosition(0, Lines[0]);
+        
         while (true)
         {
-            bool isArrive = moveToGoal[0].IsArrive(transform);
-            if (isArrive == false)
+            // isArrive = moveToGoal[0].IsArrive(transform);
+            if (MoveToGoal.IsArrive(transform, Lines[1]) == false)
             {
-                moveToGoal[0].Move1Frame(transform);
+                MoveToGoal.Move1Frame(transform, Lines[1], 5.0f);
+                //moveToGoal[0].Move1Frame(transform);
+                passed_line.GetComponent<LineRenderer>().SetPosition(1, transform.position);
+                Debug.Log("그리는중");
             }
             else
             {
+                Lines.RemoveAt(0);
                 yield break;
             }
 
@@ -127,7 +129,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private GameObject NowLine()
+    /*private GameObject NowLine()
     {
         for (int i = 0; i < LineDrawer.max_line.GetComponent<MaxLine_Turn>().Max_Line; i++)
         {
@@ -136,5 +138,5 @@ public class Player : MonoBehaviour
         }
 
         return null;
-    }
+    }*/
 }

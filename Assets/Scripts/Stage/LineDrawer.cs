@@ -15,6 +15,7 @@ public class LineDrawer : MonoBehaviour
     public int used_line_count = 0;
 
 	public GameObject Player;
+    public GameObject Player_Line;
 	private GameObject nowLine;
 	private Vector2 mousePos;
 	private Vector2 startPos;
@@ -33,6 +34,7 @@ public class LineDrawer : MonoBehaviour
 
         used_line_count--;
         player_passed_position.RemoveAt(player_passed_position.Count - 1);
+        Player.GetComponent<Player>().Lines.RemoveAt(Player.GetComponent<Player>().Lines.Count - 1);
         transform.position = player_passed_position[player_passed_position.Count-1];
         Destroy(myLine[myLine.Count -1]);
         myLine.RemoveAt(myLine.Count - 1);
@@ -62,6 +64,7 @@ public class LineDrawer : MonoBehaviour
 		}*/
         transform.position = Player.transform.position;
         player_passed_position.Add(transform.position);
+        Player.GetComponent<Player>().Lines.Add(transform.position);
     }
 
 	private void Update()
@@ -94,6 +97,7 @@ public class LineDrawer : MonoBehaviour
 		if(isInControlMode == true)
 		{
             player_passed_position.Add(transform.position);
+            Player.GetComponent<Player>().Lines.Add(transform.position);
             used_line_count++;
             Line_and_Turn_count.Line_Counting(this, max_line.GetComponent<MaxLine_Turn>(), Line_text.GetComponent<UnityEngine.UI.Text>());
 
@@ -124,7 +128,7 @@ public class LineDrawer : MonoBehaviour
             return null;
 
 		GameObject ControlLine = Instantiate(Line);
-        ControlLine.transform.parent = Player.transform;
+        ControlLine.transform.parent = Player_Line.transform;
 
 		return ControlLine;
 	}
