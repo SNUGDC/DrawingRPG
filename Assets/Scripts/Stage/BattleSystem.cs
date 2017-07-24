@@ -71,14 +71,14 @@ public class BattleSystem
     public static void AttackEnemy(Player player, Enemy enemy, Enemy_HP enemy_hp_Bar)
     {
         enemy.hp -= (int)(player.atk * CheckElement(player.element, enemy.element));
-        enemy.check_hp();
+        enemy.CheckHp();
         enemy_hp_Bar.checkHp(enemy);
     }
 
     public static void AttackPlayer(Player player, Enemy enemy, HP player_hp_Bar)
     {
         player.hp -= (int)(enemy.atk * CheckElement(enemy.element, player.element));
-        player.check_hp(player_hp_Bar);
+        player.CheckHp(player_hp_Bar);
     }
 
     public static void UpdateStates(Player player, Enemy enemy)
@@ -92,7 +92,7 @@ public class BattleSystem
         if (enemy.DeadCheck())
         {
             enemy.Enemy_Information.SetActive(false);
-            enemy.Destroy_hpbar();
+            enemy.DestroyHpbar();
             GameObject.Destroy(enemy.gameObject);
         }
     }

@@ -10,19 +10,19 @@ public class Player : MonoBehaviour
     public List<Vector2> PlayerGoalPosition = new List<Vector2>();
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
     public GameObject goalPoint;
-    public List<GameObject> passed_Lines = new List<GameObject>();
+    public List<GameObject> passedLines = new List<GameObject>();
     //public GameObject goal_Image;
     //public GameObject black;
     //public GameObject next;
     //private float duration = 3.0f;
 
-    public HP hp_bar;
+    public HP hpBar;
 
     public GameObject Black;
     public GameObject Clear;
     public GameObject Fail;
-    public GameObject Next_Stage;
-    public GameObject Again_Stage;
+    public GameObject NextStage;
+    public GameObject AgainStage;
     public GameObject MoveBattlePanel;
 
     public int atk;
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     public Element element;
     public bool checkCollideWithGoal;
 
-    public Animator enemy_info_animation;
+    public Animator enemyInfoAnimation;
 
     public LineDrawer LineDrawer;
 
@@ -54,9 +54,9 @@ public class Player : MonoBehaviour
     }
     
 
-    public void check_hp(HP hp_bar)
+    public void CheckHp(HP hp_bar)
     {
-        HP.checkHp(hp_bar, this.GetComponent<Player>());
+        HP.CheckHp(hp_bar, this.GetComponent<Player>());
     }
 
     public bool DeadCheck()
@@ -117,21 +117,21 @@ public class Player : MonoBehaviour
             ////////////
             if (BattleSystem.CheckElement(this.element, encounteredEnemy.element) == 1.2f)
             {
-                enemy_info_animation.SetTrigger("huge_attack");
+                enemyInfoAnimation.SetTrigger("huge_attack");
                 Debug.Log("attacked");
             }
             else if (BattleSystem.CheckElement(this.element, encounteredEnemy.element) == 1.0f)
             {
-                enemy_info_animation.SetTrigger("attack");
+                enemyInfoAnimation.SetTrigger("attack");
                 Debug.Log("attacked");
             }
             else if (BattleSystem.CheckElement(this.element, encounteredEnemy.element) == 0.8f)
             {
-                enemy_info_animation.SetTrigger("small_attack");
+                enemyInfoAnimation.SetTrigger("small_attack");
                 Debug.Log("attacked");
             }
             /////////////
-            BattleSystem.Battle(this, encounteredEnemy, hp_bar, encounteredEnemy.Enemy_Information.GetComponent<Enemy_HP>());
+            BattleSystem.Battle(this, encounteredEnemy, hpBar, encounteredEnemy.Enemy_Information.GetComponent<Enemy_HP>());
         }
         yield return null;
     }

@@ -13,7 +13,7 @@ public class HP : MonoBehaviour {
     public Image[] playerHpBar;
     public GameObject next;
     // Use this for initialization
-    private void setMaxHp()
+    private void SetMaxHp()
     {
         for (int i = 0; i < maxHP; i++)
         {
@@ -28,13 +28,13 @@ public class HP : MonoBehaviour {
     void Start () {
         maxHP = player.maxHp;
         currentHp = player.hp;
-        setMaxHp();
+        SetMaxHp();
 	}
     
-    public static void checkHp(HP hpBar, Player player)
+    public static void CheckHp(HP hpBar, Player player)
     {
         hpBar.currentHp = player.hp;
-        hpBar.checkHP(player);
+        hpBar.CheckHP(player);
         if (hpBar.currentHp <= 0 && player.isClear == false)
         {
             GameClear.GameOver(player);
@@ -42,7 +42,7 @@ public class HP : MonoBehaviour {
     }
     
 
-    void checkHP(Player player)
+    void CheckHP(Player player)
     {
         for (int i = 0; i < maxHP; i++)
         {

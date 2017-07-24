@@ -17,7 +17,7 @@ public class GameClear : MonoBehaviour {
     {
         FadeOut.particleFadeOut(player.Black, 1.0f);
         FadeOut.particleFadeOut(player.Fail, 3.0f);
-        player.Again_Stage.SetActive(true);
+        player.AgainStage.SetActive(true);
         player.MoveBattlePanel.SetActive(false);
     }
 }

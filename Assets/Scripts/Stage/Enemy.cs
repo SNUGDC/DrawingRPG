@@ -20,10 +20,10 @@ public class Enemy : MonoBehaviour
     
     private void Start()
     {
-        make_hpbar();
+        CreatHpbar();
     }
 
-    private void make_hpbar()
+    private void CreatHpbar()
     {
         RectTransform CanvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
         Vector3 UI_camera = Camera.main.WorldToViewportPoint(transform.position);
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void check_else_enemy_click()
+    private void CheckElseEnemyClick()
     {
         GameObject[] Enemy_List = GameObject.FindGameObjectsWithTag("enemy");
         foreach (GameObject child in Enemy_List)
@@ -49,12 +49,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void check_hp()
+    public void CheckHp()
     {
         hp_bar.value = hp;
     }
 
-    public void Destroy_hpbar()
+    public void DestroyHpbar()
     {
         Destroy(hp_bar.gameObject);
     }
