@@ -11,12 +11,12 @@ public class Start_button : MonoBehaviour {
     private void Start()
     {
         start_button.interactable = false;
-        LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
+        //LineDrawer = GameObject.Find("LineDrawer").GetComponent<LineDrawer>();
     }
 
     private void Update()
     {
-        if (LineDrawer.used_line_count != 0)
+        if (true/*LineDrawer.used_line_count != 0*/)
         {
             start_button.interactable = true;
         }

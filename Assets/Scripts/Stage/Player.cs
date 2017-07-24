@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public LineDrawer LineDrawer;
+    public GameObject LineDrawrPrefab;
     public List<Vector2> Lines = new List<Vector2>();
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
     public GameObject line;
@@ -37,10 +37,19 @@ public class Player : MonoBehaviour
 
     public Animator enemy_info_animation;
 
+    public LineDrawer LineDrawer;
+
+    private void Awake()
+    {
+        LineDrawer = Instantiate(LineDrawrPrefab, transform).GetComponent<LineDrawer>();
+        LineDrawer.Player = this.gameObject;
+    }
+
     private void Start()
     {
         move_count = 0;
         checkCollideWithGoal = false;
+        GetComponent<Collider2D>().enabled = false;
         //is_clear = false;
     }
     
@@ -80,7 +89,7 @@ public class Player : MonoBehaviour
                 MoveToGoal.Move1Frame(transform, Lines[1], 5.0f);
                 //moveToGoal[0].Move1Frame(transform);
                 passed_line.GetComponent<LineRenderer>().SetPosition(1, transform.position);
-                Debug.Log("그리는중");
+                //Debug.Log("그리는중");
             }
             else
             {

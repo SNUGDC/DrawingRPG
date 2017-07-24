@@ -10,11 +10,15 @@ public class TurnSystem : MonoBehaviour
 
     public Image[] MovePhaseImage;
     public Image[] BattlePhaseImage;
-    public Player player;
+    public Player[] player;
 
     public void StartMove()
     {
         StartCoroutine(RunTurn());
+        foreach(Player player in player)
+        {
+            Destroy(player.LineDrawer.gameObject);
+        }
     }
 
     private void Start()
@@ -24,10 +28,16 @@ public class TurnSystem : MonoBehaviour
 
     IEnumerator RunTurn()
     {
-        while (player.NeedTurnPhase())
+        while (AllPlayerNeedToTurnPhase())
         {
-            player.move_count++;
-            Line_and_Turn_count.Turn_Counting(player, max_one, text);
+            //player.move_count++;
+
+            foreach(Player player in player)
+            {
+                player.move_count++;
+                Line_and_Turn_count.Turn_Counting(player, max_one, text);
+            }
+
             yield return StartCoroutine(StartMovePhase());
             yield return StartCoroutine(RunMovePhase());
             yield return StartCoroutine(StartBattlePhase());
@@ -36,7 +46,11 @@ public class TurnSystem : MonoBehaviour
             {
                 yield break;
             }
-            player.PhaseEnd();
+
+            foreach(Player player in player)
+            {
+                player.PhaseEnd();
+            }
         }
         Debug.Log("TurnEnd");
     }
@@ -51,7 +65,10 @@ public class TurnSystem : MonoBehaviour
 
     private IEnumerator RunMovePhase()
     {
-        yield return StartCoroutine(player.RunMovePhase());
+        foreach(Player player in player)
+        {
+            yield return StartCoroutine(player.RunMovePhase());
+        }
     }
 
     private IEnumerator StartBattlePhase()
@@ -64,7 +81,10 @@ public class TurnSystem : MonoBehaviour
 
     private IEnumerator RunBattlePhase()
     {
-        yield return StartCoroutine(player.RunBattlePhase());
+        foreach(Player player in player)
+        {
+            yield return StartCoroutine(player.RunBattlePhase());
+        }
     }
 
     private IEnumerator ShowMovePhasePanel()
@@ -187,5 +207,16 @@ public class TurnSystem : MonoBehaviour
         {
             image.color = new Color (1, 1, 1, 0);
         }
+    }
+    
+    private bool AllPlayerNeedToTurnPhase()
+    {
+        foreach(Player player in player)
+        {
+            if(player.NeedTurnPhase() == false)
+                return false;
+        }
+
+        return true;
     }
 }
