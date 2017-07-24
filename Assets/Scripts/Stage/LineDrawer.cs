@@ -15,7 +15,6 @@ public class LineDrawer : MonoBehaviour
     public int used_line_count = 0;
 
 	public GameObject Player;
-    public GameObject Player_Line;
 	private GameObject nowLine;
 	private Vector2 mousePos;
 	private Vector2 startPos;
@@ -65,6 +64,8 @@ public class LineDrawer : MonoBehaviour
         transform.position = Player.transform.position;
         player_passed_position.Add(transform.position);
         Player.GetComponent<Player>().Lines.Add(transform.position);
+        max_line = GameObject.Find("MaxLine/Turn");
+        Line_text = GameObject.Find("Line_text");
     }
 
 	private void Update()
@@ -128,7 +129,7 @@ public class LineDrawer : MonoBehaviour
             return null;
 
 		GameObject ControlLine = Instantiate(Line);
-        ControlLine.transform.parent = Player_Line.transform;
+        //ControlLine.transform.parent = Player_Line.transform;
 
 		return ControlLine;
 	}

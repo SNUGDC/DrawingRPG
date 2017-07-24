@@ -33,8 +33,6 @@ public class Enemy : MonoBehaviour
 
         GameObject about_enemy = GameObject.Find("About_enemy");
 
-        Debug.Log(WorldObject_ScreenPosition);
-
         hp_bar = Instantiate(origin_hpbar, WorldObject_ScreenPosition, this.transform.rotation);
         hp_bar.maxValue = max_hp;
         hp_bar.value = hp;

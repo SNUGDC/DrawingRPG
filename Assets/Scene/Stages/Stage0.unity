@@ -71,7 +71,7 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
-    m_MixedBakeMode: 3
+    m_MixedBakeMode: 2
     m_BakeBackend: 0
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
@@ -2328,7 +2328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b4d5681bf262549afe0a5dfba45100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LineDrawer: {fileID: 224816877}
+  LineDrawrPrefab: {fileID: 1354005055564936, guid: 8ec480475210c824f9ddd5b2eedd8909,
+    type: 2}
   Lines: []
   line: {fileID: 1086639530515470, guid: 8ffd489dd03198e439d7c3c8e566fa33, type: 2}
   passed_Lines: []
@@ -2348,6 +2349,7 @@ MonoBehaviour:
   element: 0
   checkCollideWithGoal: 0
   enemy_info_animation: {fileID: 2091629107}
+  LineDrawer: {fileID: 0}
 --- !u!1 &404946225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,23 +2608,6 @@ Prefab:
       objectReference: {fileID: 188683134}
     - target: {fileID: 114613627533818028, guid: 8ec480475210c824f9ddd5b2eedd8909,
         type: 2}
-      propertyPath: LineEnd
-      value: 
-      objectReference: {fileID: 1533636127601034, guid: 69161fd462fd5374abde5343ce656cf4,
-        type: 2}
-    - target: {fileID: 114613627533818028, guid: 8ec480475210c824f9ddd5b2eedd8909,
-        type: 2}
-      propertyPath: Line
-      value: 
-      objectReference: {fileID: 1165411601190780, guid: 47b60a1d0a024ca4f97b32d1c67512d2,
-        type: 2}
-    - target: {fileID: 114613627533818028, guid: 8ec480475210c824f9ddd5b2eedd8909,
-        type: 2}
-      propertyPath: maxLineLength
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114613627533818028, guid: 8ec480475210c824f9ddd5b2eedd8909,
-        type: 2}
       propertyPath: Line_text
       value: 
       objectReference: {fileID: 1081537820}
@@ -2631,11 +2616,6 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2095467514}
-    - target: {fileID: 114613627533818028, guid: 8ec480475210c824f9ddd5b2eedd8909,
-        type: 2}
-      propertyPath: Turn_Phase
-      value: 
-      objectReference: {fileID: 936360085}
     - target: {fileID: 114613627533818028, guid: 8ec480475210c824f9ddd5b2eedd8909,
         type: 2}
       propertyPath: Player_Line
@@ -3429,7 +3409,8 @@ MonoBehaviour:
   - {fileID: 518246772}
   - {fileID: 238101955}
   - {fileID: 1969742711}
-  player: {fileID: 403504062}
+  player:
+  - {fileID: 403504062}
 --- !u!1 &667123494
 GameObject:
   m_ObjectHideFlags: 0
@@ -8381,22 +8362,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1758219643 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1354005055564936, guid: 8ec480475210c824f9ddd5b2eedd8909,
-    type: 2}
-  m_PrefabInternal: {fileID: 493295214}
---- !u!114 &1758219647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1758219643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d70e307de927ca643b2a3a457ab099a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1765597261
 GameObject:
   m_ObjectHideFlags: 0
