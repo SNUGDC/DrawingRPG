@@ -33,7 +33,7 @@ public class LineDrawer : MonoBehaviour
 
         used_line_count--;
         player_passed_position.RemoveAt(player_passed_position.Count - 1);
-        Player.GetComponent<Player>().Lines.RemoveAt(Player.GetComponent<Player>().Lines.Count - 1);
+        Player.GetComponent<Player>().PlayerGoalPosition.RemoveAt(Player.GetComponent<Player>().PlayerGoalPosition.Count - 1);
         transform.position = player_passed_position[player_passed_position.Count-1];
         Destroy(myLine[myLine.Count -1]);
         myLine.RemoveAt(myLine.Count - 1);
@@ -63,7 +63,7 @@ public class LineDrawer : MonoBehaviour
 		}*/
         transform.position = Player.transform.position;
         player_passed_position.Add(transform.position);
-        Player.GetComponent<Player>().Lines.Add(transform.position);
+        Player.GetComponent<Player>().PlayerGoalPosition.Add(transform.position);
         max_line = GameObject.Find("MaxLine/Turn");
         Line_text = GameObject.Find("Line_text");
     }
@@ -98,7 +98,7 @@ public class LineDrawer : MonoBehaviour
 		if(isInControlMode == true)
 		{
             player_passed_position.Add(transform.position);
-            Player.GetComponent<Player>().Lines.Add(transform.position);
+            Player.GetComponent<Player>().PlayerGoalPosition.Add(transform.position);
             used_line_count++;
             Line_and_Turn_count.Line_Counting(this, max_line.GetComponent<MaxLine_Turn>(), Line_text.GetComponent<UnityEngine.UI.Text>());
 
