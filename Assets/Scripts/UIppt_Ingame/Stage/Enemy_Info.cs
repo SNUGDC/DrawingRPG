@@ -32,16 +32,6 @@ public class Enemy_Info : MonoBehaviour {
     {
         enemy_Portrait.sprite = new_enemy.portrait;
         this_Element(new_enemy);
-        /*GameObject[] Enemy_List = GameObject.FindGameObjectsWithTag("enemy");
-        foreach (GameObject child in Enemy_List)
-        {
-            if (child.GetComponent<Enemy>().clicked == true)
-            {
-                enemy = child.GetComponent<Enemy>();
-                this_Element();
-                enemy_Portrait.sprite = enemy.GetComponent<Sprite>();
-            }
-        }*/
     }
 
     void Start()
