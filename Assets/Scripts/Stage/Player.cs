@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public GameObject LineDrawrPrefab;
-    public List<Vector2> Lines = new List<Vector2>();
+    public List<Vector2> PlayerGoalPosition = new List<Vector2>();
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
     public GameObject line;
     public List<GameObject> passed_Lines = new List<GameObject>();
@@ -79,21 +79,21 @@ public class Player : MonoBehaviour
     {
         GameObject passed_line = Instantiate(line);
         passed_line.transform.parent = this.transform;
-        passed_line.GetComponent<LineRenderer>().SetPosition(0, Lines[0]);
+        passed_line.GetComponent<LineRenderer>().SetPosition(0, PlayerGoalPosition[0]);
         
         while (true)
         {
             // isArrive = moveToGoal[0].IsArrive(transform);
-            if (MoveToGoal.IsArrive(transform, Lines[1]) == false)
+            if (MoveToGoal.IsArrive(transform, PlayerGoalPosition[1]) == false)
             {
-                MoveToGoal.Move1Frame(transform, Lines[1], 5.0f);
+                MoveToGoal.Move1Frame(transform, PlayerGoalPosition[1], 5.0f);
                 //moveToGoal[0].Move1Frame(transform);
                 passed_line.GetComponent<LineRenderer>().SetPosition(1, transform.position);
                 //Debug.Log("그리는중");
             }
             else
             {
-                Lines.RemoveAt(0);
+                PlayerGoalPosition.RemoveAt(0);
                 yield break;
             }
 
