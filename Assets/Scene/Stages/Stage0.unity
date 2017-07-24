@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 9
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -286,7 +286,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!1 &96649650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2329,7 +2328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b4d5681bf262549afe0a5dfba45100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LineDrawrPrefab: {fileID: 0}
+  LineDrawrPrefab: {fileID: 1354005055564936, guid: 8ec480475210c824f9ddd5b2eedd8909,
+    type: 2}
   Lines: []
   line: {fileID: 1086639530515470, guid: 8ffd489dd03198e439d7c3c8e566fa33, type: 2}
   passed_Lines: []
@@ -2349,6 +2349,7 @@ MonoBehaviour:
   element: 0
   checkCollideWithGoal: 0
   enemy_info_animation: {fileID: 2091629107}
+  LineDrawer: {fileID: 0}
 --- !u!1 &404946225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,7 +2494,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!1 &438657542
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,7 +2982,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!224 &529783023
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3410,7 +3409,8 @@ MonoBehaviour:
   - {fileID: 518246772}
   - {fileID: 238101955}
   - {fileID: 1969742711}
-  player: {fileID: 403504062}
+  player:
+  - {fileID: 403504062}
 --- !u!1 &667123494
 GameObject:
   m_ObjectHideFlags: 0
@@ -4902,7 +4902,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!1 &936360085
 GameObject:
   m_ObjectHideFlags: 0
@@ -7157,7 +7156,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!224 &1452721692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8826,7 +8824,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!4 &1879610952
 Transform:
   m_ObjectHideFlags: 0
@@ -9882,7 +9879,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!50 &2010511834
 Rigidbody2D:
   serializedVersion: 4
