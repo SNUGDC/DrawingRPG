@@ -72,7 +72,7 @@ public class BattleSystem
     {
         enemy.hp -= (int)(player.atk * check_Element(player.element, enemy.element));
         enemy.check_hp();
-        enemy_hp_Bar.check_HP(enemy);
+        enemy_hp_Bar.checkHp(enemy);
         
         if (enemy.hp <= 0)
         {

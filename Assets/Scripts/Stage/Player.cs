@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     public GameObject Move_Battle_Panel;
 
     public int atk;
-    public int max_hp;
+    public int maxHp;
     public int hp;
     public int speed;
     public int move_count;
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
     public void check_hp(HP hp_bar)
     {
-        HP.check_hp(hp_bar, this.GetComponent<Player>());
+        HP.checkHp(hp_bar, this.GetComponent<Player>());
     }
 
     void OnTriggerEnter2D(Collider2D goal)

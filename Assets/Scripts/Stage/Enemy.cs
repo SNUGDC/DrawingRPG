@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int max_hp;
+    public int maxHp;
     public int atk;
     public int hp;
     public int speed;
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
         GameObject about_enemy = GameObject.Find("About_enemy");
 
         hp_bar = Instantiate(origin_hpbar, WorldObject_ScreenPosition, this.transform.rotation);
-        hp_bar.maxValue = max_hp;
+        hp_bar.maxValue = maxHp;
         hp_bar.value = hp;
         hp_bar.transform.parent = about_enemy.transform;
         
@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
         //check_else_enemy_click();
         //clicked = !clicked;
         Enemy_Information.SetActive(true);
-        Enemy_Information.GetComponent<Enemy_HP>().Set_Enemy(this);
+        Enemy_Information.GetComponent<Enemy_HP>().setEnemy(this);
         Enemy_Information.GetComponent<Enemy_Info>().Active(this);
         
 

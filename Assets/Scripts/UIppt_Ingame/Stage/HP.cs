@@ -5,54 +5,54 @@ using UnityEngine.UI;
 
 public class HP : MonoBehaviour {
     private int maxHP;
-    private int current_HP;
+    private int currentHp;
     
     public Player player;
-    public Sprite blank_hp;
-    public Sprite full_hp;
-    public Image[] player_hp_bar;
+    public Sprite hpLoss;
+    public Sprite hpUnit;
+    public Image[] playerHpBar;
     public GameObject next;
     // Use this for initialization
-    private void make_max_hp()
+    private void setMaxHp()
     {
         for (int i = 0; i < maxHP; i++)
         {
-            player_hp_bar[i].sprite = full_hp;
+            playerHpBar[i].sprite = hpUnit;
         }
         for (int i = maxHP; i < 5; i++)
         {
-            Destroy(player_hp_bar[i]);
+            Destroy(playerHpBar[i]);
         }
     }
 
     void Start () {
-        maxHP = player.max_hp;
-        current_HP = player.hp;
-        make_max_hp();
+        maxHP = player.maxHp;
+        currentHp = player.hp;
+        setMaxHp();
 	}
     
-    public static void check_hp(HP hp_bar, Player player)
+    public static void checkHp(HP hpBar, Player player)
     {
-        hp_bar.current_HP = player.hp;
-        hp_bar.check_HP(player);
-        if (hp_bar.current_HP <= 0 && player.is_clear == false)
+        hpBar.currentHp = player.hp;
+        hpBar.checkHP(player);
+        if (hpBar.currentHp <= 0 && player.is_clear == false)
         {
             GameClear.game_Over(player);
         }
     }
     
 
-    void check_HP(Player player)
+    void checkHP(Player player)
     {
         for (int i = 0; i < maxHP; i++)
         {
-            if (current_HP > i)
+            if (currentHp > i)
             {
-                player_hp_bar[i].sprite = full_hp;
+                playerHpBar[i].sprite = hpUnit;
             }
             else
             {
-                player_hp_bar[i].sprite = blank_hp;
+                playerHpBar[i].sprite = hpLoss;
             }
         }
     }

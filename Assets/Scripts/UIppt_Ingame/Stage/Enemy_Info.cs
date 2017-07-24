@@ -4,34 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy_Info : MonoBehaviour {
-    public Image enemy_Element;
-    public Image enemy_Portrait;
-    public Text enemy_Atk;
-    public List<Sprite> enemy_Element_Image;
+    public Image enemyElement;
+    public Image enemyPortrait;
+    public Text enemyAtk;
+    public List<Sprite> enemyElementImage;
 
     public Animator animator;
     
     // Use this for initialization
-    private void this_Element(Enemy enemy)
+    private void thisElement(Enemy enemy)
     {
         if (enemy.element == Element.Water)
-            enemy_Element.sprite = enemy_Element_Image[0];
+            enemyElement.sprite = enemyElementImage[0];
         else if (enemy.element == Element.Wood)
-            enemy_Element.sprite = enemy_Element_Image[1];
+            enemyElement.sprite = enemyElementImage[1];
         else if (enemy.element == Element.Fire)
-            enemy_Element.sprite = enemy_Element_Image[2];
+            enemyElement.sprite = enemyElementImage[2];
         else if (enemy.element == Element.Earth)
-            enemy_Element.sprite = enemy_Element_Image[3];
+            enemyElement.sprite = enemyElementImage[3];
         else
-            enemy_Element.sprite = enemy_Element_Image[4];
+            enemyElement.sprite = enemyElementImage[4];
 
-        enemy_Atk.text = "공격력 : " + enemy.atk;
+        enemyAtk.text = "공격력 : " + enemy.atk;
     }
     
-    public void Active(Enemy new_enemy)
+    public void Active(Enemy enemy)
     {
-        enemy_Portrait.sprite = new_enemy.portrait;
-        this_Element(new_enemy);
+        enemyPortrait.sprite = enemy.portrait;
+        thisElement(enemy);
     }
 
     void Start()

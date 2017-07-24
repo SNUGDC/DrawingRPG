@@ -5,44 +5,44 @@ using UnityEngine.UI;
 
 public class Enemy_HP : MonoBehaviour {
 
-    private bool check_active = false;
-    private int maxHP;
-    private int current_HP;
+    private bool activeCheck = false;
+    private int maxHp;
+    private int currentHp;
     
     public Sprite hpLoss;
     public Sprite hpUnit;
-    public Image[] enemy_hp_bar;
+    public Image[] enemyHpBar;
 
     private void make_maxhp()
     {
-        for (int i = 0; i < maxHP; i++)
+        for (int i = 0; i < maxHp; i++)
         {
-            enemy_hp_bar[i].sprite = hpUnit;
+            enemyHpBar[i].sprite = hpUnit;
         }
-        for (int i = maxHP; i < 10; i++)
+        for (int i = maxHp; i < 10; i++)
         {
-            Destroy(enemy_hp_bar[i]);
+            Destroy(enemyHpBar[i]);
         }
     }
 
-    public void check_HP(Enemy new_enemy)
+    public void checkHp(Enemy enemy)
     {
-        current_HP = new_enemy.hp;
-        for (int i = 0; i < maxHP; i++)
+        currentHp = enemy.hp;
+        for (int i = 0; i < maxHp; i++)
         {
-            if (current_HP > i)
-                enemy_hp_bar[i].sprite = hpUnit;
+            if (currentHp > i)
+                enemyHpBar[i].sprite = hpUnit;
             else
-                enemy_hp_bar[i].sprite = hpLoss;
+                enemyHpBar[i].sprite = hpLoss;
         }
     }
 
-    public void Set_Enemy(Enemy new_enemy)
+    public void setEnemy(Enemy enemy)
     {
-        maxHP = new_enemy.max_hp;
-        current_HP = new_enemy.hp;
+        maxHp = enemy.maxHp;
+        currentHp = enemy.hp;
         make_maxhp();
-        check_HP(new_enemy);
+        checkHp(enemy);
     }
 
     void Start()
