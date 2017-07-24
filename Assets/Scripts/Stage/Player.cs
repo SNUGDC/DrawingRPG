@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public GameObject LineDrawrPrefab;
     public List<Vector2> PlayerGoalPosition = new List<Vector2>();
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
-    public GameObject line;
+    public GameObject goalPoint;
     public List<GameObject> passed_Lines = new List<GameObject>();
     //public GameObject goal_Image;
     //public GameObject black;
@@ -23,15 +23,15 @@ public class Player : MonoBehaviour
     public GameObject Fail;
     public GameObject Next_Stage;
     public GameObject Again_Stage;
-    public GameObject Move_Battle_Panel;
+    public GameObject MoveBattlePanel;
 
     public int atk;
     public int maxHp;
     public int hp;
     public int speed;
-    public int move_count;
+    public int moveCount;
 
-    public bool is_clear=false;
+    public bool isClear=false;
     public Element element;
     public bool checkCollideWithGoal;
 
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        move_count = 0;
+        moveCount = 0;
         checkCollideWithGoal = false;
         GetComponent<Collider2D>().enabled = false;
         //is_clear = false;
@@ -59,14 +59,20 @@ public class Player : MonoBehaviour
         HP.checkHp(hp_bar, this.GetComponent<Player>());
     }
 
+    public bool DeadCheck()
+    {
+        if (hp <= 0) return true;
+        else return false;
+    }
+
     void OnTriggerEnter2D(Collider2D goal)
     {
         if (goal.gameObject.tag == "goal")
         {
             checkCollideWithGoal = true;
            
-            is_clear = true;
-            GameClear.cleard(this);
+            isClear = true;
+            GameClear.Cleard(this);
         }
     }
     
@@ -77,9 +83,9 @@ public class Player : MonoBehaviour
 
     public IEnumerator RunMovePhase()
     {
-        GameObject passed_line = Instantiate(line);
-        passed_line.transform.parent = this.transform;
-        passed_line.GetComponent<LineRenderer>().SetPosition(0, PlayerGoalPosition[0]);
+        GameObject passedLine = Instantiate(goalPoint);
+        passedLine.transform.parent = this.transform;
+        passedLine.GetComponent<LineRenderer>().SetPosition(0, PlayerGoalPosition[0]);
         
         while (true)
         {
@@ -88,7 +94,7 @@ public class Player : MonoBehaviour
             {
                 MoveToGoal.Move1Frame(transform, PlayerGoalPosition[1], 5.0f);
                 //moveToGoal[0].Move1Frame(transform);
-                passed_line.GetComponent<LineRenderer>().SetPosition(1, transform.position);
+                passedLine.GetComponent<LineRenderer>().SetPosition(1, transform.position);
                 //Debug.Log("그리는중");
             }
             else
@@ -109,17 +115,17 @@ public class Player : MonoBehaviour
         if (encounteredEnemy != null)
         {
             ////////////
-            if (BattleSystem.check_Element(this.element, encounteredEnemy.element) == 1.2f)
+            if (BattleSystem.CheckElement(this.element, encounteredEnemy.element) == 1.2f)
             {
                 enemy_info_animation.SetTrigger("huge_attack");
                 Debug.Log("attacked");
             }
-            else if (BattleSystem.check_Element(this.element, encounteredEnemy.element) == 1.0f)
+            else if (BattleSystem.CheckElement(this.element, encounteredEnemy.element) == 1.0f)
             {
                 enemy_info_animation.SetTrigger("attack");
                 Debug.Log("attacked");
             }
-            else if (BattleSystem.check_Element(this.element, encounteredEnemy.element) == 0.8f)
+            else if (BattleSystem.CheckElement(this.element, encounteredEnemy.element) == 0.8f)
             {
                 enemy_info_animation.SetTrigger("small_attack");
                 Debug.Log("attacked");

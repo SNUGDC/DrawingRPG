@@ -14,7 +14,7 @@ public enum Element
 
 public class BattleSystem
 {
-    public static float check_Element(Element attack, Element damage)
+    public static float CheckElement(Element attack, Element damage)
     {
         float IncreasedElementalDamage = 1.2f;
         float DecreasedElementalDamage = 0.8f;
@@ -65,32 +65,35 @@ public class BattleSystem
         }
         else
             return 1.0f;
-        
+
     }
-    
-    public static void Containment_offensive_Player(Player player, Enemy enemy, Enemy_HP enemy_hp_Bar)
+
+    public static void AttackEnemy(Player player, Enemy enemy, Enemy_HP enemy_hp_Bar)
     {
-        enemy.hp -= (int)(player.atk * check_Element(player.element, enemy.element));
+        enemy.hp -= (int)(player.atk * CheckElement(player.element, enemy.element));
         enemy.check_hp();
         enemy_hp_Bar.checkHp(enemy);
-        
-        if (enemy.hp <= 0)
+    }
+
+    public static void AttackPlayer(Player player, Enemy enemy, HP player_hp_Bar)
+    {
+        player.hp -= (int)(enemy.atk * CheckElement(enemy.element, player.element));
+        player.check_hp(player_hp_Bar);
+    }
+
+    public static void UpdateStates(Player player, Enemy enemy)
+    {
+        if (player.DeadCheck())
+        {
+            //GameObject.Destroy(player.gameObject);
+            Debug.Log("GameOver");
+        }
+
+        if (enemy.DeadCheck())
         {
             enemy.Enemy_Information.SetActive(false);
             enemy.Destroy_hpbar();
             GameObject.Destroy(enemy.gameObject);
-            return;
-        }
-    }
-    public static void Containment_offensive_Enemy(Player player, Enemy enemy, HP player_hp_Bar)
-    {
-        player.hp -= (int)(enemy.atk * check_Element(enemy.element, player.element));
-        player.check_hp(player_hp_Bar);
-
-        if (player.hp <= 0)
-        {
-            //GameObject.Destroy(player.gameObject);
-            Debug.Log("GameOver");
         }
     }
 
@@ -98,13 +101,15 @@ public class BattleSystem
     {
         if (enemy.speed > player.speed)
         {
-            Containment_offensive_Enemy(player, enemy, player_hp_Bar);
-            Containment_offensive_Player(player, enemy, enemy_hp_Bar);
+            AttackPlayer(player, enemy, player_hp_Bar);
+            AttackEnemy(player, enemy, enemy_hp_Bar);
         }
         else
         {
-            Containment_offensive_Player(player, enemy, enemy_hp_Bar);
-            Containment_offensive_Enemy(player, enemy, player_hp_Bar);
+            AttackEnemy(player, enemy, enemy_hp_Bar);
+            AttackPlayer(player, enemy, player_hp_Bar);
         }
+
+        UpdateStates(player, enemy);
     }
 }

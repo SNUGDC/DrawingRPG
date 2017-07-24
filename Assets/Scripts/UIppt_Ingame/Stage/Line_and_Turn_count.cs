@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class Line_and_Turn_count : MonoBehaviour {
     
-    public static void Line_Counting(LineDrawer LineDrawer, MaxLine_Turn maxline, Text text)
+    public static void LineCounting(LineDrawer LineDrawer, MaxLine_Turn maxline, Text text)
     {
-        text.text = LineDrawer.used_line_count + "/" + maxline.Max_Line;
+        text.text = LineDrawer.used_line_count + "/" + maxline.MaxLine;
     }
-    public static void Turn_Counting(Player player, MaxLine_Turn maxturn, Text text)
+    public static void TurnCounting(Player player, MaxLine_Turn maxturn, Text text)
     {
-        if (player.move_count > maxturn.Max_Turn && player.is_clear == false)
+        if (player.moveCount > maxturn.MaxTurn && player.isClear == false)
         {
-            GameClear.game_Over(player);
+            GameClear.GameOver(player);
         }
-        text.text = player.move_count + "/" + maxturn.Max_Turn;
+        text.text = player.moveCount + "/" + maxturn.MaxTurn;
     }
 }

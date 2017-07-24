@@ -59,6 +59,13 @@ public class Enemy : MonoBehaviour
         Destroy(hp_bar.gameObject);
     }
 
+    public bool DeadCheck()
+    {
+        if (hp <= 0)
+            return true;
+        else return false;
+    }
+
    /* public void Active()
     {
         GameObject[] Enemy_List = GameObject.FindGameObjectsWithTag("enemy");

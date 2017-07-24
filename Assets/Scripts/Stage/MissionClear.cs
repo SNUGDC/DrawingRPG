@@ -39,7 +39,7 @@ public class MissionClear : MonoBehaviour {
 
     public void MissionCompleteEvent()
     {
-        GameClear.cleard(player);
+        GameClear.Cleard(player);
     }
 
 }

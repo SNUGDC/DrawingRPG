@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class GameClear : MonoBehaviour {
     
-    public static void cleard(Player player)
+    public static void Cleard(Player player)
     {
-        FadeOut.particle_fade_out(player.Black, 1.0f);
-        FadeOut.particle_fade_out(player.Clear, 3.0f);
+        FadeOut.particleFadeOut(player.Black, 1.0f);
+        FadeOut.particleFadeOut(player.Clear, 3.0f);
         //player.Next_Stage.SetActive(true);
-        player.Move_Battle_Panel.SetActive(false);
+        player.MoveBattlePanel.SetActive(false);
     }
 
-    public static void game_Over(Player player)
+    public static void GameOver(Player player)
     {
-        FadeOut.particle_fade_out(player.Black, 1.0f);
-        FadeOut.particle_fade_out(player.Fail, 3.0f);
+        FadeOut.particleFadeOut(player.Black, 1.0f);
+        FadeOut.particleFadeOut(player.Fail, 3.0f);
         player.Again_Stage.SetActive(true);
-        player.Move_Battle_Panel.SetActive(false);
+        player.MoveBattlePanel.SetActive(false);
     }
 }

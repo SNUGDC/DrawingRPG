@@ -27,7 +27,7 @@ public class Enemy_Info : MonoBehaviour {
 
         enemyAtk.text = "공격력 : " + enemy.atk;
     }
-    
+
     public void Active(Enemy enemy)
     {
         enemyPortrait.sprite = enemy.portrait;

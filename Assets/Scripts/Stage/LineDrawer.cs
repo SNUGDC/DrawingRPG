@@ -82,7 +82,7 @@ public class LineDrawer : MonoBehaviour
 	{
 		//if(NewLineNum() == null)
 			//return;
-        if (used_line_count >= max_line.GetComponent<MaxLine_Turn>().Max_Line)
+        if (used_line_count >= max_line.GetComponent<MaxLine_Turn>().MaxLine)
             return;
         
 		Debug.Log("조작모드 시작");
@@ -100,7 +100,7 @@ public class LineDrawer : MonoBehaviour
             player_passed_position.Add(transform.position);
             Player.GetComponent<Player>().PlayerGoalPosition.Add(transform.position);
             used_line_count++;
-            Line_and_Turn_count.Line_Counting(this, max_line.GetComponent<MaxLine_Turn>(), Line_text.GetComponent<UnityEngine.UI.Text>());
+            Line_and_Turn_count.LineCounting(this, max_line.GetComponent<MaxLine_Turn>(), Line_text.GetComponent<UnityEngine.UI.Text>());
 
             Debug.Log("조작모드 끝");
             //Debug.Log(NewLineNum().Value);
@@ -125,7 +125,7 @@ public class LineDrawer : MonoBehaviour
 	{
         //if(NewLineNum() == null)
         //return null;
-        if (used_line_count >= max_line.GetComponent<MaxLine_Turn>().Max_Line)
+        if (used_line_count >= max_line.GetComponent<MaxLine_Turn>().MaxLine)
             return null;
 
 		GameObject ControlLine = Instantiate(Line);

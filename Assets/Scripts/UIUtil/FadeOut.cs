@@ -9,7 +9,7 @@ public class FadeOut : MonoBehaviour
     public float duration = 0.2f;
     public Image image;
 
-    public static void particle_fade_out(GameObject one, float duration)
+    public static void particleFadeOut(GameObject one, float duration)
     {
         one.GetComponent<Image>().canvasRenderer.SetAlpha(0);
         one.SetActive(true);

@@ -34,8 +34,8 @@ public class TurnSystem : MonoBehaviour
 
             foreach(Player player in player)
             {
-                player.move_count++;
-                Line_and_Turn_count.Turn_Counting(player, max_one, text);
+                player.moveCount++;
+                Line_and_Turn_count.TurnCounting(player, max_one, text);
             }
 
             yield return StartCoroutine(StartMovePhase());

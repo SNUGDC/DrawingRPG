@@ -35,9 +35,9 @@ public class HP : MonoBehaviour {
     {
         hpBar.currentHp = player.hp;
         hpBar.checkHP(player);
-        if (hpBar.currentHp <= 0 && player.is_clear == false)
+        if (hpBar.currentHp <= 0 && player.isClear == false)
         {
-            GameClear.game_Over(player);
+            GameClear.GameOver(player);
         }
     }
     
