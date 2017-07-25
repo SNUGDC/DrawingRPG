@@ -19,9 +19,12 @@ public class Player : MonoBehaviour
 
     public HP hpBar;
 
+    public bool thisPlayerClicked = false;
+
     public GameObject Black;
     public GameObject Clear;
     public GameObject Fail;
+
     public GameObject NextStage;
     public GameObject AgainStage;
     public GameObject MoveBattlePanel;
@@ -40,23 +43,33 @@ public class Player : MonoBehaviour
 
     //public LineDrawer LineDrawer;
 
-    private void Awake()
+    /*private void Awake()
     {
         LineDrawerPrefeb = Instantiate(GameObject.Find("LineDrawer").GetComponent<LineDrawer>());
         LineDrawerPrefeb.Player = this.gameObject;
             //Instantiate(LineDrawrPrefab, transform).GetComponent<LineDrawer>();
         //LineDrawer.Player = this.gameObject;
-    }
+    }*/
 
     private void Start()
     {
+        LineDrawerPrefeb = Instantiate(GameObject.Find("LineDrawer").GetComponent<LineDrawer>());
+        LineDrawerPrefeb.Player = this.gameObject;
+        LineDrawerPrefeb.transform.parent = this.transform;
+        LineDrawerPrefeb.PlayerPassedPosition.Add(transform.position);
         moveCount = 0;
         checkCollideWithGoal = false;
         GetComponent<Collider2D>().enabled = false;
-        //is_clear = false;
+    }
+
+    private void LineDeleteButtonDisabled()
+    {
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            player.GetComponent<Player>().thisPlayerClicked = false;
+        }
     }
     
-
     public void CheckHp(HP hp_bar)
     {
         HP.CheckHp(hp_bar, this.GetComponent<Player>());
