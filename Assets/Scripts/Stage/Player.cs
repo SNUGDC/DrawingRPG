@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public GameObject LineDrawrPrefab;
+    //public GameObject LineDrawrPrefab;
+    public LineDrawer LineDrawerPrefeb;
     public List<Vector2> PlayerGoalPosition = new List<Vector2>();
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
     public GameObject goalPoint;
@@ -37,12 +38,14 @@ public class Player : MonoBehaviour
 
     public Animator enemyInfoAnimation;
 
-    public LineDrawer LineDrawer;
+    //public LineDrawer LineDrawer;
 
     private void Awake()
     {
-        LineDrawer = Instantiate(LineDrawrPrefab, transform).GetComponent<LineDrawer>();
-        LineDrawer.Player = this.gameObject;
+        LineDrawerPrefeb = Instantiate(GameObject.Find("LineDrawer").GetComponent<LineDrawer>());
+        LineDrawerPrefeb.Player = this.gameObject;
+            //Instantiate(LineDrawrPrefab, transform).GetComponent<LineDrawer>();
+        //LineDrawer.Player = this.gameObject;
     }
 
     private void Start()

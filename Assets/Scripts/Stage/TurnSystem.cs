@@ -17,7 +17,8 @@ public class TurnSystem : MonoBehaviour
         StartCoroutine(RunTurn());
         foreach(Player player in player)
         {
-            Destroy(player.LineDrawer.gameObject);
+            Destroy(player.LineDrawerPrefeb);
+            //Destroy(player.LineDrawerPrefab.gameObject);
         }
     }
 

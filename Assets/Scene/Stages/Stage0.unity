@@ -1006,8 +1006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5754b0f977f05364c8f9ceb5e355a8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max_Line: 3
-  Max_Turn: 5
+  MaxLine: 3
+  MaxTurn: 5
 --- !u!4 &188683136
 Transform:
   m_ObjectHideFlags: 0
@@ -1929,7 +1929,7 @@ MonoBehaviour:
   player: {fileID: 403504062}
   player_element: {fileID: 280676623}
   player_atk: {fileID: 612507452}
-  player_element_Image:
+  playerElementImage:
   - {fileID: 21300000, guid: b6ab1f4af9974e64ebca75981bd87d77, type: 3}
   - {fileID: 21300000, guid: 2c4a70732e0705646aacd36cf9458e24, type: 3}
   - {fileID: 21300000, guid: 08768638e8ac3644a803addbd247679f, type: 3}
@@ -2328,28 +2328,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b4d5681bf262549afe0a5dfba45100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LineDrawrPrefab: {fileID: 1354005055564936, guid: 8ec480475210c824f9ddd5b2eedd8909,
-    type: 2}
-  Lines: []
-  line: {fileID: 1086639530515470, guid: 8ffd489dd03198e439d7c3c8e566fa33, type: 2}
-  passed_Lines: []
-  hp_bar: {fileID: 1192047514}
+  LineDrawerPrefeb: {fileID: 0}
+  PlayerGoalPosition: []
+  goalPoint: {fileID: 1086639530515470, guid: 8ffd489dd03198e439d7c3c8e566fa33, type: 2}
+  passedLines: []
+  hpBar: {fileID: 1192047514}
   Black: {fileID: 2124866915}
   Clear: {fileID: 9738281}
   Fail: {fileID: 2059901164}
-  Next_Stage: {fileID: 2075748393}
-  Again_Stage: {fileID: 353390693}
-  Move_Battle_Panel: {fileID: 265065384}
+  NextStage: {fileID: 2075748393}
+  AgainStage: {fileID: 353390693}
+  MoveBattlePanel: {fileID: 265065384}
   atk: 5
-  max_hp: 5
+  maxHp: 0
   hp: 5
   speed: 5
-  move_count: 0
-  is_clear: 0
+  moveCount: 0
+  isClear: 0
   element: 0
   checkCollideWithGoal: 0
-  enemy_info_animation: {fileID: 2091629107}
-  LineDrawer: {fileID: 0}
+  enemyInfoAnimation: {fileID: 0}
 --- !u!1 &404946225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2914,8 +2912,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f765c944f044654a9fa5e2cea011066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_hp: 6
-  atk: 0
+  maxHp: 5
+  atk: 2
   hp: 6
   speed: 7
   clicked: 0
@@ -3879,15 +3877,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872747373b20fdc4391dcc844c2e5237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_Element: {fileID: 366508193}
-  enemy_Portrait: {fileID: 1269889711}
-  enemy_Atk: {fileID: 1001225911}
-  enemy_Element_Image:
+  enemyElement: {fileID: 366508193}
+  enemyPortrait: {fileID: 1269889711}
+  enemyAtk: {fileID: 1001225911}
+  enemyElementImage:
   - {fileID: 21300000, guid: b6ab1f4af9974e64ebca75981bd87d77, type: 3}
   - {fileID: 21300000, guid: 2c4a70732e0705646aacd36cf9458e24, type: 3}
   - {fileID: 21300000, guid: 08768638e8ac3644a803addbd247679f, type: 3}
-  - {fileID: 21300000, guid: 591037a9fa7ec0740b19eedd900082bb, type: 3}
   - {fileID: 21300000, guid: cdd9500c2a2ab5a4e93569c959be123c, type: 3}
+  - {fileID: 21300000, guid: 591037a9fa7ec0740b19eedd900082bb, type: 3}
   animator: {fileID: 0}
 --- !u!114 &750477171
 MonoBehaviour:
@@ -3900,9 +3898,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983ec9a529d2d5845af62a7db11d6069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blank_hp: {fileID: 21300000, guid: a7fc4f7d8b5b08a40b0eebdb74e03ea0, type: 3}
-  full_hp: {fileID: 21300000, guid: 464d2f4a72a4703498c722982e80735b, type: 3}
-  enemy_hp_bar:
+  hpLoss: {fileID: 21300000, guid: a7fc4f7d8b5b08a40b0eebdb74e03ea0, type: 3}
+  hpUnit: {fileID: 21300000, guid: 464d2f4a72a4703498c722982e80735b, type: 3}
+  enemyHpBar:
   - {fileID: 1234385522}
   - {fileID: 1373973908}
   - {fileID: 1566633819}
@@ -5850,15 +5848,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 403504062}
-  blank_hp: {fileID: 21300000, guid: 5c7e7b3ad21add44fa3e193be2af9a62, type: 3}
-  full_hp: {fileID: 21300000, guid: 132413db0291653408b47e41dff5f966, type: 3}
-  player_hp_bar:
+  hpLoss: {fileID: 21300000, guid: 5c7e7b3ad21add44fa3e193be2af9a62, type: 3}
+  hpUnit: {fileID: 21300000, guid: 132413db0291653408b47e41dff5f966, type: 3}
+  playerHpBar:
   - {fileID: 438657544}
   - {fileID: 1424555456}
   - {fileID: 1708081419}
   - {fileID: 797855615}
   - {fileID: 2062982821}
-  next: {fileID: 0}
 --- !u!114 &1192047515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7088,7 +7085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f765c944f044654a9fa5e2cea011066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_hp: 6
+  maxHp: 5
   atk: 2
   hp: 6
   speed: 2

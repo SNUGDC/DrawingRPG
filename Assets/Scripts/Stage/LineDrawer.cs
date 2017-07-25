@@ -62,7 +62,7 @@ public class LineDrawer : MonoBehaviour
 			transform.position = Player.transform.position;
 		}*/
         transform.position = Player.transform.position;
-        player_passed_position.Add(transform.position);
+        //player_passed_position.Add(transform.position);
         Player.GetComponent<Player>().PlayerGoalPosition.Add(transform.position);
         max_line = GameObject.Find("MaxLine/Turn");
         Line_text = GameObject.Find("Line_text");

@@ -11,7 +11,6 @@ public class HP : MonoBehaviour {
     public Sprite hpLoss;
     public Sprite hpUnit;
     public Image[] playerHpBar;
-    public GameObject next;
     // Use this for initialization
     private void SetMaxHp()
     {
