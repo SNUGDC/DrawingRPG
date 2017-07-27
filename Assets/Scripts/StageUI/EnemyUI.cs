@@ -10,7 +10,6 @@ public class EnemyUI : MonoBehaviour {
     public Slider enemyHPBar;
     public Slider enemyFieldHPBar;
     public Text enemyInfoText; // 공격력, 방어력
-    public List<Sprite> Elements = new List<Sprite>();
 
 
 
@@ -19,67 +18,56 @@ public class EnemyUI : MonoBehaviour {
     {
         enemyPortrait.sprite = enemy.portrait;
     }
-    //About Element
-    private void MakeElementsList()
-    {
-        Elements.Add(Resources.Load("ElementImage/Water") as Sprite);
-        Elements.Add(Resources.Load("ElementImage/Wood") as Sprite);
-        Elements.Add(Resources.Load("ElementImage/Fire") as Sprite);
-        Elements.Add(Resources.Load("ElementImage/Earth") as Sprite);
-        Elements.Add(Resources.Load("ElementImage/Metal") as Sprite);
-    }
 
+    //About Element
     private void EnemyElement()
     {
         if (enemy.element == Element.Water)
-            enemyPortrait.sprite = Elements[0];
+            enemyElement.sprite = (Resources.Load("ElementList") as GameObject).GetComponent<ElementImageList>().Elements[0];
         else if (enemy.element == Element.Wood)
-            enemyPortrait.sprite = Elements[1];
+            enemyElement.sprite = (Resources.Load("ElementList") as GameObject).GetComponent<ElementImageList>().Elements[1];
         else if (enemy.element == Element.Fire)
-            enemyPortrait.sprite = Elements[2];
+            enemyElement.sprite = (Resources.Load("ElementList") as GameObject).GetComponent<ElementImageList>().Elements[2];
         else if (enemy.element == Element.Earth)
-            enemyPortrait.sprite = Elements[3];
+            enemyElement.sprite = (Resources.Load("ElementList") as GameObject).GetComponent<ElementImageList>().Elements[3];
         else
-            enemyPortrait.sprite = Elements[4];
+            enemyElement.sprite = (Resources.Load("ElementList") as GameObject).GetComponent<ElementImageList>().Elements[4];
     }
 
     //About HP
-    private void MakeEnemyHPBar()
+        private void MakeEnemyHPBar()
     {
-        enemyHPBar.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+        //enemyHPBar.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
         enemyHPBar.maxValue = enemy.maxHp;
         enemyHPBar.value = enemy.hp;
     }
-    
-    private void MakeEnemyFieldHPBar()
-{
-        RectTransform CanvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
-        Vector3 UI_camera = Camera.main.WorldToViewportPoint(transform.position);
 
-        Vector3 WorldObject_ScreenPosition = new Vector3(
-        (UI_camera.x * CanvasRect.sizeDelta.x), (UI_camera.y * CanvasRect.sizeDelta.y) - 100, 0);
-
-        GameObject about_enemy = GameObject.Find("About_enemy");
-
-        Slider originHPBar = (Slider)Resources.Load("Prefabs/EnemyFieldHPBar");
-        enemyFieldHPBar = Instantiate(originHPBar, WorldObject_ScreenPosition, this.transform.rotation);
-        enemyFieldHPBar.maxValue = enemy.maxHp;
-        enemyFieldHPBar.value = enemy.hp;
-        enemyFieldHPBar.transform.parent = about_enemy.transform;
-    }
     public void ChangedHP()
     {
         enemyHPBar.value = enemy.hp;
     }
 
-    public void ChangeFieldHP()
-    {
-        enemyFieldHPBar.value = enemy.hp;
-        if (enemy.hp <= 0)
-        {
-            Destroy(enemyFieldHPBar);
-        }
+    public static void MakeEnemyFieldHPBar(Enemy enemy, GameObject aboutEnemy)
+{
+        RectTransform CanvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        Vector3 UI_camera = Camera.main.WorldToViewportPoint(enemy.transform.position);
+
+        Vector3 WorldObject_ScreenPosition = new Vector3(
+        (UI_camera.x * CanvasRect.sizeDelta.x), (UI_camera.y * CanvasRect.sizeDelta.y) - 100, 0);
+        
+
+        enemy.enemyFieldHPBar = Instantiate(Resources.Load("EnemyFieldHPBar") as GameObject, WorldObject_ScreenPosition, enemy.transform.rotation);
+        
+        enemy.enemyFieldHPBar.GetComponent<Slider>().maxValue = enemy.maxHp;
+        enemy.enemyFieldHPBar.GetComponent<Slider>().value = enemy.hp;
+        enemy.enemyFieldHPBar.transform.parent = aboutEnemy.transform;
     }
+
+    public static void ChangedFieldHPBar(Enemy enemy)
+    {
+        enemy.enemyFieldHPBar.GetComponent<Slider>().value = enemy.hp;
+    }
+    
 
     //About Attack, Defense
     public void AttackDefenceText()
@@ -87,19 +75,27 @@ public class EnemyUI : MonoBehaviour {
         enemyInfoText.text = "공격력 : " + enemy.atk + "\n방어력 : " + enemy.def;
     }
 
-    private void Start()
+    /*private void Start()
     {
         MakePortrait();
-        MakeElementsList();
         EnemyElement();
         MakeEnemyHPBar();
-        MakeEnemyFieldHPBar();
+        AttackDefenceText();
+    }*/
+
+    public void SetActiveEnemyUI()
+    {
+        MakePortrait();
+        EnemyElement();
+        MakeEnemyHPBar();
         AttackDefenceText();
     }
-
+    
     private void Update()
     {
-        ChangedHP();
-        ChangeFieldHP();
+        if (enemy != null)
+        {
+            ChangedHP();
+        }
     }
 }

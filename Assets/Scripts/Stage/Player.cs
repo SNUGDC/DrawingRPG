@@ -6,29 +6,16 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    //public GameObject LineDrawrPrefab;
     public LineDrawer LineDrawerPrefeb;
     public List<Vector2> PlayerGoalPosition = new List<Vector2>();
     public List<MoveToGoal> moveToGoal = new List<MoveToGoal>();
     public GameObject goalPoint;
     public List<GameObject> passedLines = new List<GameObject>();
-    //public GameObject goal_Image;
-    //public GameObject black;
-    //public GameObject next;
-    //private float duration = 3.0f;
-
-    public HP hpBar;
+    
     public Sprite portrait;
 
     public bool thisPlayerClicked = false;
-
-    public GameObject Black;
-    public GameObject Clear;
-    public GameObject Fail;
-
-    public GameObject NextStage;
-    public GameObject AgainStage;
-    public GameObject MoveBattlePanel;
+    
 
     public int atk;
     public int def;
@@ -86,7 +73,7 @@ public class Player : MonoBehaviour
             checkCollideWithGoal = true;
            
             isClear = true;
-            GameClear.Cleard(this);
+            GameClear.Cleard();
         }
     }
     

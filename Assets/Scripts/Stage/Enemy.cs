@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Sprite portrait;
+    public GameObject enemyFieldHPBar;
     public int maxHp;
     public int atk;
     public int def;
@@ -13,11 +15,6 @@ public class Enemy : MonoBehaviour
     //public string element;
     public Element element;
     
-    public Sprite portrait;
-    
-    
-    
-
     private void CheckElseEnemyClick()
     {
         GameObject[] Enemy_List = GameObject.FindGameObjectsWithTag("enemy");
@@ -35,24 +32,35 @@ public class Enemy : MonoBehaviour
         else return false;
     }
 
-   /* public void Active()
+    private void Start()
     {
-        GameObject[] Enemy_List = GameObject.FindGameObjectsWithTag("enemy");
-        foreach (GameObject child in Enemy_List)
-        {
-            if (child.GetComponent<Enemy>().clicked == true)
-            {
-                enemy = child.GetComponent<Enemy>();
-                this_Element();
-                enemy_Portrait.sprite = enemy.GetComponent<Sprite>();
-            }
-        }
-    }*/
+        EnemyUI.MakeEnemyFieldHPBar(this, GameObject.Find("AboutEnemy"));
+    }
+
+    /* public void Active()
+     {
+         GameObject[] Enemy_List = GameObject.FindGameObjectsWithTag("enemy");
+         foreach (GameObject child in Enemy_List)
+         {
+             if (child.GetComponent<Enemy>().clicked == true)
+             {
+                 enemy = child.GetComponent<Enemy>();
+                 this_Element();
+                 enemy_Portrait.sprite = enemy.GetComponent<Sprite>();
+             }
+         }
+     }*/
+
+    private void Update()
+    {
+        EnemyUI.ChangedFieldHPBar(this);
+    }
     private void OnMouseDown()
     {
         //check_else_enemy_click();
         //clicked = !clicked;
         GameObject.Find("EnemyDetailInfo").SetActive(true);
-        GameObject.Find("EnemyDetailInfo").GetComponent<EnemyUI>().enemy = this; 
+        GameObject.Find("EnemyDetailInfo").GetComponent<EnemyUI>().enemy = this;
+        GameObject.Find("EnemyDetailInfo").GetComponent<EnemyUI>().SetActiveEnemyUI();
     }
 }

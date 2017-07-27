@@ -10,7 +10,6 @@ public class PlayerUI : MonoBehaviour {
     public Image playerElement;
     public Slider playerHPBar;
     public Text playerInfoText; // 공격력, 방어력
-    public List<Sprite> Elements = new List<Sprite>();
 
     //About Portrait
     private void MakePortrait()
@@ -18,33 +17,24 @@ public class PlayerUI : MonoBehaviour {
         playerPortrait.sprite = player.portrait;
     }
     //About Element
-    private void MakeElementsList()
-    {
-        Elements.Add(Resources.Load("ElementImage/Water") as Sprite);
-        Elements.Add(Resources.Load("ElementImage/Wood") as Sprite);
-        Elements.Add(Resources.Load("ElementImage/Fire") as Sprite);
-        Elements.Add(Resources.Load("ElementImage/Earth") as Sprite);
-        Elements.Add(Resources.Load("ElementImage/Metal") as Sprite);
-    }
-
     private void PlayerElement()
     {
         if (player.element == Element.Water)
-            playerPortrait.sprite = Elements[0];
+            playerElement.sprite = (Resources.Load("ElementList") as GameObject).GetComponent<ElementImageList>().Elements[0];
         else if (player.element == Element.Wood)
-            playerPortrait.sprite = Elements[1];
+            playerElement.sprite = (Resources.Load("ElementList") as GameObject).GetComponent<ElementImageList>().Elements[1];
         else if (player.element == Element.Fire)
-            playerPortrait.sprite = Elements[2];
+            playerElement.sprite = (Resources.Load("ElementList") as GameObject).GetComponent<ElementImageList>().Elements[2];
         else if (player.element == Element.Earth)
-            playerPortrait.sprite = Elements[3];
+            playerElement.sprite = (Resources.Load("ElementList") as GameObject).GetComponent<ElementImageList>().Elements[3];
         else
-            playerPortrait.sprite = Elements[4];
+            playerElement.sprite = (Resources.Load("ElementList") as GameObject).GetComponent<ElementImageList>().Elements[4];
     }
 
     //About HP
     private void MakePlayerHPBar()
     {
-        playerHPBar.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0,0);
+        //playerHPBar.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0,0);
         playerHPBar.maxValue = player.maxHp;
         playerHPBar.value = player.hp;
     }
@@ -63,7 +53,6 @@ public class PlayerUI : MonoBehaviour {
     private void Start()
     {
         MakePortrait();
-        MakeElementsList();
         PlayerElement();
         MakePlayerHPBar();
         AttackDefenceText();
