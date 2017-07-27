@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     //private float duration = 3.0f;
 
     public HP hpBar;
+    public Sprite portrait;
 
     public bool thisPlayerClicked = false;
 
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     public GameObject MoveBattlePanel;
 
     public int atk;
+    public int def;
     public int maxHp;
     public int hp;
     public int speed;
@@ -70,10 +72,6 @@ public class Player : MonoBehaviour
         }
     }
     
-    public void CheckHp(HP hp_bar)
-    {
-        HP.CheckHp(hp_bar, this.GetComponent<Player>());
-    }
 
     public bool DeadCheck()
     {
@@ -147,7 +145,7 @@ public class Player : MonoBehaviour
                 Debug.Log("attacked");
             }
             /////////////
-            BattleSystem.Battle(this, encounteredEnemy, hpBar, encounteredEnemy.Enemy_Information.GetComponent<Enemy_HP>());
+            BattleSystem.Battle(this, encounteredEnemy);
         }
         yield return null;
     }

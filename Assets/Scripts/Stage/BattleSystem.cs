@@ -68,17 +68,14 @@ public class BattleSystem
 
     }
 
-    public static void AttackEnemy(Player player, Enemy enemy, Enemy_HP enemy_hp_Bar)
+    public static void AttackEnemy(Player player, Enemy enemy)
     {
         enemy.hp -= (int)(player.atk * CheckElement(player.element, enemy.element));
-        enemy.CheckHp();
-        enemy_hp_Bar.checkHp(enemy);
     }
 
-    public static void AttackPlayer(Player player, Enemy enemy, HP player_hp_Bar)
+    public static void AttackPlayer(Player player, Enemy enemy)
     {
         player.hp -= (int)(enemy.atk * CheckElement(enemy.element, player.element));
-        player.CheckHp(player_hp_Bar);
     }
 
     public static void UpdateStates(Player player, Enemy enemy)
@@ -91,25 +88,16 @@ public class BattleSystem
 
         if (enemy.DeadCheck())
         {
-            enemy.Enemy_Information.SetActive(false);
-            enemy.DestroyHpbar();
+            GameObject.Find("EnemyDetailInfo").SetActive(true);
             GameObject.Destroy(enemy.gameObject);
         }
     }
 
-    public static void Battle(Player player, Enemy enemy, HP player_hp_Bar, Enemy_HP enemy_hp_Bar)
+    public static void Battle(Player player, Enemy enemy)
     {
-        if (enemy.speed > player.speed)
-        {
-            AttackPlayer(player, enemy, player_hp_Bar);
-            AttackEnemy(player, enemy, enemy_hp_Bar);
-        }
-        else
-        {
-            AttackEnemy(player, enemy, enemy_hp_Bar);
-            AttackPlayer(player, enemy, player_hp_Bar);
-        }
-
+        AttackEnemy(player, enemy);
+        AttackPlayer(player, enemy);
+        
         UpdateStates(player, enemy);
     }
 }
