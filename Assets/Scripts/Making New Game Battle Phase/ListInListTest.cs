@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ListInListTest : MonoBehaviour {
 
-    private void Main() {
-        List<GoalList> allPlayerGoals = new List<GoalList>();
+    public Player emptyPlayer;
+    public List<GoalList> allPlayerGoals = new List<GoalList>();
+
+    private void Main()
+    {
+        
 
         for (int playerNum = 0; playerNum < 2; playerNum++)
         {
@@ -18,40 +22,10 @@ public class ListInListTest : MonoBehaviour {
             }
 
             // need real player
-            Player emptyPlayer = null;
             allPlayerGoals.Add(new GoalList(emptyPlayer, goals));
 
         }
 
-
-        List<List<int>> testList = new List<List<int>>();
-        List<int> testSubList1 = new List<int>();
-        List<int> testSubList2 = new List<int>();
-        List<int> testSubList3 = new List<int>();
-
-
-        for (int i = 0; i<5; i++)
-        {
-            testSubList1.Add(i);
-        }
-        for (int i = 0; i < 5; i++)
-        {
-            testSubList2.Add(i + 10);
-        }
-        for (int i = 0; i < 5; i++)
-        {
-            testSubList3.Add(i + 20);
-        }
-        testList.Add(testSubList1);
-        testList.Add(testSubList2);
-        testList.Add(testSubList3);
-
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 5; j++)
-            {
-                Debug.Log(testList[i][j]);
-            }
-        }
+        Debug.Log("3번쨰 테스트 : " + allPlayerGoals[1].goals[8].position);
     }
 }
