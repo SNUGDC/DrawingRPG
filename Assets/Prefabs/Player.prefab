@@ -52,6 +52,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b4d5681bf262549afe0a5dfba45100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LineDrawerPrefeb: {fileID: 114613627533818028, guid: 8ec480475210c824f9ddd5b2eedd8909,
+    type: 2}
+  PlayerGoalPosition: []
+  goalPoint: {fileID: 0}
+  passedLines: []
+  portrait: {fileID: 0}
+  thisPlayerClicked: 0
+  atk: 0
+  def: 0
+  maxHp: 0
+  hp: 0
+  speed: 0
+  moveCount: 0
+  isClear: 0
+  element: 0
+  checkCollideWithGoal: 0
+  enemyInfoAnimation: {fileID: 0}
 --- !u!212 &212479732620083524
 SpriteRenderer:
   m_ObjectHideFlags: 1

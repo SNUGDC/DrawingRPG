@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class StageButton : MonoBehaviour
-{
+{/*
     public int stage;
     void Awake()
     {
@@ -18,5 +18,5 @@ public class StageButton : MonoBehaviour
         {
             GetComponent<Button>().interactable = false;
         }
-    }
+    }*/
 }

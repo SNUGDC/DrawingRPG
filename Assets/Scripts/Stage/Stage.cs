@@ -24,7 +24,7 @@ public class Stage : MonoBehaviour
 
 	public void MoveToStageSelect()
 	{
-		SceneLoader.LoadStageSelect();
+		SceneLoader.LoadScene_using_string("Stage_Select");
 	}
 
     

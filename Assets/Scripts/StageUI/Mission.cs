@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Mission : MonoBehaviour {
-    public GameObject start_button;
+public class MissionUI : MonoBehaviour {
     
-	void Start () {
-        start_button.SetActive(false);
-        Destroy(gameObject, 3);
-	}
 	
 }

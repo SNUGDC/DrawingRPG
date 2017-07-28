@@ -11,16 +11,7 @@ public static class SceneLoader
     {
         LoadScene("Stage" + stage);
     }
-
-    public static void LoadProto()
-    {
-        LoadScene("Stage0");
-    }
-    public static void LoadStageSelect()
-    {
-        LoadScene("StageSelect");
-    }
-
+    
     public static void LoadScene_using_string(string scene)
     {
         LoadScene(scene);

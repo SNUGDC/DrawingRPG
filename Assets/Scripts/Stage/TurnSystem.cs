@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class TurnSystem : MonoBehaviour
 {
     public MaxLine_Turn max_one;
-    public Text text;
+    public Text lineText;
+    public Text turnText;
 
     public Image[] MovePhaseImage;
     public Image[] BattlePhaseImage;
-    public Player[] player;
+    public List<Player> player;
 
     public void StartMove()
     {
@@ -25,6 +26,11 @@ public class TurnSystem : MonoBehaviour
     private void Start()
     {
         Screen.SetResolution(360, 640, false);
+        GameObject[] Players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject playerOne in Players)
+        {
+            player.Add(playerOne.GetComponent<Player>());
+        }
     }
 
     IEnumerator RunTurn()
@@ -36,7 +42,7 @@ public class TurnSystem : MonoBehaviour
             foreach(Player player in player)
             {
                 player.moveCount++;
-                Line_and_Turn_count.TurnCounting(player, max_one, text);
+                Line_and_Turn_count.TurnCounting(player, max_one, turnText);
             }
             yield return StartCoroutine(StartMovePhase());
             yield return StartCoroutine(RunMovePhase());
