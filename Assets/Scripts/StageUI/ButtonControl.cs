@@ -45,13 +45,10 @@ public class ButtonControl : MonoBehaviour {
     // --------------게임 내 상태 조작 Button------------//
    
     //라인 그리고 난 후 스타트
-    public void StartGame(GameObject startButton)
+    public void OnClickStartGame()
     {
-        Destroy(startButton);
-    }
-    public void StartGameStartUI(GameObject startUI)
-    {
-        Instantiate(startUI);
+        GameObject.Find("BeforeStartUI").SetActive(false);
+        GameObject.Find("AfterStartUI").GetComponent<AfterStartUI>().InstantiateStartPanel();
     }
 
 }

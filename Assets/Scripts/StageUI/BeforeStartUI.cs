@@ -8,9 +8,9 @@ public class BeforeStartUI : MonoBehaviour {
     public GameObject mission;
     public GameObject startButton;
     public GameObject stopButton;
-    public GameObject afterStartUI;
     public GameObject allPlayerInformationPanel;
     public GameObject allEnemyFieldHPPanel;
+    
 
     IEnumerator ShowMission(float second)
     {
@@ -32,23 +32,19 @@ public class BeforeStartUI : MonoBehaviour {
     }
     private void InstantiateStartButton()
     {
-        Instantiate(startButton, this.transform);
+        Instantiate(startButton, GameObject.Find("Canvas").transform);
     }
     private void InstantiateStopButton()
     {
-        Instantiate(stopButton, this.transform);
-    }
-    public void InstantiateAfterStartUI()
-    {
-        Instantiate(afterStartUI, this.transform.parent);
+        Instantiate(stopButton, GameObject.Find("Canvas").transform);
     }
     private void InstantiateAllPlayerInfoPanel()
     {
-        Instantiate(allPlayerInformationPanel, this.transform);
+        Instantiate(allPlayerInformationPanel, GameObject.Find("Canvas").transform);
     }
     private void InstantiateAllEnemyFieldHPPanel()
     {
-        Instantiate(allEnemyFieldHPPanel, this.transform);
+        Instantiate(allEnemyFieldHPPanel, GameObject.Find("Canvas").transform);
     }
 
     private void Start()
@@ -56,11 +52,5 @@ public class BeforeStartUI : MonoBehaviour {
         InstantiateMission();
         StartCoroutine(ShowMission(3.0f));
     }
-
-    public void OnClickStartButton()
-    {
-        GameObject beforeStartUI = GameObject.Find("BeforeStartUI");
-        beforeStartUI.GetComponent<BeforeStartUI>().InstantiateAfterStartUI();
-        Destroy(beforeStartUI);
-    }
+    
 }
