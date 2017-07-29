@@ -95,9 +95,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114824494230967842, guid: 19495f83876a9b04cb93ff1db527c84e,
+      - m_Target: {fileID: 114005953669427748, guid: 32c5f261b231e124186252f4919d5bc7,
           type: 2}
-        m_MethodName: OnClickStartButton
+        m_MethodName: OnClickStartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -107,10 +107,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114365868298777562, guid: 6fb7a58d52fa4564797bf167637bc643,
-          type: 2}
-        m_MethodName: OnClickStartButton
-        m_Mode: 1
+      - m_Target: {fileID: 1657763763695166}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
