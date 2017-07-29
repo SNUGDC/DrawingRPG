@@ -7,10 +7,16 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
     public bool IsMovePhase;
     public bool IsBattlePhase;
 
-    private void Start()
-    {
-        IsBattlePhase = false;
-    }
+    public List<GoalList> allPlayerGoals = new List<GoalList>();
+
+    //private void Start()
+    //{
+    //    IsBattlePhase = false;
+    //    allPlayerGoals = BirngAllPlayerGoals();
+    //}
+
+    
+    
 
 
     public IEnumerator RunBattelPhase()
