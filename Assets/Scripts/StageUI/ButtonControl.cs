@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour {
+public class ButtonControl : MonoBehaviour {
 
     // --------------씬 전환 Button--------------//
     public void MainMenuScene()

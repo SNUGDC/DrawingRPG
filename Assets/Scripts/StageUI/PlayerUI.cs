@@ -50,12 +50,13 @@ public class PlayerUI : MonoBehaviour {
         playerInfoText.text = "공격력 : " + player.atk + "\n방어력 : " + player.def;
     }
     
-    private void Start()
+    public static void MakePanel(PlayerUI playerUI, Player player)
     {
-        MakePortrait();
-        PlayerElement();
-        MakePlayerHPBar();
-        AttackDefenceText();
+        playerUI.player = player;
+        playerUI.MakePortrait();
+        playerUI.PlayerElement();
+        playerUI.MakePlayerHPBar();
+        playerUI.AttackDefenceText();
     }
 
     private void Update()
