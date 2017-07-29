@@ -5,18 +5,18 @@ using UnityEngine;
 public class AfterStartUI : MonoBehaviour {
     
     public GameObject turnDisplayPanel;
+    public GameObject movePhasePanel;
+    public GameObject battlePhasePanel;
+    public GameObject missionClearPanel;
+    public GameObject missionFailPanel;
+
     public GameObject[] players;
-
-    private void InstantiateTurnDisplayPanel()
-    {
-        Instantiate(turnDisplayPanel, this.transform);
-    }
-
-    private void Start()
+   
+    public void InstantiateStartPanel()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        InstantiateTurnDisplayPanel();
-        
+        Instantiate(turnDisplayPanel, this.transform);
     }
+    
     
 }

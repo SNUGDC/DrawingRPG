@@ -9,9 +9,8 @@ public class EnemyUI : MonoBehaviour {
     public Image enemyElement;
     public Slider enemyHPBar;
     public Slider enemyFieldHPBar;
+
     public Text enemyInfoText; // 공격력, 방어력
-
-
 
     //About Portrait
     private void MakePortrait()
@@ -46,42 +45,12 @@ public class EnemyUI : MonoBehaviour {
     {
         enemyHPBar.value = enemy.hp;
     }
-
-    public static void MakeEnemyFieldHPBar(Enemy enemy, GameObject aboutEnemy)
-{
-        RectTransform CanvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
-        Vector3 UI_camera = Camera.main.WorldToViewportPoint(enemy.transform.position);
-
-        Vector3 WorldObject_ScreenPosition = new Vector3(
-        (UI_camera.x * CanvasRect.sizeDelta.x), (UI_camera.y * CanvasRect.sizeDelta.y) - 100, 0);
-        
-
-        enemy.enemyFieldHPBar = Instantiate(Resources.Load("EnemyFieldHPBar") as GameObject, WorldObject_ScreenPosition, enemy.transform.rotation);
-        
-        enemy.enemyFieldHPBar.GetComponent<Slider>().maxValue = enemy.maxHp;
-        enemy.enemyFieldHPBar.GetComponent<Slider>().value = enemy.hp;
-        enemy.enemyFieldHPBar.transform.parent = aboutEnemy.transform;
-    }
-
-    public static void ChangedFieldHPBar(Enemy enemy)
-    {
-        enemy.enemyFieldHPBar.GetComponent<Slider>().value = enemy.hp;
-    }
     
-
     //About Attack, Defense
     public void AttackDefenceText()
     {
         enemyInfoText.text = "공격력 : " + enemy.atk + "\n방어력 : " + enemy.def;
     }
-
-    /*private void Start()
-    {
-        MakePortrait();
-        EnemyElement();
-        MakeEnemyHPBar();
-        AttackDefenceText();
-    }*/
 
     public void SetActiveEnemyUI()
     {
@@ -90,12 +59,9 @@ public class EnemyUI : MonoBehaviour {
         MakeEnemyHPBar();
         AttackDefenceText();
     }
-    
+
     private void Update()
     {
-        if (enemy != null)
-        {
-            ChangedHP();
-        }
+
     }
 }
