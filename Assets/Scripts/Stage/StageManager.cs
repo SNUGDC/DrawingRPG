@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MissionClear : MonoBehaviour {
-
+public class StageManager : MonoBehaviour
+{
     public Player player;
-    public Enemy enemy1;
-    public Enemy enemy2;
+    public List<Enemy> enemies = new List<Enemy>();
 
     //public GameObject goal_Image;
     //public GameObject black;
@@ -20,26 +19,29 @@ public class MissionClear : MonoBehaviour {
         is_clear = false;
     }
 
-    private void Update ()
+    private void Update()
     {
         if (player.checkCollideWithGoal == true)
         {
             MissionCompleteEvent();
         }
 
-        if (enemy1==null && enemy2 == null)
+        int enemyDeadCount = 0;
+        foreach (Enemy element in enemies)
         {
-            MissionCompleteEvent();
+            if (element != null) break;
+            else enemyDeadCount++;
         }
+
+        if (enemyDeadCount == enemies.Count)
+            MissionCompleteEvent();
+
     }
 
-   // public void checkMissionComplete()
-
-
+    // public void checkMissionComplete()
 
     public void MissionCompleteEvent()
     {
         GameClear.Cleard();
     }
-
 }
