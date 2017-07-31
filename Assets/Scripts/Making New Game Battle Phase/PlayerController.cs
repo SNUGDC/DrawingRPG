@@ -5,15 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     private MoveAndBattlePhaseController MBcontroller;
-    private ListInListTest ListInListTest;
     public List<Vector2> goals;
     public GameObject player;
 
     void Update()
     {
         float step = Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(1.0f, 1.0f, 0), step);
-
+        //transform.position = Vector3.MoveTowards(transform.position, new Vector3(1.0f,1.0f,0), step);
     }
 
 

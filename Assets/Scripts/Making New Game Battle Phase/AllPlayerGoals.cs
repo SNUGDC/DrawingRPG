@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListInListTest : MonoBehaviour {
+public class AllPlayerPositions : MonoBehaviour {
 
     //public Player emptyPlayer;
     //public List<GoalList> allPlayerGoals = new List<GoalList>();
