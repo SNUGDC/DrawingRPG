@@ -13,7 +13,7 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
     private bool isMovePhase;
     private bool isBattlePhase;
     private bool isMoveAndBattlePhase;
-    private List<Vector3> tempGoalPositions= new List<Vector3>();
+    private List<Vector2> tempGoalPositions= new List<Vector2>();
     
     private void Start()
     {
@@ -23,7 +23,7 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
         //플레이어가 가야될 목표를 받아야하는데 일단 임의 포지션으로 지정함)
         for (int i = 0; i < MaxTurnCount; i++)
         {
-            tempGoalPositions.Add(new Vector3(1.0f*i,1.0f*i,0));
+            tempGoalPositions.Add(new Vector2(1.0f*i,1.0f*i));
             TurnCount++;
         }
     }
@@ -51,16 +51,32 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
         }
     }
 
-    public IEnumerator RunMovePhase()
+    public IEnumerator RunMovePhase() //목표지점으로 이동하는 함수
     {
-        player.transform.position = tempGoalPositions[0];
-        tempGoalPositions.RemoveAt(0);
-        Debug.Log("it is MovePhase");
-        yield return new WaitForSeconds(1.0f);
+        while (true)
+        {
+            if (PlayerController.IsArrive(player.transform, tempGoalPositions[0]) == false)
+            {
+                PlayerController.Move1Frame(player.transform, tempGoalPositions[0], 1.0f);
+            }
+            else
+            {
+                //여기다가 if 적과 조우상태면 remove함수 없고, 적과조우상태면 remove함수있음
+                tempGoalPositions.RemoveAt(0);
+                yield break;
+            }
+            yield return null;
+        }
     }
 
     public IEnumerator RunBattlePhase()
     {
+        //player의 state 와 enemy의 state를 받아옴
+        //BattleSystem에 넘겨줌(이놈은 플레이어와 enemy의 체력등등을 바꿈, 적이나 플레이어를 죽이기도함)
+        //전투애니메이션 재생
+        //적이 살아있는지 체크 적이 살아있다면 tempGoalPositions의 첫번째에 플레이어의 포지션을 다시 집어넣음
+        //전투결과 애니메이션 재생
+        //배틀페이즈종료
         Debug.Log("it is BattlePhase");
         yield return new WaitForSeconds(1.0f);
     }

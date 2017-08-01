@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    private MoveAndBattlePhaseController MBcontroller;
-    public List<Vector2> goals;
-    public GameObject player;
-
-    void Update()
+    public static void Move1Frame(Transform transform, Vector2 goal, float moveSpeed)
     {
-        float step = Time.deltaTime;
-        //transform.position = Vector3.MoveTowards(transform.position, new Vector3(1.0f,1.0f,0), step);
+        Vector2 playerPos = transform.position;
+        float distance = (playerPos - goal).magnitude;
+        float buffer = 0.01f;
+        
+        if (distance >= buffer)
+        {
+            transform.position = (Vector2)transform.position + (goal - playerPos).normalized * moveSpeed * Time.deltaTime;
+        }
     }
-
-
-    void OnTriggerEnter(Collider other)
+    public static bool IsArrive(Transform transform, Vector2 goal)
     {
-        Destroy(other.gameObject);
+        Vector2 playerPos = transform.position;
+        float distance = (playerPos - goal).magnitude;
+        return distance < 0.1f;
     }
-
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    //if (other.tag == "enemy")
-    //    {
-    //        Debug.Log("적과 조우함");
-    //        StartCoroutine(MBcontroller.RunBattelPhase());
-    //        Destroy(other);
-    //    }
-    //}
 }
