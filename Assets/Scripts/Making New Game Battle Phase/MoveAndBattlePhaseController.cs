@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveAndBattlePhaseController : MonoBehaviour {
 
+    CollisionCheck collisionCheck;
+    PlayerScript TempPlayer;
     public List<GoalList> allPlayerGoals = new List<GoalList>();
 
     public GameObject player;
@@ -55,9 +57,9 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
     {
         while (true)
         {
-            if (PlayerController.IsArrive(player.transform, tempGoalPositions[0]) == false)
+            if (PlayerPositionController.IsArrive(player.transform, tempGoalPositions[0]) == false)
             {
-                PlayerController.Move1Frame(player.transform, tempGoalPositions[0], 1.0f);
+                PlayerPositionController.Move1Frame(player.transform, tempGoalPositions[0], 1.0f);
             }
             else
             {
@@ -71,8 +73,8 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
 
     public IEnumerator RunBattlePhase()
     {
-        //player의 state 와 enemy의 state를 받아옴
-        //BattleSystem에 넘겨줌(이놈은 플레이어와 enemy의 체력등등을 바꿈, 적이나 플레이어를 죽이기도함)
+        //Enemy enemy = collisionCheck.encountEnemy[0];
+        //BattleSystemForTemp.Battle(TempPlayer, enemy);
         //전투애니메이션 재생
         //적이 살아있는지 체크 적이 살아있다면 tempGoalPositions의 첫번째에 플레이어의 포지션을 다시 집어넣음
         //전투결과 애니메이션 재생

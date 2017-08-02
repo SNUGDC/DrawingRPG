@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerPositionController : MonoBehaviour {
 
     public static void Move1Frame(Transform transform, Vector2 goal, float moveSpeed)
     {

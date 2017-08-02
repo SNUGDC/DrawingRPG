@@ -9,6 +9,7 @@ TagManager:
   - goal
   - enemy
   - LineDrawer
+  - enemyRange
   layers:
   - Default
   - TransparentFX
