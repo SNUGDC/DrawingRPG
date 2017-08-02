@@ -5,28 +5,34 @@ using UnityEngine;
 public class MoveAndBattlePhaseController : MonoBehaviour {
 
     CollisionCheck collisionCheck;
-    PlayerScript TempPlayer;
+    private PlayerAndItsGoals playerAndItsGoals;
+
+
     public List<GoalList> allPlayerGoals = new List<GoalList>();
+    public List<GameObject> players = new List<GameObject>();
+    public int maxTurnCount;
 
-    public GameObject player;
-    public int MaxTurnCount;
-
-    private int TurnCount;
+    private int turnCount;
     private bool isMovePhase;
     private bool isBattlePhase;
     private bool isMoveAndBattlePhase;
-    private List<Vector2> tempGoalPositions= new List<Vector2>();
+
     
     private void Start()
     {
+        playerAndItsGoals= new PlayerAndItsGoals();
+        playerAndItsGoals.player = players[0];
+
+
+
         isMovePhase = false;
         isBattlePhase = false;
         isMoveAndBattlePhase = false;
         //플레이어가 가야될 목표를 받아야하는데 일단 임의 포지션으로 지정함)
-        for (int i = 0; i < MaxTurnCount; i++)
+        for (int i = 0; i < maxTurnCount; i++)
         {
-            tempGoalPositions.Add(new Vector2(1.0f*i,1.0f*i));
-            TurnCount++;
+            playerAndItsGoals.goals.Add(new Vector2(1.0f*i,1.0f*i));
+            turnCount++;
         }
     }
 
@@ -45,11 +51,11 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
 
     private IEnumerator RunMoveAndBattePhase()
     {
-        while (TurnCount > 0)
+        while (turnCount > 0)
         {
             yield return StartCoroutine(RunMovePhase());
             yield return StartCoroutine(RunBattlePhase());
-            TurnCount--;
+            turnCount--;
         }
     }
 
@@ -57,14 +63,14 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
     {
         while (true)
         {
-            if (PlayerPositionController.IsArrive(player.transform, tempGoalPositions[0]) == false)
+            if (PlayerPositionController.IsArrive(playerAndItsGoals.player.transform, playerAndItsGoals.goals[0]) == false)
             {
-                PlayerPositionController.Move1Frame(player.transform, tempGoalPositions[0], 1.0f);
+                PlayerPositionController.Move1Frame(playerAndItsGoals.player.transform, playerAndItsGoals.goals[0], 1.0f);
             }
             else
             {
                 //여기다가 if 적과 조우상태면 remove함수 없고, 적과조우상태면 remove함수있음
-                tempGoalPositions.RemoveAt(0);
+                playerAndItsGoals.goals.RemoveAt(0);
                 yield break;
             }
             yield return null;
@@ -74,7 +80,7 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
     public IEnumerator RunBattlePhase()
     {
         //Enemy enemy = collisionCheck.encountEnemy[0];
-        //BattleSystemForTemp.Battle(TempPlayer, enemy);
+        //BattleSystemForTemp.Battle(tempPlayer, enemy);
         //전투애니메이션 재생
         //적이 살아있는지 체크 적이 살아있다면 tempGoalPositions의 첫번째에 플레이어의 포지션을 다시 집어넣음
         //전투결과 애니메이션 재생
