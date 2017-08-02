@@ -47,7 +47,7 @@ public class ButtonControl : MonoBehaviour {
     //라인 그리고 난 후 스타트
     public void OnClickStartGame()
     {
-        GameObject.Find("UIManager").GetComponent<UIManager>().InactiveInitialUI();
+        //GameObject.Find("UIManager").GetComponent<UIManager>().InactiveInitialUI();
         GameObject.Find("UIManager").GetComponent<UIManager>().InstantiateStartPanel();
     }
 

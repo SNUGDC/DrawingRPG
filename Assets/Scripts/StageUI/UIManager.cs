@@ -22,36 +22,22 @@ public class UIManager : MonoBehaviour
     IEnumerator ShowMission(float second)
     {
         yield return new WaitForSeconds(second);
-        InstantiateLineDisplayPanel();
-        InstantiateStartButton();
-        InstantiateStopButton();
-        InstantiateAllPlayerInfoPanel();
-        InstantiateAllEnemyFieldHPPanel();
+        InitiateUI();
+    }
+
+    private void InitiateUI()
+    {
+        Instantiate(lineDisplayPanel, this.transform);
+        Instantiate(startButton, GameObject.Find("Canvas").transform);
+        Instantiate(stopButton, GameObject.Find("Canvas").transform);
+        Instantiate(allPlayerInformationPanel, GameObject.Find("Canvas").transform);
+        Instantiate(allEnemyFieldHPPanel, GameObject.Find("Canvas").transform);
+
     }
 
     private void InstantiateMission()
     {
         Instantiate(mission, this.transform);
-    }
-    private void InstantiateLineDisplayPanel()
-    {
-        Instantiate(lineDisplayPanel, this.transform);
-    }
-    private void InstantiateStartButton()
-    {
-        Instantiate(startButton, GameObject.Find("Canvas").transform);
-    }
-    private void InstantiateStopButton()
-    {
-        Instantiate(stopButton, GameObject.Find("Canvas").transform);
-    }
-    private void InstantiateAllPlayerInfoPanel()
-    {
-        Instantiate(allPlayerInformationPanel, GameObject.Find("Canvas").transform);
-    }
-    private void InstantiateAllEnemyFieldHPPanel()
-    {
-        Instantiate(allEnemyFieldHPPanel, GameObject.Find("Canvas").transform);
     }
 
     public void InactiveInitialUI()
