@@ -5,35 +5,39 @@ using UnityEngine;
 public class MoveAndBattlePhaseController : MonoBehaviour {
 
     CollisionCheck collisionCheck;
-    private PlayerAndItsGoals playerAndItsGoals;
+    private List<PlayerAndItsGoals> playerAndItsGoalsList = new List<PlayerAndItsGoals>();
 
 
     public List<GoalList> allPlayerGoals = new List<GoalList>();
     public List<GameObject> players = new List<GameObject>();
     public int maxTurnCount;
+    
 
     private int turnCount;
     private bool isMovePhase;
     private bool isBattlePhase;
     private bool isMoveAndBattlePhase;
 
-    
+
     private void Start()
     {
-        playerAndItsGoals= new PlayerAndItsGoals();
-        playerAndItsGoals.player = players[0];
-
+        turnCount = maxTurnCount;
+        for (int i = 0; i < players.Count; i++)
+        {
+            PlayerAndItsGoals playerAndItsGoals = new PlayerAndItsGoals();
+            playerAndItsGoals.player = players[i];
+            
+            for (int j = 0; j < maxTurnCount; j++)
+            {
+                playerAndItsGoals.goals.Add(new Vector2(1.0f * j, 1.0f * j));
+            }
+            playerAndItsGoalsList.Add(playerAndItsGoals);
+        }
 
 
         isMovePhase = false;
         isBattlePhase = false;
         isMoveAndBattlePhase = false;
-        //플레이어가 가야될 목표를 받아야하는데 일단 임의 포지션으로 지정함)
-        for (int i = 0; i < maxTurnCount; i++)
-        {
-            playerAndItsGoals.goals.Add(new Vector2(1.0f*i,1.0f*i));
-            turnCount++;
-        }
     }
 
     private void Update()
@@ -61,19 +65,53 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
 
     public IEnumerator RunMovePhase() //목표지점으로 이동하는 함수
     {
+
+        Dictionary<PlayerAndItsGoals, bool> arriveDic = new Dictionary<PlayerAndItsGoals, bool>();
+
+        foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
+        {
+            arriveDic[playerAndItsGoals] = false;
+        }
+
         while (true)
         {
-            if (PlayerPositionController.IsArrive(playerAndItsGoals.player.transform, playerAndItsGoals.goals[0]) == false)
+            foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
             {
-                PlayerPositionController.Move1Frame(playerAndItsGoals.player.transform, playerAndItsGoals.goals[0], 1.0f);
+                if (arriveDic[playerAndItsGoals] == true) continue;
+
+                Transform playerTransform = playerAndItsGoals.player.transform;
+                Vector2 nearGoal = playerAndItsGoals.goals[0];
+                if (PlayerPositionController.IsArrive(playerTransform, nearGoal) == false)
+                {
+                    PlayerPositionController.Move1Frame(playerTransform, nearGoal, 1.0f);
+                }
+                else
+                {
+                    arriveDic[playerAndItsGoals] = true;
+                    //여기다가 if 적과 조우상태면 remove함수 없고, 적과조우상태면 remove함수있음
+                    playerAndItsGoals.goals.RemoveAt(0);
+                    //도착할때마다 임의의값 +1
+
+                    //임의의값 =플레이어수 
+                }
             }
-            else
+
+
+            yield return null;
+
+            bool allArrive = true;
+            foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
             {
-                //여기다가 if 적과 조우상태면 remove함수 없고, 적과조우상태면 remove함수있음
-                playerAndItsGoals.goals.RemoveAt(0);
+                if (arriveDic[playerAndItsGoals] == false)
+                {
+                    allArrive = false;
+                }
+            }
+
+            if (allArrive)
+            {
                 yield break;
             }
-            yield return null;
         }
     }
 
