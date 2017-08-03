@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LineDrawer : MonoBehaviour
 {
-    public GameObject max_line;
     public GameObject Line_text;
 	public GameObject LineEnd;
 	public GameObject Line;
@@ -27,26 +27,31 @@ public class LineDrawer : MonoBehaviour
 
     public List<Vector2> PlayerPassedPosition = new List<Vector2>(); 
     private List<Enemy> allEncountedEnemyList = new List<Enemy>();
-    
 
-   /* public void Delete_Line()
-    {
-        Debug.Log("Delete_Done");
-        if (used_line_count <= 0)
-            return;
-        if (thisPlayerClicked == true)
-        {
-            used_line_count--;
-            player_passed_position.RemoveAt(player_passed_position.Count - 1);
-            Player.GetComponent<Player>().PlayerGoalPosition.RemoveAt(Player.GetComponent<Player>().PlayerGoalPosition.Count - 1);
-            transform.position = player_passed_position[player_passed_position.Count - 1];
-            Destroy(myLine[myLine.Count - 1]);
-            myLine.RemoveAt(myLine.Count - 1);
-        }*/
-        
+
+    /* public void Delete_Line()
+     {
+         Debug.Log("Delete_Done");
+         if (used_line_count <= 0)
+             return;
+         if (thisPlayerClicked == true)
+         {
+             used_line_count--;
+             player_passed_position.RemoveAt(player_passed_position.Count - 1);
+             Player.GetComponent<Player>().PlayerGoalPosition.RemoveAt(Player.GetComponent<Player>().PlayerGoalPosition.Count - 1);
+             transform.position = player_passed_position[player_passed_position.Count - 1];
+             Destroy(myLine[myLine.Count - 1]);
+             myLine.RemoveAt(myLine.Count - 1);
+         }*/
+
     //}
 
-	private void Start()
+    public static void LineCounting(LineDrawer LineDrawer, int maxLine, Text text)
+    {
+        text.text = LineDrawer.used_line_count + "/" + maxLine;
+    }
+
+    private void Start()
 	{
 		isInControlMode = false;
         LineDeleteButton.SetActive(false);
@@ -64,7 +69,6 @@ public class LineDrawer : MonoBehaviour
         //player_passed_position.Add(Player.transform.position);
         //Debug.Log(player_passed_position[0]);
         //Player.GetComponent<Player>().PlayerGoalPosition.Add(transform.position);
-        max_line = GameObject.Find("MaxLine/Turn");
         Line_text = GameObject.Find("Line_text");
     }
 
@@ -109,7 +113,7 @@ public class LineDrawer : MonoBehaviour
 	{
 		//if(NewLineNum() == null)
 			//return;
-        if (used_line_count >= max_line.GetComponent<MaxLine_Turn>().MaxLine)
+        if (used_line_count >= FindObjectOfType<UIManager>().maxLine)
             return;
         
         
@@ -130,7 +134,7 @@ public class LineDrawer : MonoBehaviour
             PlayerPassedPosition.Add(transform.position);
             //Player.GetComponent<Player>().PlayerGoalPosition.Add(transform.position);
             used_line_count++;
-            Line_and_Turn_count.LineCounting(this, max_line.GetComponent<MaxLine_Turn>(), Line_text.GetComponent<UnityEngine.UI.Text>());
+            LineCounting(this, FindObjectOfType<UIManager>().maxLine, Line_text.GetComponent<UnityEngine.UI.Text>());
 
             Debug.Log("조작모드 끝");
             LineDeleteButton.SetActive(true);
@@ -156,7 +160,7 @@ public class LineDrawer : MonoBehaviour
 	{
         //if(NewLineNum() == null)
         //return null;
-        if (used_line_count >= max_line.GetComponent<MaxLine_Turn>().MaxLine)
+        if (used_line_count >= FindObjectOfType<UIManager>().maxLine)
             return null;
 
 		GameObject ControlLine = Instantiate(Line);

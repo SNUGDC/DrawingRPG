@@ -17,8 +17,18 @@ public class UIManager : MonoBehaviour
     public GameObject missionClearPanel;
     public GameObject missionFailPanel;
 
+    public GameObject block;
+    public GameObject clear;
+    public GameObject fail;
+    public GameObject nextStage;
+    public GameObject againStage;
+
+    public int maxLine;
+    public int maxTurn;
+
     public GameObject[] players;
 
+    //Instatniate UI
     IEnumerator ShowMission(float second)
     {
         yield return new WaitForSeconds(second);
@@ -28,11 +38,11 @@ public class UIManager : MonoBehaviour
     private void InitiateUI()
     {
         Instantiate(lineDisplayPanel, this.transform);
-        Instantiate(startButton, GameObject.Find("Canvas").transform);
-        Instantiate(stopButton, GameObject.Find("Canvas").transform);
-        Instantiate(allPlayerInformationPanel, GameObject.Find("Canvas").transform);
-        Instantiate(allEnemyFieldHPPanel, GameObject.Find("Canvas").transform);
-
+        GameObject canvas = GameObject.Find("Canvas");
+        Instantiate(startButton, canvas.transform);
+        Instantiate(stopButton, canvas.transform);
+        Instantiate(allPlayerInformationPanel, canvas.transform);
+        Instantiate(allEnemyFieldHPPanel, canvas.transform);
     }
 
     private void InstantiateMission()
@@ -59,5 +69,25 @@ public class UIManager : MonoBehaviour
         InstantiateMission();
         StartCoroutine(ShowMission(3.0f));
     }
+
+    //Game over and clear control
+    public static void Cleard()
+    {
+        GameObject UIManager = GameObject.Find("UIManager");
+        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().block, 1.0f);
+        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().clear, 3.0f);
+        //player.Next_Stage.SetActive(true);
+        UIManager.GetComponent<UIManager>().nextStage.SetActive(true);
+    }
+
+    public static void GameOver()
+    {
+        GameObject UIManager = GameObject.Find("UIManager");
+        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().block, 1.0f);
+        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().fail, 3.0f);
+        //player.Next_Stage.SetActive(true);
+        UIManager.GetComponent<UIManager>().againStage.SetActive(true);
+    }
+
 
 }

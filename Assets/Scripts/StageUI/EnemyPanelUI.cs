@@ -21,6 +21,7 @@ public class EnemyPanelUI : MonoBehaviour {
         enemyUI.gameObject.SetActive(false);
         MakeEnemyFieldHPBar();
     }
+
     public void MakeEnemyFieldHPBar()
     {
         GameObject[] Enemy_List = GameObject.FindGameObjectsWithTag("enemy");

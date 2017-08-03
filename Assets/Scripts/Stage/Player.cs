@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
             checkCollideWithGoal = true;
            
             isClear = true;
-            GameClear.Cleard();
+            UIManager.Cleard();
         }
     }
     

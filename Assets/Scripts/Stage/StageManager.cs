@@ -42,6 +42,6 @@ public class StageManager : MonoBehaviour
 
     public void MissionCompleteEvent()
     {
-        GameClear.Cleard();
+        UIManager.Cleard();
     }
 }
