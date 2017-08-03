@@ -5,13 +5,21 @@ using UnityEngine.UI;
 
 public class TurnSystem : MonoBehaviour
 {
-    public MaxLine_Turn max_one;
     public Text lineText;
     public Text turnText;
 
     public Image[] MovePhaseImage;
     public Image[] BattlePhaseImage;
     public List<Player> player;
+
+    public static void TurnCounting(Player player, int maxTurn, Text text)
+    {
+        if (player.moveCount > maxTurn && player.isClear == false)
+        {
+            UIManager.GameOver();
+        }
+        text.text = player.moveCount + "/" + maxTurn;
+    }
 
     public void StartMove()
     {
@@ -35,6 +43,7 @@ public class TurnSystem : MonoBehaviour
 
     IEnumerator RunTurn()
     {
+
         while (AllPlayerNeedToTurnPhase())
         {
             //player.move_count++;
@@ -42,7 +51,7 @@ public class TurnSystem : MonoBehaviour
             foreach(Player player in player)
             {
                 player.moveCount++;
-                Line_and_Turn_count.TurnCounting(player, max_one, turnText);
+                TurnCounting(player, FindObjectOfType<UIManager>().maxTurn, turnText);
             }
             yield return StartCoroutine(StartMovePhase());
             yield return StartCoroutine(RunMovePhase());

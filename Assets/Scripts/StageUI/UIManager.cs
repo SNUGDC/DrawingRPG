@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
     public GameObject nextStage;
     public GameObject againStage;
 
+    public int maxLine;
+    public int maxTurn;
+
     public GameObject[] players;
 
     //Instatniate UI
@@ -85,4 +88,6 @@ public class UIManager : MonoBehaviour
         //player.Next_Stage.SetActive(true);
         UIManager.GetComponent<UIManager>().againStage.SetActive(true);
     }
+
+
 }
