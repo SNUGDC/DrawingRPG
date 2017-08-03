@@ -10,6 +10,8 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
 
     public List<GoalList> allPlayerGoals = new List<GoalList>();
     public List<GameObject> players = new List<GameObject>();
+    public List<GameObject> tempEnemy = new List<GameObject>();
+    public GameObject temperaryEnemy;
     public int maxTurnCount;
     
 
@@ -21,7 +23,7 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
 
     private void Start()
     {
-        turnCount = maxTurnCount;
+        turnCount = 0;
         for (int i = 0; i < players.Count; i++)
         {
             PlayerAndItsGoals playerAndItsGoals = new PlayerAndItsGoals();
@@ -55,19 +57,17 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
 
     private IEnumerator RunMoveAndBattePhase()
     {
-        while (turnCount > 0)
+        while (turnCount < maxTurnCount)
         {
             yield return StartCoroutine(RunMovePhase());
             yield return StartCoroutine(RunBattlePhase());
-            turnCount--;
+            turnCount++;
         }
     }
 
     public IEnumerator RunMovePhase() //목표지점으로 이동하는 함수
     {
-
         Dictionary<PlayerAndItsGoals, bool> arriveDic = new Dictionary<PlayerAndItsGoals, bool>();
-
         foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
         {
             arriveDic[playerAndItsGoals] = false;
@@ -77,26 +77,30 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
         {
             foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
             {
-                if (arriveDic[playerAndItsGoals] == true) continue;
-
-                Transform playerTransform = playerAndItsGoals.player.transform;
-                Vector2 nearGoal = playerAndItsGoals.goals[0];
-                if (PlayerPositionController.IsArrive(playerTransform, nearGoal) == false)
+                if (temperaryEnemy == null)
                 {
-                    PlayerPositionController.Move1Frame(playerTransform, nearGoal, 1.0f);
+
+                    if (arriveDic[playerAndItsGoals] == true) continue;
+
+                    Transform playerTransform = playerAndItsGoals.player.transform;
+                    Vector2 nearGoal = playerAndItsGoals.goals[0];
+                    if (PlayerPositionController.IsArrive(playerTransform, nearGoal) == false)
+                    {
+                        PlayerPositionController.Move1Frame(playerTransform, nearGoal, 1.0f);
+                    }
+                    else
+                    {
+                        arriveDic[playerAndItsGoals] = true;
+                        playerAndItsGoals.goals.RemoveAt(0);
+
+                    }
                 }
+
                 else
                 {
                     arriveDic[playerAndItsGoals] = true;
-                    //여기다가 if 적과 조우상태면 remove함수 없고, 적과조우상태면 remove함수있음
-                    playerAndItsGoals.goals.RemoveAt(0);
-                    //도착할때마다 임의의값 +1
-
-                    //임의의값 =플레이어수 
                 }
             }
-
-
             yield return null;
 
             bool allArrive = true;
@@ -117,14 +121,21 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
 
     public IEnumerator RunBattlePhase()
     {
-        //Enemy enemy = collisionCheck.encountEnemy[0];
-        //BattleSystemForTemp.Battle(tempPlayer, enemy);
-        //전투애니메이션 재생
+        foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
+        {
+            if (temperaryEnemy == null)
+            {
+                continue;
+            }
+            BattleSystemForTemp.Battle(playerAndItsGoals.player, temperaryEnemy);
+
+
+        }
+
         //적이 살아있는지 체크 적이 살아있다면 tempGoalPositions의 첫번째에 플레이어의 포지션을 다시 집어넣음
-        //전투결과 애니메이션 재생
-        //배틀페이즈종료
+
         Debug.Log("it is BattlePhase");
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
     }
 
     

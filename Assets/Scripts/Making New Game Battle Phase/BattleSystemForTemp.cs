@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleSystemForTemp
+public class BattleSystemForTemp : MonoBehaviour
 {
     public static float CheckElement(Element attack, Element damage)
     {
@@ -59,36 +59,41 @@ public class BattleSystemForTemp
 
     }
 
-    public static void AttackEnemy(PlayerScript player, Enemy enemy)
+    public static void AttackEnemy(GameObject player, GameObject enemy)
     {
-        enemy.hp -= (int)(player.atk * CheckElement(player.element, enemy.element));
+        PlayerStatus playerStatus = player.gameObject.GetComponent<PlayerStatus>();
+        EnemyStatus enemyStatus = enemy.gameObject.GetComponent<EnemyStatus>();
+        enemyStatus.hp -= (int)(playerStatus.atk * CheckElement(playerStatus.element, enemyStatus.element));
     }
 
-    public static void AttackPlayer(PlayerScript player, Enemy enemy)
+    public static void AttackPlayer(GameObject player, GameObject enemy)
     {
-        player.hp -= (int)(enemy.atk * CheckElement(enemy.element, player.element));
+        PlayerStatus playerStatus = player.gameObject.GetComponent<PlayerStatus>();
+        EnemyStatus enemyStatus = enemy.gameObject.GetComponent<EnemyStatus>();
+        playerStatus.hp -= (int)(enemyStatus.atk * CheckElement(enemyStatus.element, playerStatus.element));
     }
 
-    //public static void UpdateStates(PlayerScript player, Enemy enemy)
-    //{
-    //    if (player.DeadCheck())
-    //    {
-    //        //GameObject.Destroy(player.gameObject);
-    //        Debug.Log("GameOver");
-    //    }
+    public static void DestroyDeadCharacter(GameObject player, GameObject enemy)
+    {
+        PlayerStatus playerStatus = player.gameObject.GetComponent<PlayerStatus>();
+        EnemyStatus enemyStatus = enemy.gameObject.GetComponent<EnemyStatus>();
 
-    //    if (enemy.DeadCheck())
-    //    {
-    //        GameObject.Find("EnemyDetailInfo").SetActive(true);
-    //        GameObject.Destroy(enemy.gameObject);
-    //    }
-    //}
+        if (playerStatus.hp <= 0)
+        {
+            GameObject.Destroy(player.gameObject);
+        }
 
-    public static void Battle(PlayerScript player, Enemy enemy)
+        if (enemyStatus.hp <= 0)
+        {
+            GameObject.Destroy(enemy.gameObject);
+        }
+    }
+
+
+    public static void Battle(GameObject player, GameObject enemy)
     {
         AttackEnemy(player, enemy);
         AttackPlayer(player, enemy);
-
-        //UpdateStates(player, enemy);
+        DestroyDeadCharacter(player, enemy);
     }
 }
