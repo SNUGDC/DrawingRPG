@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 9
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,8 +118,8 @@ GameObject:
   - component: {fileID: 118959938}
   - component: {fileID: 118959937}
   - component: {fileID: 118959939}
-  - component: {fileID: 118959941}
   - component: {fileID: 118959942}
+  - component: {fileID: 118959940}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: enemy
@@ -168,7 +168,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!4 &118959938
 Transform:
   m_ObjectHideFlags: 0
@@ -198,7 +197,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5.645
---- !u!114 &118959941
+--- !u!114 &118959940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -206,15 +205,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 118959936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b08b7f68077f192428656d8108a329aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 2201754e2ee277740b766a3f7ddcee00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 0
+  atk: 2
   def: 0
-  maxHp: 0
-  hp: 0
-  speed: 0
-  moveCount: 0
+  maxHp: 40
+  hp: 40
   element: 0
 --- !u!50 &118959942
 Rigidbody2D:
@@ -396,7 +393,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!58 &505905003
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -474,12 +470,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08b7f68077f192428656d8108a329aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 0
+  atk: 12
   def: 0
-  maxHp: 0
-  hp: 0
+  maxHp: 20
+  hp: 20
   speed: 0
-  moveCount: 0
   element: 0
 --- !u!114 &891516293
 MonoBehaviour:
@@ -548,7 +543,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!4 &891516296
 Transform:
   m_ObjectHideFlags: 0
@@ -619,7 +613,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!4 &1066872867
 Transform:
   m_ObjectHideFlags: 0
@@ -695,7 +688,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!4 &1108217858
 Transform:
   m_ObjectHideFlags: 0
@@ -746,12 +738,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08b7f68077f192428656d8108a329aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 0
+  atk: 12
   def: 0
-  maxHp: 0
-  hp: 0
-  speed: 0
-  moveCount: 0
+  maxHp: 20
+  hp: 20
+  speed: 5
   element: 0
 --- !u!114 &1108217862
 MonoBehaviour:
@@ -855,7 +846,9 @@ MonoBehaviour:
   players:
   - {fileID: 1108217856}
   - {fileID: 891516289}
-  maxTurnCount: 4
+  tempEnemy: []
+  temperaryEnemy: {fileID: 118959936}
+  maxTurnCount: 5
 --- !u!4 &1943583341
 Transform:
   m_ObjectHideFlags: 0
