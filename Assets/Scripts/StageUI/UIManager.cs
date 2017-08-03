@@ -17,8 +17,15 @@ public class UIManager : MonoBehaviour
     public GameObject missionClearPanel;
     public GameObject missionFailPanel;
 
+    public GameObject block;
+    public GameObject clear;
+    public GameObject fail;
+    public GameObject nextStage;
+    public GameObject againStage;
+
     public GameObject[] players;
 
+    //Instatniate UI
     IEnumerator ShowMission(float second)
     {
         yield return new WaitForSeconds(second);
@@ -33,7 +40,6 @@ public class UIManager : MonoBehaviour
         Instantiate(stopButton, canvas.transform);
         Instantiate(allPlayerInformationPanel, canvas.transform);
         Instantiate(allEnemyFieldHPPanel, canvas.transform);
-
     }
 
     private void InstantiateMission()
@@ -61,4 +67,22 @@ public class UIManager : MonoBehaviour
         StartCoroutine(ShowMission(3.0f));
     }
 
+    //Game over and clear control
+    public static void Cleard()
+    {
+        GameObject UIManager = GameObject.Find("UIManager");
+        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().block, 1.0f);
+        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().clear, 3.0f);
+        //player.Next_Stage.SetActive(true);
+        UIManager.GetComponent<UIManager>().nextStage.SetActive(true);
+    }
+
+    public static void GameOver()
+    {
+        GameObject UIManager = GameObject.Find("UIManager");
+        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().block, 1.0f);
+        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().fail, 3.0f);
+        //player.Next_Stage.SetActive(true);
+        UIManager.GetComponent<UIManager>().againStage.SetActive(true);
+    }
 }

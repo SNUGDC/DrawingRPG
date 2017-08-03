@@ -13,7 +13,7 @@ public class Line_and_Turn_count : MonoBehaviour {
     {
         if (player.moveCount > maxturn.MaxTurn && player.isClear == false)
         {
-            GameClear.GameOver();
+            UIManager.GameOver();
         }
         text.text = player.moveCount + "/" + maxturn.MaxTurn;
     }
