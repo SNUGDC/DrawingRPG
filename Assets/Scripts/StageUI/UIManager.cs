@@ -28,10 +28,11 @@ public class UIManager : MonoBehaviour
     private void InitiateUI()
     {
         Instantiate(lineDisplayPanel, this.transform);
-        Instantiate(startButton, GameObject.Find("Canvas").transform);
-        Instantiate(stopButton, GameObject.Find("Canvas").transform);
-        Instantiate(allPlayerInformationPanel, GameObject.Find("Canvas").transform);
-        Instantiate(allEnemyFieldHPPanel, GameObject.Find("Canvas").transform);
+        GameObject canvas = GameObject.Find("Canvas");
+        Instantiate(startButton, canvas.transform);
+        Instantiate(stopButton, canvas.transform);
+        Instantiate(allPlayerInformationPanel, canvas.transform);
+        Instantiate(allEnemyFieldHPPanel, canvas.transform);
 
     }
 
