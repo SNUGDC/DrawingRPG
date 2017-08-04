@@ -11,4 +11,10 @@ public class PlayerStatus : MonoBehaviour {
     public int speed;
 
     public Element element;
+
+
+    public Vector2 PlayerPositionXY()
+    {
+        return new Vector2(transform.position.x, transform.position.y);
+    }
 }

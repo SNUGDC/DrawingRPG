@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAndBattlePhaseController : MonoBehaviour {
+public class MoveAndBattlePhaseController : MonoBehaviour
+{
 
     CollisionCheck collisionCheck;
     private List<PlayerAndItsGoals> playerAndItsGoalsList = new List<PlayerAndItsGoals>();
@@ -11,9 +12,9 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
     public List<GoalList> allPlayerGoals = new List<GoalList>();
     public List<GameObject> players = new List<GameObject>();
     public List<GameObject> tempEnemy = new List<GameObject>();
-    public GameObject temperaryEnemy;
+    //public GameObject temperaryEnemy;
     public int maxTurnCount;
-    
+
 
     private int turnCount;
     private bool isMovePhase;
@@ -24,15 +25,21 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
     private void Start()
     {
         turnCount = 0;
+        //for (int i = 0; i < PlayerAndItsGoals playerAndItsGoals.whenEncountEnemy;i++)
+        //{
+        //}
+
         for (int i = 0; i < players.Count; i++)
         {
             PlayerAndItsGoals playerAndItsGoals = new PlayerAndItsGoals();
             playerAndItsGoals.player = players[i];
-            
+
             for (int j = 0; j < maxTurnCount; j++)
             {
-                playerAndItsGoals.goals.Add(new Vector2(1.0f * j, 1.0f * j));
+                playerAndItsGoals.goals.Add(new Vector2(1.0f * j + 1, 1.0f * j + 2));
             }
+            playerAndItsGoals.whenEncountEnemy.Add(2);
+            playerAndItsGoals.whenEncountEnemy.Add(4);
             playerAndItsGoalsList.Add(playerAndItsGoals);
         }
 
@@ -52,7 +59,7 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
                 isMoveAndBattlePhase = true;
                 StartCoroutine(RunMoveAndBattePhase());
             }
-        }    
+        }
     }
 
     private IEnumerator RunMoveAndBattePhase()
@@ -77,7 +84,7 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
         {
             foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
             {
-                if (temperaryEnemy == null)
+                if (playerAndItsGoals.whenEncountEnemy[0] != turnCount)
                 {
 
                     if (arriveDic[playerAndItsGoals] == true) continue;
@@ -123,13 +130,31 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
     {
         foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
         {
-            if (temperaryEnemy == null)
-            {
+            if ((playerAndItsGoals.ecountedEnemy[0] == null) && playerAndItsGoals.whenEncountEnemy[0] == turnCount
+                && (playerAndItsGoals.goals[0].x == playerAndItsGoals.player.transform.position.x)
+                && (playerAndItsGoals.goals[0].y == playerAndItsGoals.player.transform.position.y))
+            { 
                 continue;
             }
-            BattleSystemForTemp.Battle(playerAndItsGoals.player, temperaryEnemy);
 
-
+            if ((playerAndItsGoals.ecountedEnemy[0] != null) && playerAndItsGoals.whenEncountEnemy[0] == turnCount
+                && (playerAndItsGoals.goals[0].x == playerAndItsGoals.player.transform.position.x)
+                && (playerAndItsGoals.goals[0].y == playerAndItsGoals.player.transform.position.y))
+            {
+                BattleSystemForTemp.Battle(playerAndItsGoals.player, playerAndItsGoals.ecountedEnemy[0]);
+                if (playerAndItsGoals.ecountedEnemy[0] == null)
+                {
+                    playerAndItsGoals.ecountedEnemy.RemoveAt(0);
+                    playerAndItsGoals.whenEncountEnemy.RemoveAt(0);
+                }
+                else
+                {
+                    for (int i = 0; i < playerAndItsGoals.whenEncountEnemy.Count; i++)
+                    {
+                        playerAndItsGoals.whenEncountEnemy[i]++;
+                    }
+                }
+            }
         }
 
         //적이 살아있는지 체크 적이 살아있다면 tempGoalPositions의 첫번째에 플레이어의 포지션을 다시 집어넣음
@@ -138,7 +163,7 @@ public class MoveAndBattlePhaseController : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
     }
 
-    
+
 
 
 
