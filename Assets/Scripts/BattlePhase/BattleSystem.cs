@@ -120,7 +120,8 @@ public class BattleSystem : MonoBehaviour
     {
         AttackEnemy(player, enemy);
         bool EnemyDie=DestroyDeadEnemy(enemy);
-
+        DestroyDeadPlayer(player);
+        
         if(EnemyDie == true)
         {
             AttackPlayer(player, enemy);
