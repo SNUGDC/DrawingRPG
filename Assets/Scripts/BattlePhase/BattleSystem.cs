@@ -96,7 +96,7 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-    public static void DestroyDeadEnemy(GameObject enemy)
+    public static bool DestroyDeadEnemy(GameObject enemy)
     {
 
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
@@ -104,6 +104,12 @@ public class BattleSystem : MonoBehaviour
         if (enemyStatus.hp <= 0)
         {
             GameObject.Destroy(enemy.gameObject);
+            return true;
+        }
+
+        else
+        {
+            return false;
         }
 
     }
@@ -113,12 +119,13 @@ public class BattleSystem : MonoBehaviour
     public static void Battle(GameObject player, GameObject enemy)
     {
         AttackEnemy(player, enemy);
-        DestroyDeadEnemy(enemy);
-        if(enemy==null)
+        bool EnemyDie=DestroyDeadEnemy(enemy);
+
+        if(EnemyDie == true)
         {
-            return;
+            AttackPlayer(player, enemy);
+            DestroyDeadPlayer(player);
         }
-        AttackPlayer(player, enemy);
-        DestroyDeadPlayer(player);
+    
     }
 }
