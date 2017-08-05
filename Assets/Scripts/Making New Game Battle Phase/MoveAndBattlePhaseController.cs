@@ -7,14 +7,9 @@ public class MoveAndBattlePhaseController : MonoBehaviour
 
     CollisionCheck collisionCheck;
     private List<PlayerAndItsGoals> playerAndItsGoalsList = new List<PlayerAndItsGoals>();
-
-
-    public List<GoalList> allPlayerGoals = new List<GoalList>();
     public List<GameObject> players = new List<GameObject>();
     public List<GameObject> tempEnemy = new List<GameObject>();
-    //public GameObject temperaryEnemy;
     public int maxTurnCount;
-
 
     private int turnCount;
     private bool isMovePhase;
@@ -25,9 +20,6 @@ public class MoveAndBattlePhaseController : MonoBehaviour
     private void Start()
     {
         turnCount = 0;
-        //for (int i = 0; i < PlayerAndItsGoals playerAndItsGoals.whenEncountEnemy;i++)
-        //{
-        //}
 
         for (int i = 0; i < players.Count; i++)
         {
@@ -36,13 +28,13 @@ public class MoveAndBattlePhaseController : MonoBehaviour
 
             for (int j = 0; j < maxTurnCount; j++)
             {
-                playerAndItsGoals.goals.Add(new Vector2(1.0f * j + 1, 1.0f * j + 2));
+                Goal goal = new Goal(new Vector2(1.0f * j + 1, 1.0f * j + 2), null);
+                playerAndItsGoals.goals.Add(goal);
             }
-            playerAndItsGoals.whenEncountEnemy.Add(2);
-            playerAndItsGoals.whenEncountEnemy.Add(4);
+            playerAndItsGoals.goals[2].encountedEnemy = tempEnemy[0];
+            playerAndItsGoals.goals[4].encountedEnemy = tempEnemy[1];
             playerAndItsGoalsList.Add(playerAndItsGoals);
         }
-
 
         isMovePhase = false;
         isBattlePhase = false;
@@ -84,25 +76,21 @@ public class MoveAndBattlePhaseController : MonoBehaviour
         {
             foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
             {
-                if (playerAndItsGoals.whenEncountEnemy[0] != turnCount)
+                Goal currentGoal = playerAndItsGoals.goals[0];
+                if (currentGoal.encountedEnemy != null)
                 {
-
-                    if (arriveDic[playerAndItsGoals] == true) continue;
-
-                    Transform playerTransform = playerAndItsGoals.player.transform;
-                    Vector2 nearGoal = playerAndItsGoals.goals[0];
-                    if (PlayerPositionController.IsArrive(playerTransform, nearGoal) == false)
-                    {
-                        PlayerPositionController.Move1Frame(playerTransform, nearGoal, 1.0f);
-                    }
-                    else
-                    {
-                        arriveDic[playerAndItsGoals] = true;
-                        playerAndItsGoals.goals.RemoveAt(0);
-
-                    }
+                    arriveDic[playerAndItsGoals] = true;
+                    continue;
                 }
 
+                if (arriveDic[playerAndItsGoals] == true) continue;
+
+                Transform playerTransform = playerAndItsGoals.player.transform;
+                Vector2 goalPosition = currentGoal.position;
+                if (PlayerPositionController.IsArrive(playerTransform, goalPosition) == false)
+                {
+                    PlayerPositionController.Move1Frame(playerTransform, goalPosition, 1.0f);
+                }
                 else
                 {
                     arriveDic[playerAndItsGoals] = true;
@@ -130,79 +118,20 @@ public class MoveAndBattlePhaseController : MonoBehaviour
     {
         foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
         {
-            if ((playerAndItsGoals.ecountedEnemy[0] == null) && playerAndItsGoals.whenEncountEnemy[0] == turnCount
-                && (playerAndItsGoals.goals[0].x == playerAndItsGoals.player.transform.position.x)
-                && (playerAndItsGoals.goals[0].y == playerAndItsGoals.player.transform.position.y))
-            { 
+            Goal currentGoal = playerAndItsGoals.goals[0];
+
+            if (currentGoal.encountedEnemy == null)
+            {
                 continue;
             }
 
-            if ((playerAndItsGoals.ecountedEnemy[0] != null) && playerAndItsGoals.whenEncountEnemy[0] == turnCount
-                && (playerAndItsGoals.goals[0].x == playerAndItsGoals.player.transform.position.x)
-                && (playerAndItsGoals.goals[0].y == playerAndItsGoals.player.transform.position.y))
+            BattleSystemForTemp.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy);
+            if (currentGoal.encountedEnemy == null)
             {
-                BattleSystemForTemp.Battle(playerAndItsGoals.player, playerAndItsGoals.ecountedEnemy[0]);
-                if (playerAndItsGoals.ecountedEnemy[0] == null)
-                {
-                    playerAndItsGoals.ecountedEnemy.RemoveAt(0);
-                    playerAndItsGoals.whenEncountEnemy.RemoveAt(0);
-                }
-                else
-                {
-                    for (int i = 0; i < playerAndItsGoals.whenEncountEnemy.Count; i++)
-                    {
-                        playerAndItsGoals.whenEncountEnemy[i]++;
-                    }
-                }
+                playerAndItsGoals.goals.RemoveAt(0);
             }
         }
-
-        //적이 살아있는지 체크 적이 살아있다면 tempGoalPositions의 첫번째에 플레이어의 포지션을 다시 집어넣음
-
         Debug.Log("it is BattlePhase");
         yield return new WaitForSeconds(1.5f);
     }
-
-
-
-
-
-
-    //public IEnumerator RunBattlePhase()
-    //{
-    //    yield return new WaitForSeconds(1.0f);
-
-    //    Enemy encounteredEnemy = moveToGoal[0].encounteredEnemy;
-    //    if (encounteredEnemy != null)
-    //    {
-    //        //////////
-    //        if (BattleSystem.CheckElement(this.element, encounteredEnemy.element) == 1.2f)
-    //        {
-    //            enemyInfoAnimation.SetTrigger("huge_attack");
-    //            Debug.Log("attacked");
-    //        }
-    //        else if (BattleSystem.CheckElement(this.element, encounteredEnemy.element) == 1.0f)
-    //        {
-    //            enemyInfoAnimation.SetTrigger("attack");
-    //            Debug.Log("attacked");
-    //        }
-    //        else if (BattleSystem.CheckElement(this.element, encounteredEnemy.element) == 0.8f)
-    //        {
-    //            enemyInfoAnimation.SetTrigger("small_attack");
-    //            Debug.Log("attacked");
-    //        }
-    //        ///////////
-    //        BattleSystem.Battle(this, encounteredEnemy);
-    //    }
-    //    yield return null;
-    //}
-
-    //public void PhaseEnd()
-    //{
-    //    if (moveToGoal[0].encounteredEnemy == null)
-    //    {
-    //        moveToGoal.RemoveAt(0);
-    //    }
-    //}
-
 }

@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PlayerAndItsGoals
+{
+    public GameObject player;
+    public List<Goal> goals = new List<Goal>();
+}
+
 public class Goal
 {
     public Vector2 position;
+    public GameObject encountedEnemy;
 
-    public Goal(Vector2 position)
+    public Goal(Vector2 position, GameObject encountedEnemy)
     {
         this.position = position;
-    }
-}
-
-public class GoalList
-{
-    public Player player;
-    public List<Goal> goals;
-
-    public GoalList(Player player, List<Goal> goals)
-    {
-        this.player = player;
-        this.goals = goals;
+        this.encountedEnemy = encountedEnemy;
     }
 }
