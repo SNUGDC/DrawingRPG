@@ -14,4 +14,9 @@ public class Enemy : MonoBehaviour {
     public bool clicked = false;
 
     public Sprite portrait;
+
+    void OnMouseDown()
+    {
+        clicked = true;
+    }
 }
