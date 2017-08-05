@@ -10,8 +10,6 @@ public class Drawer : MonoBehaviour
     public GameObject linePrefab;
     public float maxLineLength;
 
-    private List<GameObject> lines = new List<GameObject>();
-
     private GameObject player;
 
     private GameObject currentLine;
@@ -26,7 +24,7 @@ public class Drawer : MonoBehaviour
     private Vector2 currentLineEndPos;
     private bool isInControlMode;
 
-    private List<Enemy> allEncountedEnemyList = new List<Enemy>();
+    private List<EnemyStatus> allEncountedEnemyList = new List<EnemyStatus>();
 
     public void StartDrawingPhase(DrawingPhase phase)
     {
@@ -39,7 +37,8 @@ public class Drawer : MonoBehaviour
 
         allEncountedEnemyList.Clear();
         player = transform.parent.gameObject;
-        transform.position = player.transform.position;
+        var playerPosition = player.transform.position;
+        transform.position = new Vector3(playerPosition.x, playerPosition.y, -1);
     }
 
     private void Update()
@@ -51,7 +50,7 @@ public class Drawer : MonoBehaviour
 
         if (isInControlMode == true)
         {
-            transform.position = currentLineEndPos;
+            transform.position = new Vector3(currentLineEndPos.x, currentLineEndPos.y, -1);
             UpdateLinePosition(currentLine);
         }
     }
@@ -89,15 +88,15 @@ public class Drawer : MonoBehaviour
 
         currentLine.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
 
-        Enemy encounteredEnemy = EncountEnemy();
+        EnemyStatus encounteredEnemy = EncountEnemy();
 
         if (encounteredEnemy != null)
         {
             allEncountedEnemyList.Add(encounteredEnemy);
         }
-        lines.Add(currentLine);
 
-		phase.UseLineCount();
+        GameObject enemyGameObject = encounteredEnemy == null ? null : encounteredEnemy.gameObject;
+		phase.OnLineDrawComplete(player, transform.position, enemyGameObject);
     }
 
     private void UpdateLinePosition(GameObject line)
@@ -138,7 +137,7 @@ public class Drawer : MonoBehaviour
         return raycastTester.GetNearestEnemyPosition(ignoreList: allEncountedEnemyList);
     }
 
-    private Enemy EncountEnemy()
+    private EnemyStatus EncountEnemy()
     {
         RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
 

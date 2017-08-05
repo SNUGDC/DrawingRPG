@@ -14,7 +14,7 @@ public class RaycastTester : MonoBehaviour
 
     }
     
-    private List<Enemy> collisionEnemyList = new List<Enemy>();
+    private List<EnemyStatus> collisionEnemyList = new List<EnemyStatus>();
     private List<Vector2> collisionPositionList = new List<Vector2>();
     void FixedUpdate()
     {
@@ -40,13 +40,13 @@ public class RaycastTester : MonoBehaviour
                 RaycastHit2D hit = hits[i];
                 collisionPositionList.Add(hit.point);
                 GameObject enemyGameObject = hit.collider.gameObject;
-                collisionEnemyList.Add(enemyGameObject.GetComponent<Enemy>());
+                collisionEnemyList.Add(enemyGameObject.GetComponent<EnemyStatus>());
                 //Debug.Log(i.ToString() + hit.collider);
             }
         }
     }
 
-    public Vector2? GetNearestEnemyPosition(List<Enemy> ignoreList)
+    public Vector2? GetNearestEnemyPosition(List<EnemyStatus> ignoreList)
     {
         if (collisionPositionList.Count == 0)
         {
@@ -55,7 +55,7 @@ public class RaycastTester : MonoBehaviour
 
         for (int i = collisionPositionList.Count - 1; i >= 0; i--)
         {
-            Enemy enemy = collisionEnemyList[i];
+            EnemyStatus enemy = collisionEnemyList[i];
             if (ignoreList.Contains(enemy))
             {
                 continue;
@@ -66,7 +66,7 @@ public class RaycastTester : MonoBehaviour
         return null;
     }
 
-    public Enemy GetNearestEnemy(List<Enemy> ignoreList)
+    public EnemyStatus GetNearestEnemy(List<EnemyStatus> ignoreList)
     {
         if (collisionEnemyList.Count == 0)
         {
@@ -75,7 +75,7 @@ public class RaycastTester : MonoBehaviour
 
         for (int i = collisionEnemyList.Count - 1; i >= 0; i--)
         {
-            Enemy enemy = collisionEnemyList[i];
+            EnemyStatus enemy = collisionEnemyList[i];
             if (ignoreList.Contains(enemy))
             {
                 continue;

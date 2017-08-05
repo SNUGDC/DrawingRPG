@@ -11,6 +11,7 @@ public class DrawingPhase : MonoBehaviour
 
     private List<Drawer> drawers = new List<Drawer>();
     private int remainLineCount;
+    private List<PlayerAndGoals> playerAndGoalsList = new List<PlayerAndGoals>();
 
     void FindDrawers()
     {
@@ -24,17 +25,51 @@ public class DrawingPhase : MonoBehaviour
         foreach (Drawer drawer in drawers)
         {
             drawer.StartDrawingPhase(this);
+            PlayerAndGoals playerAndGoals = new PlayerAndGoals();
+            playerAndGoals.player = drawer.transform.parent.gameObject;
+            playerAndGoalsList.Add(playerAndGoals);
         }
         remainLineCount = totalLineCount;
     }
 
-    public void UseLineCount()
+    public void OnLineDrawComplete(GameObject player, Vector2 position, GameObject encountedEnemy)
     {
         this.remainLineCount -= 1;
+
+        PlayerAndGoals playerAndGoals = FindPlayerAndGoals(player);
+        Goal goal = new Goal(position, encountedEnemy);
+        playerAndGoals.goals.Add(goal);
+    }
+
+    private PlayerAndGoals FindPlayerAndGoals(GameObject player)
+    {
+        foreach (var playerAndGoals in playerAndGoalsList)
+        {
+            if (playerAndGoals.player == player)
+            {
+                return playerAndGoals;
+            }
+        }
+
+        return null;
     }
 
     public bool HaveDrawingTurn()
     {
         return remainLineCount > 0;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            BattlePhase battlePhase = GetComponent<BattlePhase>();
+            battlePhase.StartBattlePhase(playerAndGoalsList);
+
+            foreach (var drawer in drawers)
+            {
+                Destroy(drawer.gameObject);
+            }
+        }
     }
 }

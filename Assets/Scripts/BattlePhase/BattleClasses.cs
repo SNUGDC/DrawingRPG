@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAndItsGoals
+public class PlayerAndGoals
 {
     public GameObject player;
     public List<Goal> goals = new List<Goal>();

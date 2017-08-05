@@ -6,8 +6,8 @@ public class BattlePhase : MonoBehaviour
 {
 
     CollisionCheck collisionCheck;
-    private List<PlayerAndItsGoals> playerAndItsGoalsList = new List<PlayerAndItsGoals>();
-    public List<GameObject> players = new List<GameObject>();
+    private List<PlayerAndGoals> playerAndItsGoalsList = new List<PlayerAndGoals>();
+    public List<GameObject> tempPlayer = new List<GameObject>();
     public List<GameObject> tempEnemy = new List<GameObject>();
     public int maxTurnCount;
 
@@ -15,14 +15,14 @@ public class BattlePhase : MonoBehaviour
     private bool running;
 
 
-    private void Start()
+    private void TempStart()
     {
         turnCount = 0;
 
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < tempPlayer.Count; i++)
         {
-            PlayerAndItsGoals playerAndItsGoals = new PlayerAndItsGoals();
-            playerAndItsGoals.player = players[i];
+            PlayerAndGoals playerAndItsGoals = new PlayerAndGoals();
+            playerAndItsGoals.player = tempPlayer[i];
 
             for (int j = 0; j < maxTurnCount; j++)
             {
@@ -50,34 +50,71 @@ public class BattlePhase : MonoBehaviour
         }
     }
 
+    public void StartBattlePhase(List<PlayerAndGoals> playerAndGoalsList)
+    {
+        this.playerAndItsGoalsList = playerAndGoalsList;
+        running = true;
+        StartCoroutine(RunTurn());
+    }
+
     private IEnumerator RunTurn()
     {
-        while (turnCount < maxTurnCount)
+        while (true)
         {
+            Debug.Log("MoveTurn");
             yield return StartCoroutine(RunMoveTurn());
+            Debug.Log("BattleTurn");
             yield return StartCoroutine(RunBattleTurn());
+
+            RemoveGoal();
             turnCount++;
+        }
+    }
+
+    private void RemoveGoal()
+    {
+        foreach (var playerAndGoals in playerAndItsGoalsList)
+        {
+            var player = playerAndGoals.player;
+            if (player == null)
+            {
+                continue;
+            }
+
+            if (playerAndGoals.goals.Count == 0)
+            {
+                continue;
+            }
+
+            var goal = playerAndGoals.goals[0];
+
+            bool isArrive = PlayerPositionController.IsArrive(player.transform, goal.position);
+            if (isArrive && goal.encountedEnemy == null)
+            {
+                playerAndGoals.goals.RemoveAt(0);
+            }
         }
     }
 
     public IEnumerator RunMoveTurn() //목표지점으로 이동하는 함수
     {
-        Dictionary<PlayerAndItsGoals, bool> arriveDic = new Dictionary<PlayerAndItsGoals, bool>();
-        foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
+        Dictionary<PlayerAndGoals, bool> arriveDic = new Dictionary<PlayerAndGoals, bool>();
+        foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
         {
             arriveDic[playerAndItsGoals] = false;
         }
 
         while (true)
         {
-            foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
+            foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
             {
-                Goal currentGoal = playerAndItsGoals.goals[0];
-                if (currentGoal.encountedEnemy != null)
+                if (playerAndItsGoals.player == null || playerAndItsGoals.goals.Count == 0)
                 {
                     arriveDic[playerAndItsGoals] = true;
                     continue;
                 }
+
+                Goal currentGoal = playerAndItsGoals.goals[0];
 
                 if (arriveDic[playerAndItsGoals] == true) continue;
 
@@ -85,7 +122,7 @@ public class BattlePhase : MonoBehaviour
                 Vector2 goalPosition = currentGoal.position;
                 if (PlayerPositionController.IsArrive(playerTransform, goalPosition) == false)
                 {
-                    PlayerPositionController.Move1Frame(playerTransform, goalPosition, 1.0f);
+                    PlayerPositionController.Move1Frame(playerTransform, goalPosition, 5.0f);
                 }
                 else
                 {
@@ -95,7 +132,7 @@ public class BattlePhase : MonoBehaviour
             yield return null;
 
             bool allArrive = true;
-            foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
+            foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
             {
                 if (arriveDic[playerAndItsGoals] == false)
                 {
@@ -112,8 +149,13 @@ public class BattlePhase : MonoBehaviour
 
     public IEnumerator RunBattleTurn()
     {
-        foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
+        foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
         {
+            if (playerAndItsGoals.goals.Count == 0)
+            {
+                continue;
+            }
+
             Goal currentGoal = playerAndItsGoals.goals[0];
 
             if (currentGoal.encountedEnemy == null)
@@ -122,12 +164,7 @@ public class BattlePhase : MonoBehaviour
             }
 
             BattleSystemForTemp.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy);
-            if (currentGoal.encountedEnemy == null)
-            {
-                playerAndItsGoals.goals.RemoveAt(0);
-            }
         }
-        Debug.Log("it is BattlePhase");
         yield return new WaitForSeconds(1.5f);
     }
 }

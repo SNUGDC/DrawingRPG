@@ -26,7 +26,7 @@ public class LineDrawer : MonoBehaviour
 	private bool isInControlMode;
 
     public List<Vector2> PlayerPassedPosition = new List<Vector2>(); 
-    private List<Enemy> allEncountedEnemyList = new List<Enemy>();
+    private List<EnemyStatus> allEncountedEnemyList = new List<EnemyStatus>();
 
 
     /* public void Delete_Line()
@@ -145,7 +145,7 @@ public class LineDrawer : MonoBehaviour
             
             nowLine.GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
 
-            Enemy encounteredEnemy = EncountEnemy();
+            EnemyStatus encounteredEnemy = EncountEnemy();
             //Player.GetComponent<Player>().moveToGoal.Add(new MoveToGoal(endPos, encounteredEnemy));
 
             if (encounteredEnemy != null)
@@ -208,7 +208,7 @@ public class LineDrawer : MonoBehaviour
         return raycastTester.GetNearestEnemyPosition(ignoreList: allEncountedEnemyList);
     }
 
-    private Enemy EncountEnemy()
+    private EnemyStatus EncountEnemy()
     {
         RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
 
