@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atk: 5
   def: 2
-  maxHp: 0
+  maxHp: 6
   hp: 6
   element: 0
   clicked: 0
