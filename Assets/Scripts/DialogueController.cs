@@ -18,6 +18,7 @@ public class DialogueController : MonoBehaviour
 
 	private void Start()
 	{
+		Debug.Log("HI");
 		shouldIUpdateDialogue = true;
 
 		dialogueInfo.Add(new DialogueInfo(Image[0], Name[0], Text[0]));

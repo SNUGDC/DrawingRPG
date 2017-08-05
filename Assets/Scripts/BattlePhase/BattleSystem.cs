@@ -83,27 +83,42 @@ public class BattleSystem : MonoBehaviour
         playerStatus.hp -= (int)(enemyStatus.atk * CheckElement(enemyStatus.element, playerStatus.element));
     }
 
-    public static void DestroyDeadCharacter(GameObject player, GameObject enemy)
+
+    public static void DestroyDeadPlayer(GameObject player)
     {
         Player playerStatus = player.gameObject.GetComponent<Player>();
-        Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
+
 
         if (playerStatus.hp <= 0)
         {
             GameObject.Destroy(player.gameObject);
         }
 
+    }
+
+    public static void DestroyDeadEnemy(GameObject enemy)
+    {
+
+        Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
+
         if (enemyStatus.hp <= 0)
         {
             GameObject.Destroy(enemy.gameObject);
         }
+
     }
+    
 
 
     public static void Battle(GameObject player, GameObject enemy)
     {
         AttackEnemy(player, enemy);
+        DestroyDeadEnemy(enemy);
+        if(enemy==null)
+        {
+            return;
+        }
         AttackPlayer(player, enemy);
-        DestroyDeadCharacter(player, enemy);
+        DestroyDeadPlayer(player);
     }
 }
