@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EnemyPanelUI : MonoBehaviour {
 
     public struct EnemyFieldHP {
-        public EnemyStatus enemy;
+        public Enemy enemy;
         public Slider enemyFieldHPBar;
     }
     
@@ -37,10 +37,10 @@ public class EnemyPanelUI : MonoBehaviour {
             Instantiate(enemyFieldHPBar, WorldObject_ScreenPosition, enemy.transform.rotation);
 
             instantiateHPBar.transform.parent = this.transform;
-            instantiateHPBar.GetComponent<Slider>().maxValue = enemy.GetComponent<EnemyStatus>().maxHp;
-            instantiateHPBar.GetComponent<Slider>().value = enemy.GetComponent<EnemyStatus>().hp;
+            instantiateHPBar.GetComponent<Slider>().maxValue = enemy.GetComponent<Enemy>().maxHp;
+            instantiateHPBar.GetComponent<Slider>().value = enemy.GetComponent<Enemy>().hp;
             EnemyFieldHP newOne = new EnemyFieldHP();
-            newOne.enemy = enemy.GetComponent<EnemyStatus>();
+            newOne.enemy = enemy.GetComponent<Enemy>();
             newOne.enemyFieldHPBar = instantiateHPBar.GetComponent<Slider>();
             allEnemies.Add(newOne);
         }

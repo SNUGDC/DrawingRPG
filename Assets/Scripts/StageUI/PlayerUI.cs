@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour {
 
-    public PlayerStatus player;
+    public Player player;
     public Image playerPortrait;
     public Image playerElement;
     public Slider playerHPBar;
@@ -50,7 +50,7 @@ public class PlayerUI : MonoBehaviour {
         playerInfoText.text = "공격력 : " + player.atk + "\n방어력 : " + player.def;
     }
     
-    public static void MakePanel(PlayerUI playerUI, PlayerStatus player)
+    public static void MakePanel(PlayerUI playerUI, Player player)
     {
         playerUI.player = player;
         playerUI.MakePortrait();

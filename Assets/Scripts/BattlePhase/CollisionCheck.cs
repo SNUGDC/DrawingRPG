@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollisionCheck : MonoBehaviour
 {
 
-    public List<EnemyStatus> encountEnemy = new List<EnemyStatus>();
+    public List<Enemy> encountEnemy = new List<Enemy>();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

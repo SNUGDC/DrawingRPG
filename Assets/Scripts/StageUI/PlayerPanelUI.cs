@@ -15,7 +15,7 @@ public class PlayerPanelUI : MonoBehaviour {
 
         foreach(GameObject player in taggingPlayers)
         {
-            PlayerUI.MakePanel(AllPlayers[playerNum], player.GetComponent<PlayerStatus>());
+            PlayerUI.MakePanel(AllPlayers[playerNum], player.GetComponent<Player>());
             playerNum++;
         }
         

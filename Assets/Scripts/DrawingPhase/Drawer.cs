@@ -24,7 +24,7 @@ public class Drawer : MonoBehaviour
     private Vector2 currentLineEndPos;
     private bool isInControlMode;
 
-    private List<EnemyStatus> allEncountedEnemyList = new List<EnemyStatus>();
+    private List<Enemy> allEncountedEnemyList = new List<Enemy>();
 
     public void StartDrawingPhase(DrawingPhase phase)
     {
@@ -88,7 +88,7 @@ public class Drawer : MonoBehaviour
 
         currentLine.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
 
-        EnemyStatus encounteredEnemy = EncountEnemy();
+        Enemy encounteredEnemy = EncountEnemy();
 
         if (encounteredEnemy != null)
         {
@@ -137,7 +137,7 @@ public class Drawer : MonoBehaviour
         return raycastTester.GetNearestEnemyPosition(ignoreList: allEncountedEnemyList);
     }
 
-    private EnemyStatus EncountEnemy()
+    private Enemy EncountEnemy()
     {
         RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
 
