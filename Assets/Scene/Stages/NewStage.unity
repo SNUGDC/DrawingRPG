@@ -350,9 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9a609d31e45a04e9f35d39a808072f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players:
-  - {fileID: 2095467514}
-  - {fileID: 1262514006}
+  tempPlayer: []
   tempEnemy:
   - {fileID: 1452721688}
   - {fileID: 529783019}
@@ -510,6 +508,8 @@ MonoBehaviour:
   maxHp: 3
   hp: 3
   element: 0
+  clicked: 0
+  portrait: {fileID: 0}
 --- !u!58 &529783021
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -761,6 +761,7 @@ MonoBehaviour:
   hp: 5
   speed: 1
   element: 0
+  portrait: {fileID: 0}
 --- !u!212 &1262514010
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -837,8 +838,10 @@ MonoBehaviour:
   atk: 5
   def: 2
   maxHp: 0
-  hp: 4
+  hp: 6
   element: 0
+  clicked: 0
+  portrait: {fileID: 0}
 --- !u!58 &1452721690
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1291,3 +1294,4 @@ MonoBehaviour:
   hp: 5
   speed: 1
   element: 0
+  portrait: {fileID: 0}
