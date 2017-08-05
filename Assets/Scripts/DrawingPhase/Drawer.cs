@@ -58,7 +58,9 @@ public class Drawer : MonoBehaviour
     private void OnMouseDown()
     {
         if (phase == null)
+        {
             return;
+        }
 
 		if (!phase.HaveDrawingTurn()) {
 			Debug.LogWarning("Not enough turn");
@@ -76,7 +78,10 @@ public class Drawer : MonoBehaviour
     private void OnMouseUp()
     {
         if (phase == null)
+        {
             return;
+        }
+
         if (isInControlMode == false)
         {
             Debug.LogWarning("OnMouseUp But Not Control Mode");
