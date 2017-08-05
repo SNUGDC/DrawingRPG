@@ -13,7 +13,7 @@ public enum Element
     Metal
 };
 
-public class BattleSystemForTemp : MonoBehaviour
+public class BattleSystem : MonoBehaviour
 {
     public static float CheckElement(Element attack, Element damage)
     {

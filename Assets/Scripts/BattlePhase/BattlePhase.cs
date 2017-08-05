@@ -163,7 +163,7 @@ public class BattlePhase : MonoBehaviour
                 continue;
             }
 
-            BattleSystemForTemp.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy);
+            BattleSystem.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy);
         }
         yield return new WaitForSeconds(1.5f);
     }
