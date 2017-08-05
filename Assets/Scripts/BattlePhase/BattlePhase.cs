@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAndBattlePhaseController : MonoBehaviour
+public class BattlePhase : MonoBehaviour
 {
 
     CollisionCheck collisionCheck;
@@ -12,9 +12,7 @@ public class MoveAndBattlePhaseController : MonoBehaviour
     public int maxTurnCount;
 
     private int turnCount;
-    private bool isMovePhase;
-    private bool isBattlePhase;
-    private bool isMoveAndBattlePhase;
+    private bool running;
 
 
     private void Start()
@@ -36,35 +34,33 @@ public class MoveAndBattlePhaseController : MonoBehaviour
             playerAndItsGoalsList.Add(playerAndItsGoals);
         }
 
-        isMovePhase = false;
-        isBattlePhase = false;
-        isMoveAndBattlePhase = false;
+        running = false;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (isMoveAndBattlePhase == false)
+            if (running == false)
             {
                 Debug.Log("2번누름");
-                isMoveAndBattlePhase = true;
-                StartCoroutine(RunMoveAndBattePhase());
+                running = true;
+                StartCoroutine(RunTurn());
             }
         }
     }
 
-    private IEnumerator RunMoveAndBattePhase()
+    private IEnumerator RunTurn()
     {
         while (turnCount < maxTurnCount)
         {
-            yield return StartCoroutine(RunMovePhase());
-            yield return StartCoroutine(RunBattlePhase());
+            yield return StartCoroutine(RunMoveTurn());
+            yield return StartCoroutine(RunBattleTurn());
             turnCount++;
         }
     }
 
-    public IEnumerator RunMovePhase() //목표지점으로 이동하는 함수
+    public IEnumerator RunMoveTurn() //목표지점으로 이동하는 함수
     {
         Dictionary<PlayerAndItsGoals, bool> arriveDic = new Dictionary<PlayerAndItsGoals, bool>();
         foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
@@ -114,7 +110,7 @@ public class MoveAndBattlePhaseController : MonoBehaviour
         }
     }
 
-    public IEnumerator RunBattlePhase()
+    public IEnumerator RunBattleTurn()
     {
         foreach (PlayerAndItsGoals playerAndItsGoals in playerAndItsGoalsList)
         {
