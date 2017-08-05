@@ -59,17 +59,13 @@ public class DrawingPhase : MonoBehaviour
         return remainLineCount > 0;
     }
 
-    void Update()
+    public List<PlayerAndGoals> StopDrawingPhase()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        foreach (var drawer in drawers)
         {
-            BattlePhase battlePhase = GetComponent<BattlePhase>();
-            battlePhase.StartBattlePhase(playerAndGoalsList);
-
-            foreach (var drawer in drawers)
-            {
-                Destroy(drawer.gameObject);
-            }
+            Destroy(drawer.gameObject);
         }
+
+        return playerAndGoalsList;
     }
 }
