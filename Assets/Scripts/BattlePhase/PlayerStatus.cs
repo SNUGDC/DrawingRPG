@@ -12,6 +12,7 @@ public class PlayerStatus : MonoBehaviour {
 
     public Element element;
 
+    public Sprite portrait;
 
     public Vector2 PlayerPositionXY()
     {

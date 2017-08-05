@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyUI : MonoBehaviour {
-    public Enemy enemy;
+    public EnemyStatus enemy;
     public Image enemyPortrait;
     public Image enemyElement;
     public Slider enemyHPBar;

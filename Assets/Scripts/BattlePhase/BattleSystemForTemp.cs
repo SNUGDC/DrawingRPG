@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+public enum Element
+{
+    Water,
+    Wood,
+    Fire,
+    Earth,
+    Metal
+};
+
 public class BattleSystemForTemp : MonoBehaviour
 {
     public static float CheckElement(Element attack, Element damage)

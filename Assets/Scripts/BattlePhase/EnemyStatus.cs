@@ -10,4 +10,8 @@ public class EnemyStatus : MonoBehaviour {
     public int hp;
 
     public Element element;
+
+    public bool clicked = false;
+
+    public Sprite portrait;
 }
