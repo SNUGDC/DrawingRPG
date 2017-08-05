@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class EnemyPanelUI : MonoBehaviour {
@@ -12,13 +13,14 @@ public class EnemyPanelUI : MonoBehaviour {
     
     public List<EnemyFieldHP> allEnemies = new List<EnemyFieldHP>();
     
-    public GameObject enemyFieldHPBar;
-    public EnemyUI enemyUI;
+    [FormerlySerializedAs("enemyFieldHPBar")]
+    public GameObject enemyFieldHPBarPrefab;
+
+    public EnemyUI enemyUIGameObject;
 
     private void Start()
     {
-        enemyUI = Instantiate(enemyUI, this.transform);
-        enemyUI.gameObject.SetActive(false);
+        enemyUIGameObject.gameObject.SetActive(false);
         MakeEnemyFieldHPBar();
     }
 
@@ -34,7 +36,7 @@ public class EnemyPanelUI : MonoBehaviour {
             Vector3 WorldObject_ScreenPosition = new Vector3(
             (UI_camera.x * CanvasRect.sizeDelta.x), (UI_camera.y * CanvasRect.sizeDelta.y) - 100, 0);
             GameObject instantiateHPBar =
-            Instantiate(enemyFieldHPBar, WorldObject_ScreenPosition, enemy.transform.rotation);
+            Instantiate(enemyFieldHPBarPrefab, WorldObject_ScreenPosition, enemy.transform.rotation);
 
             instantiateHPBar.transform.parent = this.transform;
             instantiateHPBar.GetComponent<Slider>().maxValue = enemy.GetComponent<Enemy>().maxHp;
@@ -53,9 +55,9 @@ public class EnemyPanelUI : MonoBehaviour {
             if (enemyfield.enemy.clicked == true)
             {
                 enemyfield.enemy.clicked = false;
-                enemyUI.gameObject.SetActive(true);
-                enemyUI.enemy = enemyfield.enemy;
-                enemyUI.SetActiveEnemyUI();
+                enemyUIGameObject.gameObject.SetActive(true);
+                enemyUIGameObject.enemy = enemyfield.enemy;
+                enemyUIGameObject.SetActiveEnemyUI();
             }
         }
     }
