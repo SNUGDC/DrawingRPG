@@ -48,7 +48,7 @@ public class ButtonControl : MonoBehaviour {
     public void OnClickStartGame()
     {
         //GameObject.Find("UIManager").GetComponent<UIManager>().InactiveInitialUI();
-        GameObject.Find("UIManager").GetComponent<UIManager>().InstantiateStartPanel();
+        GameObject.Find("UIManager").GetComponent<UIManager>().OnStartButtonClick();
     }
 
 }

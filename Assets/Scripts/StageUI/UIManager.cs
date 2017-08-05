@@ -58,7 +58,14 @@ public class UIManager : MonoBehaviour
         allPlayerInformationPanel.SetActive(false);
     }
 
-    public void InstantiateStartPanel()
+    public void OnStartButtonClick() 
+    {
+        InstantiateStartPanel();
+        var playerAndGoalsList = FindObjectOfType<DrawingPhase>().StopDrawingPhase();
+        FindObjectOfType<BattlePhase>().StartBattlePhase(playerAndGoalsList);
+    }
+
+    private void InstantiateStartPanel()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
         Instantiate(turnDisplayPanel, this.transform);
