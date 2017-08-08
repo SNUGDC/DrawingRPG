@@ -62,10 +62,11 @@ public class Drawer : MonoBehaviour
             return;
         }
 
-		if (!phase.HaveDrawingTurn()) {
-			Debug.LogWarning("Not enough turn");
-			return;
-		}
+        if (!phase.HaveDrawingTurn())
+        {
+            Debug.LogWarning("Not enough turn");
+            return;
+        }
 
         Debug.Log("조작모드 시작");
         isInControlMode = true;
@@ -101,7 +102,7 @@ public class Drawer : MonoBehaviour
         }
 
         GameObject enemyGameObject = encounteredEnemy == null ? null : encounteredEnemy.gameObject;
-		phase.OnLineDrawComplete(player, transform.position, enemyGameObject);
+        phase.OnLineDrawComplete(player, transform.position, enemyGameObject);
     }
 
     private void UpdateLinePosition(GameObject line)
@@ -130,7 +131,9 @@ public class Drawer : MonoBehaviour
             currentLineEndPos = mousePos;
         }
 
-        line.transform.position = (currentLineStartPos + currentLineEndPos) / 2;
+        line.transform.position = (Vector3)((currentLineStartPos + currentLineEndPos) / 2);
+        // Move back
+        line.transform.position = line.transform.position + new Vector3(0, 0, 0.1f);
         line.transform.localScale = new Vector2(Vector2.Distance(currentLineStartPos, currentLineEndPos), 1);
         line.transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan((currentLineEndPos.y - currentLineStartPos.y) / (currentLineEndPos.x - currentLineStartPos.x)));
     }
