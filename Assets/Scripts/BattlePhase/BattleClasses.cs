@@ -19,3 +19,10 @@ public class Goal
         this.encountedEnemy = encountedEnemy;
     }
 }
+
+public class EncountedEnemy
+{
+    public int enemyNumber;
+    public List<GameObject> player;
+
+} 

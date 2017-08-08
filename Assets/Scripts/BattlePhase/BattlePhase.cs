@@ -63,6 +63,7 @@ public class BattlePhase : MonoBehaviour
         {
             Debug.Log("MoveTurn");
             yield return StartCoroutine(RunMoveTurn());
+            //GroupWhoReachToEnemy(); //I didn't finish make script
             Debug.Log("BattleTurn");
             yield return StartCoroutine(RunBattleTurn());
 
@@ -167,4 +168,19 @@ public class BattlePhase : MonoBehaviour
         }
         yield return new WaitForSeconds(1.5f);
     }
+
+
+    //I didn't finish make whole script
+    //    public void GroupWhoReachToEnemy()
+    //    {
+    //        Dictionary<GameObject, List<GameObject>> WhoReachToEnemy = new Dictionary<GameObject, List<GameObject>>();
+
+    //        foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
+    //        {
+    //            List<GameObject> ReachedPlayers = new List<GameObject>();
+    //            ReachedPlayers.Add(playerAndItsGoals.player);
+    //            WhoReachToEnemy.Add(playerAndItsGoals.goals[0].encountedEnemy, ReachedPlayers);
+    //        }
+    //    }
+    //
 }
