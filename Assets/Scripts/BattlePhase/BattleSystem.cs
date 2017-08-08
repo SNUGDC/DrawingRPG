@@ -66,8 +66,12 @@ public class BattleSystem : MonoBehaviour
         }
         else
             return 1.0f;
-
     }
+    public static float CheckChainCount()
+    {
+        return 1.0f;
+    }
+
 
     public static void AttackEnemy(GameObject player, GameObject enemy)
     {
@@ -88,7 +92,6 @@ public class BattleSystem : MonoBehaviour
     {
         Player playerStatus = player.gameObject.GetComponent<Player>();
 
-
         if (playerStatus.hp <= 0)
         {
             GameObject.Destroy(player.gameObject);
@@ -103,7 +106,6 @@ public class BattleSystem : MonoBehaviour
 
     public static bool DestroyDeadEnemy(GameObject enemy)
     {
-
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
 
         if (enemyStatus.hp <= 0)
@@ -111,12 +113,10 @@ public class BattleSystem : MonoBehaviour
             GameObject.Destroy(enemy.gameObject);
             return true;
         }
-
         else
         {
             return false;
         }
-
     }
     
 
