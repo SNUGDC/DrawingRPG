@@ -113,22 +113,31 @@ public class Drawer : MonoBehaviour
             return;
         }
         float lineLength = Vector2.Distance(currentLineStartPos, mousePos);
+        bool limitSize = false;
+
+        currentLineEndPos = mousePos;
+
         if (EncountEnemyPosition() != null)
         {
             lineLength = Vector2.Distance(EncountEnemyPosition().Value, currentLineStartPos);
             currentLineEndPos = EncountEnemyPosition().Value;
-            line.GetComponent<SpriteRenderer>().color = new Color(1, 0.2f, 0.2f, 1);
+            limitSize = true;
         }
-        else if (lineLength > maxLineLength)
+
+        if (lineLength > maxLineLength)
         {
             lineLength = maxLineLength;
             currentLineEndPos = currentLineStartPos + (mousePos - currentLineStartPos).normalized * maxLineLength;
+            limitSize = true;
+        }
+
+        if (limitSize)
+        {
             line.GetComponent<SpriteRenderer>().color = new Color(1, 0.2f, 0.2f, 1);
         }
         else
         {
             currentLine.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-            currentLineEndPos = mousePos;
         }
 
         line.transform.position = (Vector3)((currentLineStartPos + currentLineEndPos) / 2);
