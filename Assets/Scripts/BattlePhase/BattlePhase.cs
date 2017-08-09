@@ -9,6 +9,7 @@ public class BattlePhase : MonoBehaviour
     private List<PlayerAndGoals> playerAndItsGoalsList = new List<PlayerAndGoals>();
     public List<GameObject> tempPlayer = new List<GameObject>();
     public List<GameObject> tempEnemy = new List<GameObject>();
+    public Dictionary<GameObject, List<Element>> whoReachEnemy = new Dictionary<GameObject, List<Element>>();
     public int maxTurnCount;
 
     private int turnCount;
@@ -66,6 +67,7 @@ public class BattlePhase : MonoBehaviour
             OrganizeWhoReachEnemy();
             Debug.Log("BattleTurn");
             yield return StartCoroutine(RunBattleTurn());
+            whoReachEnemy.Clear();
 
             RemoveGoal();
             turnCount++;
@@ -169,20 +171,21 @@ public class BattlePhase : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
     }
 
+
     public void OrganizeWhoReachEnemy()
     {
-        Dictionary<GameObject, List<GameObject>> whoReachEnemy = new Dictionary<GameObject, List<GameObject>>();
         foreach (GameObject enemy in tempEnemy)
         {
-            List<GameObject> reachedPlayers = reachedPlayers = new List<GameObject>();
+            List<Element> reachedPlayersElement = new List<Element>();
             foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
             {
                 if (playerAndItsGoals.goals[0].encountedEnemy == enemy)
                 {
-                    reachedPlayers.Add(playerAndItsGoals.player);
+                    Player playerStatus = playerAndItsGoals.player.gameObject.GetComponent<Player>();
+                    reachedPlayersElement.Add(playerStatus.element);
                 }
             }
-            whoReachEnemy.Add(enemy, reachedPlayers);
+            whoReachEnemy.Add(enemy, reachedPlayersElement);
         }
     }
 }
