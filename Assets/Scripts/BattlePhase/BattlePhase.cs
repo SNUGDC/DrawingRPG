@@ -6,6 +6,7 @@ public class BattlePhase : MonoBehaviour
 {
 
     CollisionCheck collisionCheck;
+    BattleSystem battleSystem;
     private List<PlayerAndGoals> playerAndItsGoalsList = new List<PlayerAndGoals>();
     public List<GameObject> tempPlayer = new List<GameObject>();
     public List<GameObject> tempEnemy = new List<GameObject>();
@@ -62,12 +63,13 @@ public class BattlePhase : MonoBehaviour
     {
         while (true)
         {
+            
             Debug.Log("MoveTurn");
             yield return StartCoroutine(RunMoveTurn());
-            OrganizeWhoReachEnemy();
+            //OrganizeWhoReachEnemy(); 디버그 좀있다가 집가서할게여
             Debug.Log("BattleTurn");
             yield return StartCoroutine(RunBattleTurn());
-            whoReachEnemy.Clear();
+            //whoReachEnemy.Clear();
 
             RemoveGoal();
             turnCount++;
@@ -166,14 +168,15 @@ public class BattlePhase : MonoBehaviour
                 continue;
             }
 
-            BattleSystem.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy);
+            battleSystem.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy);
         }
         yield return new WaitForSeconds(1.5f);
     }
 
-
+    
     public void OrganizeWhoReachEnemy()
     {
+        
         foreach (GameObject enemy in tempEnemy)
         {
             List<Element> reachedPlayersElement = new List<Element>();
