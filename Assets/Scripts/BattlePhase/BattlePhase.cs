@@ -6,11 +6,10 @@ public class BattlePhase : MonoBehaviour
 {
 
     CollisionCheck collisionCheck;
-    BattleSystem battleSystem;
     private List<PlayerAndGoals> playerAndItsGoalsList = new List<PlayerAndGoals>();
     public List<GameObject> tempPlayer = new List<GameObject>();
     public List<GameObject> tempEnemy = new List<GameObject>();
-    public Dictionary<GameObject, List<Element>> whoReachEnemy = new Dictionary<GameObject, List<Element>>();
+   
     public int maxTurnCount;
 
     private int turnCount;
@@ -66,11 +65,10 @@ public class BattlePhase : MonoBehaviour
             
             Debug.Log("MoveTurn");
             yield return StartCoroutine(RunMoveTurn());
-            //OrganizeWhoReachEnemy(); 디버그 좀있다가 집가서할게여
+            Dictionary<GameObject, List<Element>> whichElementReachEnemy = OrganizeWhichElementReachEnemy();
             Debug.Log("BattleTurn");
-            yield return StartCoroutine(RunBattleTurn());
-            //whoReachEnemy.Clear();
-
+            yield return StartCoroutine(RunBattleTurn(whichElementReachEnemy));
+            
             RemoveGoal();
             turnCount++;
         }
@@ -152,7 +150,7 @@ public class BattlePhase : MonoBehaviour
         }
     }
 
-    public IEnumerator RunBattleTurn()
+    public IEnumerator RunBattleTurn(Dictionary<GameObject,List<Element>> whichElementReachEnemy)
     {
         foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
         {
@@ -168,27 +166,32 @@ public class BattlePhase : MonoBehaviour
                 continue;
             }
 
-            battleSystem.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy);
+            BattleSystem.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy, whichElementReachEnemy);
         }
         yield return new WaitForSeconds(1.5f);
     }
 
     
-    public void OrganizeWhoReachEnemy()
+    public Dictionary<GameObject,List<Element>> OrganizeWhichElementReachEnemy()
     {
-        
+        Dictionary<GameObject, List<Element>> whichElementReachEnemy = new Dictionary<GameObject, List<Element>>();
         foreach (GameObject enemy in tempEnemy)
         {
             List<Element> reachedPlayersElement = new List<Element>();
             foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
             {
+                if (playerAndItsGoals.player == null)
+                {
+                    continue;
+                }
                 if (playerAndItsGoals.goals[0].encountedEnemy == enemy)
                 {
                     Player playerStatus = playerAndItsGoals.player.gameObject.GetComponent<Player>();
                     reachedPlayersElement.Add(playerStatus.element);
                 }
             }
-            whoReachEnemy.Add(enemy, reachedPlayersElement);
+            whichElementReachEnemy.Add(enemy, reachedPlayersElement);
         }
+        return whichElementReachEnemy;
     }
 }

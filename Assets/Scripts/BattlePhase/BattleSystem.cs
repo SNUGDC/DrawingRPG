@@ -17,7 +17,7 @@ public class BattleSystem : MonoBehaviour
 {
 
     BattlePhase battlePhase;
-    public float CheckElement(Element attack, Element damage)
+    public static float CheckElement(Element attack, Element damage)
     {
         float IncreasedElementalDamage = 1.2f;
         float DecreasedElementalDamage = 0.8f;
@@ -70,40 +70,40 @@ public class BattleSystem : MonoBehaviour
             return 1.0f;
     }
 
-    //static이랑 뭐랑 문제난거 같은데 잘 모르겠어서 일단 주석처리 ㅜㅜ
-    public float CheckChainCount(GameObject player, GameObject enemy)
+    public static float CheckChainCount(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy)
     {
+        List<Element> playerElementList = whichElementReachEnemy[enemy];
         int chainCount = 0;
         Player playerStatus = player.gameObject.GetComponent<Player>();
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
         if (playerStatus.element == Element.Water)
         {
-            if (FindNearPlayerElement(enemy, Element.Wood))
+            if (playerElementList.Contains(Element.Wood))
             {
                 chainCount++;
-                if (FindNearPlayerElement(enemy, Element.Fire))
+                if (playerElementList.Contains(Element.Fire))
                 {
                     chainCount++;
-                    if (FindNearPlayerElement(enemy, Element.Earth))
+                    if (playerElementList.Contains(Element.Earth))
                     {
                         chainCount++;
-                        if (FindNearPlayerElement(enemy, Element.Metal))
+                        if (playerElementList.Contains(Element.Metal))
                         {
                             chainCount++;
                         }
                     }
                 }
             }
-            if (FindNearPlayerElement(enemy, Element.Metal))
+            if (playerElementList.Contains(Element.Metal))
             {
                 chainCount++;
-                if (FindNearPlayerElement(enemy, Element.Earth))
+                if (playerElementList.Contains(Element.Earth))
                 {
                     chainCount++;
-                    if (FindNearPlayerElement(enemy, Element.Fire))
+                    if (playerElementList.Contains(Element.Fire))
                     {
                         chainCount++;
-                        if (FindNearPlayerElement(enemy, Element.Wood))
+                        if (playerElementList.Contains(Element.Wood))
                         {
                             chainCount++;
                         }
@@ -114,32 +114,32 @@ public class BattleSystem : MonoBehaviour
 
         else if (playerStatus.element == Element.Wood)
         {
-            if (FindNearPlayerElement(enemy, Element.Fire))
+            if (playerElementList.Contains(Element.Fire))
             {
                 chainCount++;
-                if (FindNearPlayerElement(enemy, Element.Earth))
+                if (playerElementList.Contains(Element.Earth))
                 {
                     chainCount++;
-                    if (FindNearPlayerElement(enemy, Element.Metal))
+                    if (playerElementList.Contains(Element.Metal))
                     {
                         chainCount++;
-                        if (FindNearPlayerElement(enemy, Element.Water))
+                        if (playerElementList.Contains(Element.Water))
                         {
                             chainCount++;
                         }
                     }
                 }
             }
-            if (FindNearPlayerElement(enemy, Element.Water))
+            if (playerElementList.Contains(Element.Water))
             {
                 chainCount++;
-                if (FindNearPlayerElement(enemy, Element.Metal))
+                if (playerElementList.Contains(Element.Metal))
                 {
                     chainCount++;
-                    if (FindNearPlayerElement(enemy, Element.Earth))
+                    if (playerElementList.Contains(Element.Earth))
                     {
                         chainCount++;
-                        if (FindNearPlayerElement(enemy, Element.Fire))
+                        if (playerElementList.Contains(Element.Fire))
                         {
                             chainCount++;
                         }
@@ -150,32 +150,32 @@ public class BattleSystem : MonoBehaviour
 
         else if (playerStatus.element == Element.Fire)
         {
-            if (FindNearPlayerElement(enemy, Element.Earth))
+            if (playerElementList.Contains(Element.Earth))
             {
                 chainCount++;
-                if (FindNearPlayerElement(enemy, Element.Metal))
+                if (playerElementList.Contains(Element.Metal))
                 {
                     chainCount++;
-                    if (FindNearPlayerElement(enemy, Element.Water))
+                    if (playerElementList.Contains(Element.Water))
                     {
                         chainCount++;
-                        if (FindNearPlayerElement(enemy, Element.Wood))
+                        if (playerElementList.Contains(Element.Wood))
                         {
                             chainCount++;
                         }
                     }
                 }
             }
-            if (FindNearPlayerElement(enemy, Element.Wood))
+            if (playerElementList.Contains(Element.Wood))
             {
                 chainCount++;
-                if (FindNearPlayerElement(enemy, Element.Water))
+                if (playerElementList.Contains(Element.Water))
                 {
                     chainCount++;
-                    if (FindNearPlayerElement(enemy, Element.Metal))
+                    if (playerElementList.Contains(Element.Metal))
                     {
                         chainCount++;
-                        if (FindNearPlayerElement(enemy, Element.Earth))
+                        if (playerElementList.Contains(Element.Earth))
                         {
                             chainCount++;
                         }
@@ -185,32 +185,32 @@ public class BattleSystem : MonoBehaviour
         }
         else if (playerStatus.element == Element.Earth)
         {
-            if (FindNearPlayerElement(enemy, Element.Metal))
+            if (playerElementList.Contains(Element.Metal))
             {
                 chainCount++;
-                if (FindNearPlayerElement(enemy, Element.Water))
+                if (playerElementList.Contains(Element.Water))
                 {
                     chainCount++;
-                    if (FindNearPlayerElement(enemy, Element.Wood))
+                    if (playerElementList.Contains(Element.Wood))
                     {
                         chainCount++;
-                        if (FindNearPlayerElement(enemy, Element.Fire))
+                        if (playerElementList.Contains(Element.Fire))
                         {
                             chainCount++;
                         }
                     }
                 }
             }
-            if (FindNearPlayerElement(enemy, Element.Fire))
+            if (playerElementList.Contains(Element.Fire))
             {
                 chainCount++;
-                if (FindNearPlayerElement(enemy, Element.Wood))
+                if (playerElementList.Contains(Element.Wood))
                 {
                     chainCount++;
-                    if (FindNearPlayerElement(enemy, Element.Water))
+                    if (playerElementList.Contains(Element.Water))
                     {
                         chainCount++;
-                        if (FindNearPlayerElement(enemy, Element.Metal))
+                        if (playerElementList.Contains(Element.Metal))
                         {
                             chainCount++;
                         }
@@ -220,32 +220,32 @@ public class BattleSystem : MonoBehaviour
         }
         else if (playerStatus.element == Element.Metal)
         {
-            if (FindNearPlayerElement(enemy, Element.Water))
+            if (playerElementList.Contains(Element.Water))
             {
                 chainCount++;
-                if (FindNearPlayerElement(enemy, Element.Wood))
+                if (playerElementList.Contains(Element.Wood))
                 {
                     chainCount++;
-                    if (FindNearPlayerElement(enemy, Element.Fire))
+                    if (playerElementList.Contains(Element.Fire))
                     {
                         chainCount++;
-                        if (FindNearPlayerElement(enemy, Element.Earth))
+                        if (playerElementList.Contains(Element.Earth))
                         {
                             chainCount++;
                         }
                     }
                 }
             }
-            if (FindNearPlayerElement(enemy, Element.Earth))
+            if (playerElementList.Contains(Element.Earth))
             {
                 chainCount++;
-                if (FindNearPlayerElement(enemy, Element.Fire))
+                if (playerElementList.Contains(Element.Fire))
                 {
                     chainCount++;
-                    if (FindNearPlayerElement(enemy, Element.Wood))
+                    if (playerElementList.Contains(Element.Wood))
                     {
                         chainCount++;
-                        if (FindNearPlayerElement(enemy, Element.Water))
+                        if (playerElementList.Contains(Element.Water))
                         {
                             chainCount++;
                         }
@@ -283,20 +283,14 @@ public class BattleSystem : MonoBehaviour
             return 1.0f;
     }
 
-    public bool FindNearPlayerElement(GameObject enemy, Element element)
-    {
-        List<Element> playerElementList = battlePhase.whoReachEnemy[enemy];
-        return playerElementList.Contains(element);
-    }
-
-    public void AttackEnemy(GameObject player, GameObject enemy)
+    public static void AttackEnemy(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy)
     {
         Player playerStatus = player.gameObject.GetComponent<Player>();
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
-        enemyStatus.hp -= (int)(playerStatus.atk * CheckElement(playerStatus.element, enemyStatus.element)*CheckChainCount(player,enemy));
+        enemyStatus.hp -= (int)(playerStatus.atk * CheckElement(playerStatus.element, enemyStatus.element)*CheckChainCount(player,enemy, whichElementReachEnemy));
     }
 
-    public void AttackPlayer(GameObject player, GameObject enemy)
+    public static void AttackPlayer(GameObject player, GameObject enemy)
     {
         Player playerStatus = player.gameObject.GetComponent<Player>();
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
@@ -304,7 +298,7 @@ public class BattleSystem : MonoBehaviour
     }
 
 
-    public bool DestroyDeadPlayer(GameObject player)
+    public static bool DestroyDeadPlayer(GameObject player)
     {
         Player playerStatus = player.gameObject.GetComponent<Player>();
 
@@ -320,7 +314,7 @@ public class BattleSystem : MonoBehaviour
     }
 
 
-    public bool DestroyDeadEnemy(GameObject enemy)
+    public static bool DestroyDeadEnemy(GameObject enemy)
     {
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
 
@@ -337,9 +331,9 @@ public class BattleSystem : MonoBehaviour
     
 
 
-    public void Battle(GameObject player, GameObject enemy)
+    public static void Battle(GameObject player, GameObject enemy, Dictionary<GameObject,List<Element>> whichElementReachEnemy)
     {
-        AttackEnemy(player, enemy);
+        AttackEnemy(player, enemy, whichElementReachEnemy);
         bool enemyDie=DestroyDeadEnemy(enemy);
 
         if(enemyDie != true)
