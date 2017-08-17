@@ -1145,12 +1145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08b7f68077f192428656d8108a329aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 5
-  def: 1
-  maxHp: 5
-  hp: 5
   speed: 1
+  level: 12
+  maxHp: 0
+  atk: 0
+  hp: 0
+  def: 0
   element: 1
+  characterName: 1
   portrait: {fileID: 0}
 --- !u!1 &1366330547
 GameObject:
@@ -2209,10 +2211,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08b7f68077f192428656d8108a329aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 8
+  speed: 5
+  level: 10
+  maxHp: 0
+  atk: 0
+  hp: 0
   def: 0
-  maxHp: 4
-  hp: 4
-  speed: 1
   element: 2
+  characterName: 0
   portrait: {fileID: 0}
