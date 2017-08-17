@@ -19,7 +19,7 @@ public class BattlePhase : MonoBehaviour
     private void TempStart()
     {
         turnCount = 0;
-
+        Debug.Log("TempSTart");
         for (int i = 0; i < tempPlayer.Count; i++)
         {
             PlayerAndGoals playerAndItsGoals = new PlayerAndGoals();
@@ -65,7 +65,8 @@ public class BattlePhase : MonoBehaviour
             
             Debug.Log("MoveTurn");
             yield return StartCoroutine(RunMoveTurn());
-            Dictionary<GameObject, List<Element>> whichElementReachEnemy = OrganizeWhichElementReachEnemy();
+            Dictionary<GameObject, List<Element>> whichElementReachEnemy = new Dictionary<GameObject, List<Element>>();
+            whichElementReachEnemy = OrganizeWhichElementReachEnemy();
             Debug.Log("BattleTurn");
             yield return StartCoroutine(RunBattleTurn(whichElementReachEnemy));
             
@@ -154,6 +155,10 @@ public class BattlePhase : MonoBehaviour
     {
         foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
         {
+            if(playerAndItsGoals.player == null)
+            {
+                continue;
+            }
             if (playerAndItsGoals.goals.Count == 0)
             {
                 continue;
@@ -177,6 +182,7 @@ public class BattlePhase : MonoBehaviour
         Dictionary<GameObject, List<Element>> whichElementReachEnemy = new Dictionary<GameObject, List<Element>>();
         foreach (GameObject enemy in tempEnemy)
         {
+            
             List<Element> reachedPlayersElement = new List<Element>();
             foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
             {
@@ -184,11 +190,13 @@ public class BattlePhase : MonoBehaviour
                 {
                     continue;
                 }
-                if (playerAndItsGoals.goals[0].encountedEnemy == enemy)
+
+                if (playerAndItsGoals.goals[0].encountedEnemy != null && playerAndItsGoals.goals[0].encountedEnemy == enemy)
                 {
                     Player playerStatus = playerAndItsGoals.player.gameObject.GetComponent<Player>();
                     reachedPlayersElement.Add(playerStatus.element);
                 }
+
             }
             whichElementReachEnemy.Add(enemy, reachedPlayersElement);
         }
