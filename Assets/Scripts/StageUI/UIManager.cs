@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameObject lineDisplayPanel;
+    private GameObject lineDisplay;
     public GameObject mission;
     public GameObject startButton;
     public GameObject stopButton;
@@ -39,7 +40,7 @@ public class UIManager : MonoBehaviour
 
     private void InitiateUI()
     {
-        Instantiate(lineDisplayPanel, this.transform);
+        lineDisplay = Instantiate(lineDisplayPanel, this.transform);
         GameObject canvas = GameObject.Find("Canvas");
         Instantiate(startButton, canvas.transform);
         Instantiate(stopButton, canvas.transform);
@@ -63,13 +64,13 @@ public class UIManager : MonoBehaviour
     public void OnStartButtonClick() 
     {
         InstantiateStartPanel();
+        Destroy(lineDisplay);
         var playerAndGoalsList = FindObjectOfType<DrawingPhase>().StopDrawingPhase();
         FindObjectOfType<BattlePhase>().StartBattlePhase(playerAndGoalsList);
     }
 
     private void InstantiateStartPanel()
     {
-        InactiveInitialUI();
         players = GameObject.FindGameObjectsWithTag("Player");
         Instantiate(turnDisplayPanel, this.transform);
     }
