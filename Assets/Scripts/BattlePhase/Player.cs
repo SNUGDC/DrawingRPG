@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,11 @@ public class Player : MonoBehaviour
     public Element element;
     public CharacterName characterName;
     public Sprite portrait;
+
+    private void setSkillTree()
+    {
+
+    }
 
     public void Start()
     {
