@@ -12,7 +12,7 @@ public class BattlePhase : MonoBehaviour
    
     public int maxTurnCount;
 
-    private int turnCount;
+    public int turnCount;
     private bool running;
 
 
@@ -71,7 +71,9 @@ public class BattlePhase : MonoBehaviour
             yield return StartCoroutine(RunBattleTurn(whichElementReachEnemy));
             
             RemoveGoal();
+            TurnUI turnUI = FindObjectOfType<TurnUI>();
             turnCount++;
+            turnUI.ActiveTurnUI();
         }
     }
 

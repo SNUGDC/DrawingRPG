@@ -7,10 +7,10 @@ using System;
 public class DrawingPhase : MonoBehaviour
 {
 
-    public int totalLineCount = 5;
+    public int totalLineCount;
 
-    private List<Drawer> drawers = new List<Drawer>();
-    private int remainLineCount;
+    public List<Drawer> drawers = new List<Drawer>();
+    public int remainLineCount;
     private List<PlayerAndGoals> playerAndGoalsList = new List<PlayerAndGoals>();
 
     void FindDrawers()
@@ -38,6 +38,8 @@ public class DrawingPhase : MonoBehaviour
 
         PlayerAndGoals playerAndGoals = FindPlayerAndGoals(player);
         Goal goal = new Goal(position, encountedEnemy);
+        LineUI lineUI = FindObjectOfType<LineUI>();
+        lineUI.ActiveLineUI();
         playerAndGoals.goals.Add(goal);
     }
 

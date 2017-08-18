@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f04e1220634ded46b2e00496f9c1a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineDisplayPanel: {fileID: 1649461411979892, guid: 552c819f360bbfb4db7ec2df692e4d4a,
+  lineDisplayPanel: {fileID: 1084836880055690, guid: aab2ef85dbdc1ba48b78086678c654a5,
     type: 2}
   mission: {fileID: 1593328354119340, guid: df1d1fdbd4d1c8c49ae957b660e2392a, type: 2}
   startButton: {fileID: 1657763763695166, guid: 803ce1091178d7943b152e13b8de16ce,
@@ -365,7 +365,7 @@ MonoBehaviour:
     type: 2}
   allEnemyFieldHPPanel: {fileID: 1870851126165384, guid: d3415333985936145beb22b7e860385b,
     type: 2}
-  turnDisplayPanel: {fileID: 1355444269557052, guid: c1e96fbd96b0c5e49b58613141b21e97,
+  turnDisplayPanel: {fileID: 1282651250103282, guid: 715c99850a06a3e489a57081cb68d628,
     type: 2}
   movePhasePanel: {fileID: 1351622245493066, guid: 9836daae548d8c84e80cf99330bc07fc,
     type: 2}
@@ -429,6 +429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalLineCount: 8
+  drawers: []
+  remainLineCount: 0
 --- !u!4 &428251057
 Transform:
   m_ObjectHideFlags: 0
@@ -457,7 +459,8 @@ MonoBehaviour:
   tempEnemy:
   - {fileID: 1452721688}
   - {fileID: 529783019}
-  maxTurnCount: 0
+  maxTurnCount: 10
+  turnCount: 0
 --- !u!1 &470864909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,12 +1140,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08b7f68077f192428656d8108a329aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 5
-  def: 1
-  maxHp: 5
-  hp: 5
   speed: 1
+  level: 0
+  maxHp: 5
+  atk: 5
+  hp: 5
+  def: 1
   element: 3
+  characterName: 0
   portrait: {fileID: 0}
 --- !u!1 &1366330547
 GameObject:
@@ -2194,10 +2199,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08b7f68077f192428656d8108a329aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 8
-  def: 0
-  maxHp: 4
-  hp: 4
   speed: 1
+  level: 0
+  maxHp: 4
+  atk: 8
+  hp: 4
+  def: 0
   element: 2
+  characterName: 0
   portrait: {fileID: 0}

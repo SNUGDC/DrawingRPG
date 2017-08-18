@@ -59,6 +59,10 @@ public class EnemyPanelUI : MonoBehaviour {
                 enemyUIGameObject.enemy = enemyfield.enemy;
                 enemyUIGameObject.SetActiveEnemyUI();
             }
+            if (enemyfield.enemy.hp <= 0)
+            {
+                Destroy(enemyfield.enemyFieldHPBar.gameObject);
+            }
         }
     }
 }
