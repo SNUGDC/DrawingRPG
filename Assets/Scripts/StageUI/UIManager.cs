@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(second);
         InitiateUI();
     }
+    
 
     private void InitiateUI()
     {
@@ -67,6 +69,7 @@ public class UIManager : MonoBehaviour
 
     private void InstantiateStartPanel()
     {
+        InactiveInitialUI();
         players = GameObject.FindGameObjectsWithTag("Player");
         Instantiate(turnDisplayPanel, this.transform);
     }
