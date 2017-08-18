@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public enum CharacterName { Roserian, Hasmen };
+    public enum CharacterName { Roserian, Hesmen };
 
     public int speed;
 
-    public int level;
-    public int maxHp;
+    public int levelRoserian;
+    public int levelHesmen;
 
+    public int maxHp;
     public int atk;
     public int hp;
     public int def;
@@ -25,7 +26,42 @@ public class Player : MonoBehaviour
 
     }
 
-    public void Start()
+    private void Start()
+    {
+        levelHesmen = PlayerPrefs.GetInt("levelHesmen");
+        levelRoserian = PlayerPrefs.GetInt("levelRoserian");
+        SetCharacterStatus();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            levelHesmen++;
+            PlayerPrefs.SetInt("levelHesmen", levelHesmen);
+            SetCharacterStatus();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            levelHesmen--;
+            PlayerPrefs.SetInt("levelHesmen", levelHesmen);
+            SetCharacterStatus();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            levelRoserian++;
+            PlayerPrefs.SetInt("levelRoserian", levelRoserian);
+            SetCharacterStatus();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            levelRoserian--;
+            PlayerPrefs.SetInt("levelRoserian", levelRoserian);
+            SetCharacterStatus();
+        }
+    }
+
+    public void SetCharacterStatus()
     {
         int atkDefaultRoserian = 20;
         int atkWeightRoserian = 4;
@@ -49,15 +85,15 @@ public class Player : MonoBehaviour
 
         if (this.characterName == CharacterName.Roserian)
         {
-            atk = (int)((atkDefaultRoserian + (atkAdditionalRiseRoserian + atkWeightRoserian) * level) * (1 + (atkPercentageRiseRoserian + atkWeightRoserian) / 100.0f * level));
-            hp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * level) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * level));
-            maxHp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * level) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * level));
+            atk = (int)((atkDefaultRoserian + (atkAdditionalRiseRoserian + atkWeightRoserian) * levelRoserian) * (1 + (atkPercentageRiseRoserian + atkWeightRoserian) / 100.0f * levelRoserian));
+            hp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * levelRoserian) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * levelRoserian));
+            maxHp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * levelRoserian) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * levelRoserian));
         }
-        if (this.characterName == CharacterName.Hasmen)
+        if (this.characterName == CharacterName.Hesmen)
         {
-            atk = (int)((atkDefaultHesmen + (atkAdditionalRiseHesmen + atkWeightHesmen) * level) * (1 + (atkPercentageRiseHesmen + atkWeightHesmen) / 100.0f * level));
-            hp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * level) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * level));
-            maxHp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * level) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * level));
+            atk = (int)((atkDefaultHesmen + (atkAdditionalRiseHesmen + atkWeightHesmen) * levelHesmen) * (1 + (atkPercentageRiseHesmen + atkWeightHesmen) / 100.0f * levelHesmen));
+            hp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * levelHesmen) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * levelHesmen));
+            maxHp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * levelHesmen) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * levelHesmen));
         }
     }
 }
