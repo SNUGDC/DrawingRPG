@@ -7,13 +7,15 @@ public abstract class Skill : MonoBehaviour
     private List<Skill> nextSkills;
     public int skillLevel = 1;
     public bool activated = true;
+    public string skillName = string.Empty;
+    public string skillInfo = string.Empty;
 
     public abstract void Use(Player player);
 
     public virtual float GetWeightedValue() { return 0.2f*skillLevel; }
 
     public abstract void SkillLevelUp(Player player);
-
+    
     public Skill()
     {
         nextSkills = new List<Skill>();
@@ -24,6 +26,26 @@ public abstract class Skill : MonoBehaviour
         nextSkills.Add(skill);
     }
 }
+
+public class TestSkill : Skill
+{
+    public override void Use(Player player)
+    {
+        player.atk = player.atk * (1 + 0.1f * skillLevel);
+    }
+
+    public override void SkillLevelUp(Player player)
+    {
+        skillLevel++;
+        Use(player);
+    }
+    public TestSkill(string skillname, string skillinfo)
+    {
+        skillName = skillname;
+        skillInfo = skillinfo;
+    }
+}
+
 
 public class Strike : Skill
 {
