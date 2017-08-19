@@ -71,7 +71,16 @@ public class BattleSystem : MonoBehaviour
 
     public static float CheckChainCount(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy)
     {
-        List<Element> playerElementList = whichElementReachEnemy[enemy];
+        List<Element> playerElementList;
+        if (whichElementReachEnemy.ContainsKey(enemy))
+        {
+            playerElementList = whichElementReachEnemy[enemy];
+        }
+        else
+        {
+            playerElementList = new List<Element>();
+        }
+
         int chainCount = 0;
         Player playerStatus = player.gameObject.GetComponent<Player>();
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
@@ -286,7 +295,7 @@ public class BattleSystem : MonoBehaviour
     {
         Player playerStatus = player.gameObject.GetComponent<Player>();
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
-        enemyStatus.hp -= (int)(playerStatus.atk * CheckElement(playerStatus.element, enemyStatus.element)*CheckChainCount(player,enemy, whichElementReachEnemy));
+        enemyStatus.hp -= (int)(playerStatus.atk * CheckElement(playerStatus.element, enemyStatus.element) * CheckChainCount(player, enemy, whichElementReachEnemy));
     }
 
     public static void AttackPlayer(GameObject player, GameObject enemy)
@@ -327,19 +336,19 @@ public class BattleSystem : MonoBehaviour
             return false;
         }
     }
-    
 
 
-    public static void Battle(GameObject player, GameObject enemy, Dictionary<GameObject,List<Element>> whichElementReachEnemy)
+
+    public static void Battle(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy)
     {
         AttackEnemy(player, enemy, whichElementReachEnemy);
-        bool enemyDie=DestroyDeadEnemy(enemy);
+        bool enemyDie = DestroyDeadEnemy(enemy);
 
-        if(enemyDie != true)
+        if (enemyDie != true)
         {
             AttackPlayer(player, enemy);
             DestroyDeadPlayer(player);
         }
-    
+
     }
 }

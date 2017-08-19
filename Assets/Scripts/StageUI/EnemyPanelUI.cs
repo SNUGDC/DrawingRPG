@@ -4,15 +4,17 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class EnemyPanelUI : MonoBehaviour {
+public class EnemyPanelUI : MonoBehaviour
+{
 
-    public struct EnemyFieldHP {
+    public struct EnemyFieldHP
+    {
         public Enemy enemy;
         public Slider enemyFieldHPBar;
     }
-    
+
     public List<EnemyFieldHP> allEnemies = new List<EnemyFieldHP>();
-    
+
     [FormerlySerializedAs("enemyFieldHPBar")]
     public GameObject enemyFieldHPBarPrefab;
 
@@ -61,7 +63,10 @@ public class EnemyPanelUI : MonoBehaviour {
             }
             if (enemyfield.enemy.hp <= 0)
             {
-                Destroy(enemyfield.enemyFieldHPBar.gameObject);
+                if (enemyfield.enemyFieldHPBar != null)
+                {
+                    Destroy(enemyfield.enemyFieldHPBar.gameObject);
+                }
             }
         }
     }
