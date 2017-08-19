@@ -11,7 +11,7 @@ public class Drawer : MonoBehaviour
     public float maxLineLength;
 
     private GameObject player;
-
+    public int num;
     private GameObject currentLine;
     private Vector2 mousePos
     {
@@ -34,7 +34,7 @@ public class Drawer : MonoBehaviour
     private void Start()
     {
         isInControlMode = false;
-
+        num = 1;
         allEncountedEnemyList.Clear();
         player = transform.parent.gameObject;
         var playerPosition = player.transform.position;
@@ -74,6 +74,7 @@ public class Drawer : MonoBehaviour
         RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
         raycastTester.startPos = currentLineStartPos;
         currentLine = Instantiate(linePrefab);
+        currentLine.GetComponent<LineController>().player = player.GetComponent<Player>();
     }
 
     private void OnMouseUp()
@@ -91,7 +92,7 @@ public class Drawer : MonoBehaviour
 
         Debug.Log("조작모드 끝");
         isInControlMode = false;
-
+        num = num + 1;
         currentLine.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
 
         Enemy encounteredEnemy = EncountEnemy();
@@ -139,6 +140,11 @@ public class Drawer : MonoBehaviour
         {
             currentLine.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
+
+        currentLine.GetComponent<LineController>().SetEndLinePos(currentLineEndPos);
+        currentLine.GetComponent<LineController>().SetStartLinePos(currentLineStartPos);
+        currentLine.GetComponent<LineController>().num = num;
+        
 
         line.transform.position = (Vector3)((currentLineStartPos + currentLineEndPos) / 2);
         // Move back

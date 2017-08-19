@@ -36,12 +36,12 @@ public class PlayerUI : MonoBehaviour {
     {
         //playerHPBar.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0,0);
         playerHPBar.maxValue = player.maxHp;
-        playerHPBar.value = player.hp;
+        playerHPBar.value = (float)player.hp;
     }
 
     public void ChangedHP()
     {
-        playerHPBar.value = player.hp;
+        playerHPBar.value = (float)player.hp;
     }
 
     //About Attack, Defense
