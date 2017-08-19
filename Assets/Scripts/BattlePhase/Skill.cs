@@ -9,6 +9,7 @@ public abstract class Skill : MonoBehaviour
     public bool activated = true;
 
     public abstract void Use(Player player);
+    public virtual void Use(Enemy enemy) { }
 
     public virtual float GetWeightedValue() { return 0.2f*skillLevel; }
 
@@ -29,7 +30,7 @@ public class Strike : Skill
 {
     public override void Use(Player player)
     {
-        player.atk = player.atk * (1 + 0.1f * skillLevel);
+        player.atk = player.atk + 0.1f * skillLevel;
     }
 
     public override void SkillLevelUp(Player player)
@@ -52,6 +53,24 @@ public class EnhanceWeakpoint : Skill
     }
 }
 
+public class EnhanceChain : Skill
+{
+    public new bool activated = false;
+
+    public override void Use(Player player) { }
+
+    public override float GetWeightedValue()
+    {
+        return 0.1f * skillLevel;
+    }
+
+    public override void SkillLevelUp(Player player)
+    {
+        skillLevel++;
+        Use(player);
+    }
+}
+
 public class BreakWeakpoint : Skill
 {
     public new bool activated = false;
@@ -65,12 +84,30 @@ public class BreakWeakpoint : Skill
     }
 }
 
+public class BreakChain : Skill
+{
+    public new bool activated = false;
+
+    public override void Use(Player player) { }
+
+    public override float GetWeightedValue()
+    {
+        return 0.3f * skillLevel;
+    }
+
+    public override void SkillLevelUp(Player player)
+    {
+        skillLevel++;
+        Use(player);
+    }
+}
+
 
 public class EnhanceHealth : Skill
 {
     public override void Use(Player player)
     {
-        player.maxHp = player.maxHp * (1 + 0.2f * skillLevel);
+        player.maxHp = player.maxHp + 0.2f * skillLevel;
     }
 
     public override void SkillLevelUp(Player player)
@@ -97,6 +134,25 @@ public class ProtectWeakpoint : Skill
         Use(player);
     }
 }
+
+public class Weaken : Skill
+{
+    public new bool activated = false;
+
+    public override void Use(Player player) { }
+
+    public override void Use(Enemy enemy)
+    {
+        enemy.atk = enemy.atk - 0.05f * skillLevel;
+    }
+
+    public override void SkillLevelUp(Player player)
+    {
+        skillLevel++;
+        Use(player);
+    }
+}
+
 
 public class HpAbsorption : Skill
 {

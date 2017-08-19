@@ -19,6 +19,12 @@ public class Damage
     public bool damageAdd = false;
 };
 
+public class ChainWeight
+{
+    public float chainWeight = 1.0f;
+    public bool chainActive = true;
+};
+
 public class ElementWeakAndStrong
 {
     public Element myElement;
@@ -101,7 +107,7 @@ public static class BattleSystem
         }
     }
 
-    public static float CheckChainCount(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy)
+    public static ChainWeight CheckChainCount(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy)
     {
         List<Element> playerElementList;
         if (whichElementReachEnemy.ContainsKey(enemy))
@@ -294,6 +300,8 @@ public static class BattleSystem
             }
         }
 
+        ChainWeight chainWeight = new ChainWeight();
+
         if (chainCount > 4)
         {
             chainCount = 4;
@@ -301,26 +309,26 @@ public static class BattleSystem
 
         if (chainCount == 0)
         {
-            return 1.0f;
+            chainWeight.chainActive = false;
         }
         else if (chainCount == 1)
         {
-            return 1.5f;
+            chainWeight.chainWeight = 1.5f;
         }
         else if (chainCount == 2)
         {
-            return 2.25f;
+            chainWeight.chainWeight = 2.25f;
         }
         else if (chainCount == 3)
         {
-            return 3.375f;
+            chainWeight.chainWeight = 3.375f;
         }
         else if (chainCount == 4)
         {
-            return 5.0625f;
+            chainWeight.chainWeight = 5.0625f;
         }
-        else
-            return 1.0f;
+
+        return chainWeight;
     }
 
     public static void AttackEnemy(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy)
@@ -329,6 +337,8 @@ public static class BattleSystem
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
         Damage elementDamage = CheckElement(playerStatus.element, enemyStatus.element);
         float elementWeight = 1.0f;
+        ChainWeight chainDamage = CheckChainCount(player, enemy, whichElementReachEnemy);
+        float chainWeight = 1.0f;
         Skill skill;
 
         if (playerStatus.characterName == Player.CharacterName.Roserian) 
@@ -346,16 +356,37 @@ public static class BattleSystem
                 if (skill.activated)
                     elementWeight = elementDamage.damageWeight + skill.GetWeightedValue();
             }
+
+            if (chainDamage.chainActive)
+            {
+                skill = new EnhanceChain();
+                if(skill.activated)
+                chainWeight = chainDamage.chainWeight + skill.GetWeightedValue();
+            }
+
+            else if(!chainDamage.chainActive)
+            {
+                skill = new BreakChain();
+                if (skill.activated)
+                    chainWeight = chainDamage.chainWeight + skill.GetWeightedValue();
+            }
         }
 
         if (playerStatus.characterName == Player.CharacterName.Hesmen)
         {
+            if(chainDamage.chainActive)
+            {
+                skill = new Weaken();
+                if (skill.activated)
+                    skill.Use(enemyStatus);
+            }
+
             skill = new HpAbsorption();
             if (skill.activated)
                 skill.Use(playerStatus);
         }
 
-        enemyStatus.hp -= (int)(playerStatus.atk * elementWeight * CheckChainCount(player, enemy, whichElementReachEnemy));
+        enemyStatus.hp -= (int)(playerStatus.atk * elementWeight * chainWeight);
     }
 
     public static void AttackPlayer(GameObject player, GameObject enemy)
