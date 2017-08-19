@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public int levelRoserian;
     public int levelHesmen;
 
-    public int maxHp;
+    public float maxHp;
     public float atk;
     public float hp;
     public int def;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public Sprite portrait;
 
     public Skill skill;
-
+    
     private void Start()
     {
         levelHesmen = PlayerPrefs.GetInt("levelHesmen");

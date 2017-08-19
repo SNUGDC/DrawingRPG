@@ -328,32 +328,55 @@ public static class BattleSystem
         Player playerStatus = player.gameObject.GetComponent<Player>();
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
         Damage elementDamage = CheckElement(playerStatus.element, enemyStatus.element);
-        float ElementWeight = 1.0f;
+        float elementWeight = 1.0f;
+        Skill skill;
 
         if (playerStatus.characterName == Player.CharacterName.Roserian) 
         {
             if (elementDamage.damageAdd)
             {
-                playerStatus.skill = new EnhanceWeakpoint();
-                if (playerStatus.skill.activated)
-                    ElementWeight = elementDamage.damageWeight + playerStatus.skill.GetWeightedValue();
+                skill = new EnhanceWeakpoint();
+                if (skill.activated)
+                    elementWeight = elementDamage.damageWeight + skill.GetWeightedValue();
             }
 
             else if (elementDamage.damageLoss)
             {
-                playerStatus.skill = new BreakWeakpoint();
-                if (playerStatus.skill.activated)
-                    ElementWeight = elementDamage.damageWeight + playerStatus.skill.GetWeightedValue();
+                skill = new BreakWeakpoint();
+                if (skill.activated)
+                    elementWeight = elementDamage.damageWeight + skill.GetWeightedValue();
             }
         }
-        enemyStatus.hp -= (int)(playerStatus.atk * ElementWeight * CheckChainCount(player, enemy, whichElementReachEnemy));
+
+        if (playerStatus.characterName == Player.CharacterName.Hesmen)
+        {
+            skill = new HpAbsorption();
+            if (skill.activated)
+                skill.Use(playerStatus);
+        }
+
+        enemyStatus.hp -= (int)(playerStatus.atk * elementWeight * CheckChainCount(player, enemy, whichElementReachEnemy));
     }
 
     public static void AttackPlayer(GameObject player, GameObject enemy)
     {
         Player playerStatus = player.gameObject.GetComponent<Player>();
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
-        playerStatus.hp -= (int)(enemyStatus.atk * CheckElement(enemyStatus.element, playerStatus.element).damageWeight);
+        Damage elementDamage = CheckElement(playerStatus.element, enemyStatus.element);
+        float elementWeight = 1.0f;
+        Skill skill;
+
+        if (playerStatus.characterName == Player.CharacterName.Hesmen)
+        {
+            if (elementDamage.damageAdd)
+            {
+                skill = new ProtectWeakpoint();
+                if (skill.activated)
+                    elementWeight = elementDamage.damageWeight - skill.GetWeightedValue();
+            }
+        } 
+
+        playerStatus.hp -= (int)(enemyStatus.atk * elementWeight);
     }
 
     public static bool DestroyDeadPlayer(GameObject player)
