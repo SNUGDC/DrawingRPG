@@ -79,8 +79,17 @@ public class BattlePhase : MonoBehaviour
     public IEnumerator RunMoveTurn() //목표지점으로 이동하는 함수
     {
         Dictionary<PlayerAndGoals, bool> arriveDic = new Dictionary<PlayerAndGoals, bool>();
+        Skill skill;
         foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
         {
+            Player player = playerAndItsGoals.player.gameObject.GetComponent<Player>();
+            if(player.characterName == Player.CharacterName.Hesmen)
+            {
+                skill = new HpRecovery();
+                if (skill.activated)
+                    skill.Use(player);
+            }
+
             arriveDic[playerAndItsGoals] = false;
         }
 
