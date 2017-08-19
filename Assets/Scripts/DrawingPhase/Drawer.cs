@@ -74,6 +74,7 @@ public class Drawer : MonoBehaviour
         RaycastTester raycastTester = gameObject.GetComponent<RaycastTester>();
         raycastTester.startPos = currentLineStartPos;
         currentLine = Instantiate(linePrefab);
+        currentLine.GetComponent<LineController>().player = player.GetComponent<Player>();
     }
 
     private void OnMouseUp()
@@ -139,6 +140,9 @@ public class Drawer : MonoBehaviour
         {
             currentLine.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
+
+        currentLine.GetComponent<LineController>().SetEndLinePos(currentLineEndPos);
+        currentLine.GetComponent<LineController>().SetStartLinePos(currentLineStartPos);
 
         line.transform.position = (Vector3)((currentLineStartPos + currentLineEndPos) / 2);
         // Move back
