@@ -164,12 +164,18 @@ public class BattlePhase : MonoBehaviour
                 continue;
             }
 
+            if (playerAndItsGoals.goals.Count == 0)
+            {
+                continue;
+            }
+
             if (playerAndItsGoals.goals[0].encountedEnemy != null)
             {
                 Player player = playerAndItsGoals.player.gameObject.GetComponent<Player>();
                 GameObject enemy = playerAndItsGoals.goals[0].encountedEnemy;
 
-                if (whichElementReachEnemy.ContainsKey(enemy) == false) {
+                if (whichElementReachEnemy.ContainsKey(enemy) == false)
+                {
                     whichElementReachEnemy[enemy] = new List<Element>();
                 }
                 whichElementReachEnemy[enemy].Add(player.element);
