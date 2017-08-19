@@ -12,61 +12,77 @@ public enum Element
     Metal
 };
 
-public class BattleSystem : MonoBehaviour
+public class ElementWeakAndStrong
+{
+    public Element myElement;
+    public Element weakerThanMe;
+    public Element strongerThanMe;
+
+    public ElementWeakAndStrong(Element myElement, Element weakerThanMe, Element strongerThanMe)
+    {
+        this.myElement = myElement;
+        this.weakerThanMe = weakerThanMe;
+        this.strongerThanMe = strongerThanMe;
+    }
+
+    public float attackBuff(Element opponent)
+    {
+        if (opponent == weakerThanMe)
+        {
+            return 1.2f;
+        }
+        else if (opponent == strongerThanMe)
+        {
+            return 0.8f;
+        }
+        else
+        {
+            return 1.0f;
+        }
+    }
+}
+
+public static class BattleSystem
 {
 
-    BattlePhase battlePhase;
-    public static float CheckElement(Element attack, Element damage)
+    public static ElementWeakAndStrong waterStrongAndWeak =
+        new ElementWeakAndStrong(myElement: Element.Water, weakerThanMe: Element.Fire, strongerThanMe: Element.Earth);
+    public static ElementWeakAndStrong fireStrongAndWeak =
+        new ElementWeakAndStrong(myElement: Element.Fire, weakerThanMe: Element.Metal, strongerThanMe: Element.Water);
+    public static ElementWeakAndStrong metalStrongAndWeak =
+        new ElementWeakAndStrong(myElement: Element.Metal, weakerThanMe: Element.Wood, strongerThanMe: Element.Fire);
+    public static ElementWeakAndStrong woodStrongAndWeak =
+        new ElementWeakAndStrong(myElement: Element.Wood, weakerThanMe: Element.Earth, strongerThanMe: Element.Metal);
+    public static ElementWeakAndStrong earthStrongAndWeak =
+        new ElementWeakAndStrong(myElement: Element.Earth, weakerThanMe: Element.Water, strongerThanMe: Element.Wood);
+
+    public static float CheckElement(Element attack, Element opponent)
     {
-        float IncreasedElementalDamage = 1.2f;
-        float DecreasedElementalDamage = 0.8f;
         if (attack == Element.Water)
         {
-            if (damage == Element.Earth)
-                return DecreasedElementalDamage;
-            else if (damage == Element.Fire)
-                return IncreasedElementalDamage;
-            else
-                return 1.0f;
+            return waterStrongAndWeak.attackBuff(opponent: opponent);
         }
         else if (attack == Element.Fire)
         {
-            if (damage == Element.Water)
-                return DecreasedElementalDamage;
-            else if (damage == Element.Metal)
-                return IncreasedElementalDamage;
-            else
-                return 1.0f;
+            return fireStrongAndWeak.attackBuff(opponent: opponent);
         }
         else if (attack == Element.Metal)
         {
-            if (damage == Element.Fire)
-                return DecreasedElementalDamage;
-            else if (damage == Element.Wood)
-                return IncreasedElementalDamage;
-            else
-                return 1.0f;
+            return metalStrongAndWeak.attackBuff(opponent: opponent);
         }
         else if (attack == Element.Wood)
         {
-            if (damage == Element.Metal)
-                return DecreasedElementalDamage;
-            else if (damage == Element.Earth)
-                return IncreasedElementalDamage;
-            else
-                return 1.0f;
+            return woodStrongAndWeak.attackBuff(opponent: opponent);
         }
         else if (attack == Element.Earth)
         {
-            if (damage == Element.Wood)
-                return DecreasedElementalDamage;
-            else if (damage == Element.Water)
-                return IncreasedElementalDamage;
-            else
-                return 1.0f;
+            return earthStrongAndWeak.attackBuff(opponent: opponent);
         }
         else
+        {
+            Debug.LogError("Invalid element " + attack);
             return 1.0f;
+        }
     }
 
     public static float CheckChainCount(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy)
@@ -305,7 +321,6 @@ public class BattleSystem : MonoBehaviour
         playerStatus.hp -= (int)(enemyStatus.atk * CheckElement(enemyStatus.element, playerStatus.element));
     }
 
-
     public static bool DestroyDeadPlayer(GameObject player)
     {
         Player playerStatus = player.gameObject.GetComponent<Player>();
@@ -321,7 +336,6 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-
     public static bool DestroyDeadEnemy(GameObject enemy)
     {
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
@@ -336,8 +350,6 @@ public class BattleSystem : MonoBehaviour
             return false;
         }
     }
-
-
 
     public static void Battle(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy)
     {
