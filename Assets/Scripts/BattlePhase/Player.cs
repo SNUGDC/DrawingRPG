@@ -13,15 +13,15 @@ public class Player : MonoBehaviour
     public int levelHesmen;
 
     public int maxHp;
-    public double atk;
-    public double hp;
+    public float atk;
+    public float hp;
     public int def;
 
     public Element element;
     public CharacterName characterName;
     public Sprite portrait;
 
-    private Skill skill;
+    public Skill skill;
 
     private void Start()
     {
@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
             atk = (int)((atkDefaultRoserian + (atkAdditionalRiseRoserian + atkWeightRoserian) * levelRoserian) * (1 + (atkPercentageRiseRoserian + atkWeightRoserian) / 100.0f * levelRoserian));
             hp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * levelRoserian) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * levelRoserian));
             maxHp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * levelRoserian) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * levelRoserian));
+            skill = new Strike();
             skill.Use(this);
         }
         if (this.characterName == CharacterName.Hesmen)
@@ -92,6 +93,8 @@ public class Player : MonoBehaviour
             atk = (int)((atkDefaultHesmen + (atkAdditionalRiseHesmen + atkWeightHesmen) * levelHesmen) * (1 + (atkPercentageRiseHesmen + atkWeightHesmen) / 100.0f * levelHesmen));
             hp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * levelHesmen) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * levelHesmen));
             maxHp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * levelHesmen) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * levelHesmen));
+            skill = new EnhanceHealth();
+            skill.Use(this);
         }
     }
 }

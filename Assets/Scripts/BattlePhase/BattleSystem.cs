@@ -12,6 +12,13 @@ public enum Element
     Metal
 };
 
+public class Damage
+{
+    public float damageWeight = 1.0f;
+    public bool damageLoss = false;
+    public bool damageAdd = false;
+};
+
 public class ElementWeakAndStrong
 {
     public Element myElement;
@@ -25,20 +32,28 @@ public class ElementWeakAndStrong
         this.strongerThanMe = strongerThanMe;
     }
 
-    public float attackBuff(Element opponent)
+    public Damage attackBuff(Element opponent)
     {
+        Damage damage = new Damage();
+
         if (opponent == weakerThanMe)
         {
-            return 1.2f;
+            damage.damageWeight = 1.2f;
+            damage.damageAdd = true;
+            return damage;
         }
         else if (opponent == strongerThanMe)
         {
-            return 0.8f;
+            damage.damageWeight = 0.8f;
+            damage.damageLoss = true;
+            return damage;
         }
         else
         {
-            return 1.0f;
+            damage.damageWeight = 1.0f;
         }
+
+        return damage;
     }
 }
 
@@ -56,8 +71,9 @@ public static class BattleSystem
     public static ElementWeakAndStrong earthStrongAndWeak =
         new ElementWeakAndStrong(myElement: Element.Earth, weakerThanMe: Element.Water, strongerThanMe: Element.Wood);
 
-    public static float CheckElement(Element attack, Element opponent)
+    public static Damage CheckElement(Element attack, Element opponent)
     {
+        Damage damage = new Damage();
         if (attack == Element.Water)
         {
             return waterStrongAndWeak.attackBuff(opponent: opponent);
@@ -81,7 +97,7 @@ public static class BattleSystem
         else
         {
             Debug.LogError("Invalid element " + attack);
-            return 1.0f;
+            return damage;
         }
     }
 
@@ -311,14 +327,33 @@ public static class BattleSystem
     {
         Player playerStatus = player.gameObject.GetComponent<Player>();
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
-        enemyStatus.hp -= (int)(playerStatus.atk * CheckElement(playerStatus.element, enemyStatus.element) * CheckChainCount(player, enemy, whichElementReachEnemy));
+        Damage elementDamage = CheckElement(playerStatus.element, enemyStatus.element);
+        float ElementWeight = 1.0f;
+
+        if (playerStatus.characterName == Player.CharacterName.Roserian) 
+        {
+            if (elementDamage.damageAdd)
+            {
+                playerStatus.skill = new EnhanceWeakpoint();
+                if (playerStatus.skill.activated)
+                    ElementWeight = elementDamage.damageWeight + playerStatus.skill.GetWeightedValue();
+            }
+
+            else if (elementDamage.damageLoss)
+            {
+                playerStatus.skill = new BreakWeakpoint();
+                if (playerStatus.skill.activated)
+                    ElementWeight = elementDamage.damageWeight + playerStatus.skill.GetWeightedValue();
+            }
+        }
+        enemyStatus.hp -= (int)(playerStatus.atk * ElementWeight * CheckChainCount(player, enemy, whichElementReachEnemy));
     }
 
     public static void AttackPlayer(GameObject player, GameObject enemy)
     {
         Player playerStatus = player.gameObject.GetComponent<Player>();
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
-        playerStatus.hp -= (int)(enemyStatus.atk * CheckElement(enemyStatus.element, playerStatus.element));
+        playerStatus.hp -= (int)(enemyStatus.atk * CheckElement(enemyStatus.element, playerStatus.element).damageWeight);
     }
 
     public static bool DestroyDeadPlayer(GameObject player)
