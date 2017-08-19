@@ -13,18 +13,15 @@ public class Player : MonoBehaviour
     public int levelHesmen;
 
     public int maxHp;
-    public int atk;
-    public int hp;
+    public double atk;
+    public double hp;
     public int def;
 
     public Element element;
     public CharacterName characterName;
     public Sprite portrait;
 
-    private void setSkillTree()
-    {
-
-    }
+    private Skill skill;
 
     private void Start()
     {
@@ -88,6 +85,7 @@ public class Player : MonoBehaviour
             atk = (int)((atkDefaultRoserian + (atkAdditionalRiseRoserian + atkWeightRoserian) * levelRoserian) * (1 + (atkPercentageRiseRoserian + atkWeightRoserian) / 100.0f * levelRoserian));
             hp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * levelRoserian) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * levelRoserian));
             maxHp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * levelRoserian) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * levelRoserian));
+            skill.Use(this);
         }
         if (this.characterName == CharacterName.Hesmen)
         {
