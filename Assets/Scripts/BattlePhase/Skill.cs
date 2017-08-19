@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Skill : MonoBehaviour
 {
     private List<Skill> nextSkills;
+    public int skillLevel;
 
     public abstract void Use(Player player);
 
@@ -16,5 +17,13 @@ public abstract class Skill : MonoBehaviour
     public void addNextSkill(Skill skill)
     {
         nextSkills.Add(skill);
+    }
+}
+
+public class Strike : Skill
+{
+    public override void Use(Player player)
+    {
+
     }
 }
