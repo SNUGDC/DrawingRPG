@@ -37,7 +37,9 @@ public class UIManager : MonoBehaviour
     //Instatniate UI
     IEnumerator ShowMission(float second)
     {
+        var mission = InstantiateMission();
         yield return new WaitForSeconds(second);
+        Destroy(mission.gameObject);
         InitiateUI();
     }
 
@@ -52,9 +54,9 @@ public class UIManager : MonoBehaviour
         Instantiate(allEnemyFieldHPPanel, canvas.transform);
     }
 
-    private void InstantiateMission()
+    private GameObject InstantiateMission()
     {
-        Instantiate(mission, this.transform);
+        return Instantiate(mission, this.transform);
     }
 
     public void InactiveInitialUI()
@@ -83,8 +85,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        InstantiateMission();
-        StartCoroutine(ShowMission(3.0f));
+        StartCoroutine(ShowMission(2.8f));
     }
 
     //LineUI
