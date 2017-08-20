@@ -487,10 +487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9a609d31e45a04e9f35d39a808072f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempPlayer: []
-  tempEnemy:
-  - {fileID: 1452721688}
-  - {fileID: 529783019}
   maxTurnCount: 10
   turnCount: 0
 --- !u!1 &470864909
@@ -942,7 +938,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0

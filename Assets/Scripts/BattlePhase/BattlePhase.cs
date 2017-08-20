@@ -23,6 +23,14 @@ public class BattlePhase : MonoBehaviour
                 StartCoroutine(RunTurn());
             }
         }
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            UIManager.Instance.Cleard();
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            UIManager.Instance.GameOver();
+        }
     }
 
     public void StartBattlePhase(List<PlayerAndGoals> playerAndGoalsList)
@@ -36,7 +44,6 @@ public class BattlePhase : MonoBehaviour
     {
         while (true)
         {
-
             Debug.Log("MoveTurn");
             yield return StartCoroutine(RunMoveTurn());
             Dictionary<GameObject, List<Element>> whichElementReachEnemy = new Dictionary<GameObject, List<Element>>();
