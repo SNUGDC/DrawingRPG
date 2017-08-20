@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public GameObject allEnemyFieldHPPanel;
 
     public GameObject turnDisplayPanel;
+    private GameObject turnDisplay;
 
     public FadeOut blockPrefab;
     public FadeOut clearPrefab;
@@ -77,13 +78,27 @@ public class UIManager : MonoBehaviour
     private void InstantiateStartPanel()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        Instantiate(turnDisplayPanel, this.transform);
+        turnDisplay = Instantiate(turnDisplayPanel, this.transform);
     }
 
     private void Start()
     {
         InstantiateMission();
         StartCoroutine(ShowMission(3.0f));
+    }
+
+    //LineUI
+    public void ActiveLineUI(int remainLineCount)
+    {
+        DrawingPhase drawingPhase = FindObjectOfType<DrawingPhase>();
+        lineDisplay.GetComponent<LineUI>().text.text = remainLineCount + "/" + drawingPhase.totalLineCount;
+    }
+
+    //TurnUI
+    public void ActiveTurnUI(int turnCount)
+    {
+        BattlePhase battlePhase = FindObjectOfType<BattlePhase>();
+        turnDisplay.GetComponent<TurnUI>().text.text = turnCount + "/" + battlePhase.maxTurnCount;
     }
 
     //Game over and clear control

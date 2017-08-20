@@ -58,6 +58,7 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
     {
         while (true)
         {
+            UIManager.Instance.ActiveTurnUI(turnCount);
             Debug.Log("MoveTurn");
             yield return StartCoroutine(RunMoveTurn());
             Dictionary<GameObject, List<Element>> whichElementReachEnemy = new Dictionary<GameObject, List<Element>>();
@@ -66,9 +67,9 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
             yield return StartCoroutine(RunBattleTurn(whichElementReachEnemy));
 
             RemoveGoal();
-            TurnUI turnUI = FindObjectOfType<TurnUI>();
             turnCount++;
-            turnUI.ActiveTurnUI();
+            
+            
 
             if (CheckAndHandleEnd())
             {
