@@ -50,18 +50,16 @@ MonoBehaviour:
     type: 2}
   turnDisplayPanel: {fileID: 1282651250103282, guid: 715c99850a06a3e489a57081cb68d628,
     type: 2}
-  movePhasePanel: {fileID: 1351622245493066, guid: 9836daae548d8c84e80cf99330bc07fc,
+  blockPrefab: {fileID: 114975693038740330, guid: d9524a769cbee7746be4e9a27a97a1f4,
     type: 2}
-  battlePhasePanel: {fileID: 1254236563894582, guid: a332274ece944ea47b36ac71c790e9c6,
+  clearPrefab: {fileID: 114470750600257614, guid: e9aa50e432ac2804ab715be78ed8ef81,
     type: 2}
-  missionClearPanel: {fileID: 1195656893227762, guid: 5324b06efde7c904aadc2b6cc14995b9,
+  failPrefab: {fileID: 114909757130446498, guid: 3493bc2f2b8b93f40bf598904abd451a,
     type: 2}
-  missionFailPanel: {fileID: 0}
-  block: {fileID: 1489380981386928, guid: d9524a769cbee7746be4e9a27a97a1f4, type: 2}
-  clear: {fileID: 1084785503980532, guid: e9aa50e432ac2804ab715be78ed8ef81, type: 2}
-  fail: {fileID: 1132414699395456, guid: 3493bc2f2b8b93f40bf598904abd451a, type: 2}
-  nextStage: {fileID: 1417654153064904, guid: 1833d512a8831114394098e9fe126c34, type: 2}
-  againStage: {fileID: 1819981071058020, guid: 030d96941944a3c48ab07046a10d81c3, type: 2}
+  nextStagePrefab: {fileID: 1417654153064904, guid: 1833d512a8831114394098e9fe126c34,
+    type: 2}
+  againStagePrefab: {fileID: 1819981071058020, guid: 030d96941944a3c48ab07046a10d81c3,
+    type: 2}
   maxLine: 3
   maxTurn: 3
   players:

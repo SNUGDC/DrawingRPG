@@ -487,12 +487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9a609d31e45a04e9f35d39a808072f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempPlayer: []
-  tempEnemy:
-  - {fileID: 1452721688}
-  - {fileID: 529783019}
-  - {fileID: 470864909}
-  - {fileID: 1678087442}
   maxTurnCount: 0
   turnCount: 0
 --- !u!1 &470864909
@@ -545,9 +539,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2201754e2ee277740b766a3f7ddcee00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 2
+  atk: 10
   def: 0
-  maxHp: 15
+  maxHp: 50
   hp: 15
   element: 1
   clicked: 0
@@ -607,6 +601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 1165411601190780, guid: 47b60a1d0a024ca4f97b32d1c67512d2, type: 2}
   maxLineLength: 7.5
+  num: 0
 --- !u!114 &493295217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,9 +716,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2201754e2ee277740b766a3f7ddcee00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 2
+  atk: 10
   def: 0
-  maxHp: 15
+  maxHp: 50
   hp: 15
   element: 1
   clicked: 0
@@ -927,7 +922,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1184,6 +1179,7 @@ MonoBehaviour:
   element: 1
   characterName: 1
   portrait: {fileID: 0}
+  skill: {fileID: 0}
 --- !u!1 &1366330547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,9 +1350,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2201754e2ee277740b766a3f7ddcee00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 2
+  atk: 10
   def: 0
-  maxHp: 15
+  maxHp: 50
   hp: 15
   element: 1
   clicked: 0
@@ -1452,7 +1448,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0.38888907, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1654,9 +1650,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2201754e2ee277740b766a3f7ddcee00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 2
+  atk: 10
   def: 0
-  maxHp: 15
+  maxHp: 50
   hp: 15
   element: 1
   clicked: 0
@@ -2030,6 +2026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 1165411601190780, guid: 47b60a1d0a024ca4f97b32d1c67512d2, type: 2}
   maxLineLength: 3.5
+  num: 0
 --- !u!114 &1963516337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2244,3 +2241,4 @@ MonoBehaviour:
   element: 2
   characterName: 0
   portrait: {fileID: 0}
+  skill: {fileID: 0}

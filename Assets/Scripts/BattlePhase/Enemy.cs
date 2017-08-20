@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
 
     public float atk;
     public int def;
@@ -14,6 +15,11 @@ public class Enemy : MonoBehaviour {
     public bool clicked = false;
 
     public Sprite portrait;
+
+    void Awake()
+    {
+        this.hp = maxHp;
+    }
 
     void OnMouseDown()
     {

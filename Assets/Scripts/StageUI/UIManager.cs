@@ -14,29 +14,35 @@ public class UIManager : MonoBehaviour
     public GameObject allEnemyFieldHPPanel;
 
     public GameObject turnDisplayPanel;
-    public GameObject movePhasePanel;
-    public GameObject battlePhasePanel;
-    public GameObject missionClearPanel;
-    public GameObject missionFailPanel;
+    private GameObject turnDisplay;
 
-    public GameObject block;
-    public GameObject clear;
-    public GameObject fail;
-    public GameObject nextStage;
-    public GameObject againStage;
+    public FadeOut blockPrefab;
+    public FadeOut clearPrefab;
+    public FadeOut failPrefab;
+    public GameObject nextStagePrefab;
+    public GameObject againStagePrefab;
 
     public int maxLine;
     public int maxTurn;
 
     public GameObject[] players;
 
+    public static UIManager Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
     //Instatniate UI
     IEnumerator ShowMission(float second)
     {
+        var mission = InstantiateMission();
         yield return new WaitForSeconds(second);
+        Destroy(mission.gameObject);
         InitiateUI();
     }
-    
+
 
     private void InitiateUI()
     {
@@ -48,9 +54,9 @@ public class UIManager : MonoBehaviour
         Instantiate(allEnemyFieldHPPanel, canvas.transform);
     }
 
-    private void InstantiateMission()
+    private GameObject InstantiateMission()
     {
-        Instantiate(mission, this.transform);
+        return Instantiate(mission, this.transform);
     }
 
     public void InactiveInitialUI()
@@ -61,44 +67,63 @@ public class UIManager : MonoBehaviour
         allPlayerInformationPanel.SetActive(false);
     }
 
-    public void OnStartButtonClick() 
+    public void OnStartButtonClick()
     {
         InstantiateStartPanel();
         Destroy(lineDisplay);
-        var playerAndGoalsList = FindObjectOfType<DrawingPhase>().StopDrawingPhase();
-        FindObjectOfType<BattlePhase>().StartBattlePhase(playerAndGoalsList);
+        var drawingPhase = FindObjectOfType<DrawingPhase>();
+        var playerAndGoalsList = drawingPhase.StopDrawingPhase();
+        int maxTurnCount = drawingPhase.totalLineCount;
+        FindObjectOfType<BattlePhase>().StartBattlePhase(playerAndGoalsList, maxTurnCount);
     }
 
     private void InstantiateStartPanel()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        Instantiate(turnDisplayPanel, this.transform);
+        turnDisplay = Instantiate(turnDisplayPanel, this.transform);
     }
 
     private void Start()
     {
-        InstantiateMission();
-        StartCoroutine(ShowMission(3.0f));
+        StartCoroutine(ShowMission(2.8f));
+    }
+
+    //LineUI
+    public void ActiveLineUI(int remainLineCount, int totalLineCount)
+    {
+        lineDisplay.GetComponent<LineUI>().text.text = remainLineCount + "/" + totalLineCount;
+    }
+
+    //TurnUI
+    public void ActiveTurnUI(int turnCount, int maxTurnCount)
+    {
+        turnDisplay.GetComponent<TurnUI>().text.text = turnCount + "/" + maxTurnCount;
     }
 
     //Game over and clear control
-    public static void Cleard()
+    public void Cleard()
     {
-        GameObject UIManager = GameObject.Find("UIManager");
-        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().block, 1.0f);
-        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().clear, 3.0f);
-        //player.Next_Stage.SetActive(true);
-        UIManager.GetComponent<UIManager>().nextStage.SetActive(true);
+        FadeOut block = Instantiate(blockPrefab);
+        block.StartFadeOut(onEnd: () =>
+        {
+            FadeOut clear = Instantiate(clearPrefab);
+            clear.StartFadeOut(onEnd: () =>
+            {
+                Instantiate(nextStagePrefab);
+            });
+        });
     }
 
-    public static void GameOver()
+    public void GameOver()
     {
-        GameObject UIManager = GameObject.Find("UIManager");
-        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().block, 1.0f);
-        FadeOut.particleFadeOut(UIManager.GetComponent<UIManager>().fail, 3.0f);
-        //player.Next_Stage.SetActive(true);
-        UIManager.GetComponent<UIManager>().againStage.SetActive(true);
+        FadeOut block = Instantiate(blockPrefab);
+        block.StartFadeOut(onEnd: () =>
+        {
+            FadeOut fail = Instantiate(failPrefab);
+            fail.StartFadeOut(onEnd: () =>
+            {
+                Instantiate(againStagePrefab);
+            });
+        });
     }
-
-
 }

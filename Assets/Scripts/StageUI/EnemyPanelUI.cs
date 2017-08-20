@@ -33,14 +33,10 @@ public class EnemyPanelUI : MonoBehaviour
 
         foreach (GameObject enemy in Enemy_List)
         {
-            Vector3 UI_camera = Camera.main.WorldToViewportPoint(enemy.transform.position);
-
-            Vector3 WorldObject_ScreenPosition = new Vector3(
-            (UI_camera.x * CanvasRect.sizeDelta.x), (UI_camera.y * CanvasRect.sizeDelta.y) - 100, 0);
+            Vector3 hpBarPosition = enemy.transform.position - new Vector3(0, 1.5f, 0);
             GameObject instantiateHPBar =
-            Instantiate(enemyFieldHPBarPrefab, WorldObject_ScreenPosition, enemy.transform.rotation);
+            Instantiate(enemyFieldHPBarPrefab, hpBarPosition, enemy.transform.rotation);
 
-            instantiateHPBar.transform.parent = this.transform;
             instantiateHPBar.GetComponent<Slider>().maxValue = enemy.GetComponent<Enemy>().maxHp;
             instantiateHPBar.GetComponent<Slider>().value = enemy.GetComponent<Enemy>().hp;
             EnemyFieldHP newOne = new EnemyFieldHP();

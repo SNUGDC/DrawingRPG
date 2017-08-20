@@ -9,13 +9,6 @@ public class FadeOut : MonoBehaviour
     public float duration = 0.2f;
     public Image image;
 
-    public static void particleFadeOut(GameObject one, float duration)
-    {
-        one.GetComponent<Image>().canvasRenderer.SetAlpha(0);
-        one.SetActive(true);
-        one.GetComponent<Image>().CrossFadeAlpha(1, duration, true);
-    }
-
     public void StartFadeOut(Action onEnd)
     {
         image.canvasRenderer.SetAlpha(0);
