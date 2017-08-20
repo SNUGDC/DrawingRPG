@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class BattlePhase : MonoBehaviour
+public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
 {
 
     CollisionCheck collisionCheck;
@@ -11,6 +12,18 @@ public class BattlePhase : MonoBehaviour
 
     public int turnCount;
     private bool running;
+
+    private GameEndChecker gameEndChecker;
+
+    void Awake()
+    {
+        var players = GameObject.FindObjectsOfType<Player>();
+        var enemies = GameObject.FindObjectsOfType<Enemy>();
+        gameEndChecker = new GameEndChecker(
+            allPlayers: players.ToList(),
+            allEnemies: enemies.ToList(),
+            remainTurnSource: this);
+    }
 
     private void Update()
     {
@@ -33,10 +46,11 @@ public class BattlePhase : MonoBehaviour
         }
     }
 
-    public void StartBattlePhase(List<PlayerAndGoals> playerAndGoalsList)
+    public void StartBattlePhase(List<PlayerAndGoals> playerAndGoalsList, int maxTurnCount)
     {
         this.playerAndItsGoalsList = playerAndGoalsList;
         running = true;
+        this.maxTurnCount = maxTurnCount;
         StartCoroutine(RunTurn());
     }
 
@@ -55,6 +69,40 @@ public class BattlePhase : MonoBehaviour
             TurnUI turnUI = FindObjectOfType<TurnUI>();
             turnCount++;
             turnUI.ActiveTurnUI();
+
+            if (CheckAndHandleEnd())
+            {
+                Debug.Log("End of RunTurn");
+                break;
+            }
+        }
+    }
+
+    private bool CheckAndHandleEnd()
+    {
+        var endResult = gameEndChecker.Check();
+
+        if (endResult != GameEndChecker.Result.NotEnd)
+        {
+            Debug.Log("Game end cause of " + endResult);
+        }
+
+        switch (endResult)
+        {
+            case GameEndChecker.Result.NotEnd:
+                return false;
+            case GameEndChecker.Result.AllEnemyDeath:
+                UIManager.Instance.Cleard();
+                return true;
+            case GameEndChecker.Result.AllPlayerDeath:
+                UIManager.Instance.GameOver();
+                return true;
+            case GameEndChecker.Result.TurnOver:
+                UIManager.Instance.GameOver();
+                return true;
+            default:
+                Debug.LogError("Invalid game end " + endResult);
+                return false;
         }
     }
 
@@ -90,7 +138,7 @@ public class BattlePhase : MonoBehaviour
         foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
         {
             Player player = playerAndItsGoals.player.gameObject.GetComponent<Player>();
-            if(player.characterName == Player.CharacterName.Hesmen)
+            if (player.characterName == Player.CharacterName.Hesmen)
             {
                 skill = new HpRecovery();
                 if (skill.activated)
@@ -199,5 +247,10 @@ public class BattlePhase : MonoBehaviour
         }
 
         return whichElementReachEnemy;
+    }
+
+    bool GameEndChecker.IRemainTurnSource.isRemainTurn()
+    {
+        return this.turnCount < this.maxTurnCount;
     }
 }

@@ -68,8 +68,10 @@ public class UIManager : MonoBehaviour
     {
         InstantiateStartPanel();
         Destroy(lineDisplay);
-        var playerAndGoalsList = FindObjectOfType<DrawingPhase>().StopDrawingPhase();
-        FindObjectOfType<BattlePhase>().StartBattlePhase(playerAndGoalsList);
+        var drawingPhase = FindObjectOfType<DrawingPhase>();
+        var playerAndGoalsList = drawingPhase.StopDrawingPhase();
+        int maxTurnCount = drawingPhase.totalLineCount;
+        FindObjectOfType<BattlePhase>().StartBattlePhase(playerAndGoalsList, maxTurnCount);
     }
 
     private void InstantiateStartPanel()
