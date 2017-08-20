@@ -58,7 +58,7 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
     {
         while (true)
         {
-            UIManager.Instance.ActiveTurnUI(turnCount);
+            UIManager.Instance.ActiveTurnUI(turnCount, maxTurnCount);
             Debug.Log("MoveTurn");
             yield return StartCoroutine(RunMoveTurn());
             Dictionary<GameObject, List<Element>> whichElementReachEnemy = new Dictionary<GameObject, List<Element>>();

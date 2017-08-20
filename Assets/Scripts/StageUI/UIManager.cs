@@ -88,17 +88,15 @@ public class UIManager : MonoBehaviour
     }
 
     //LineUI
-    public void ActiveLineUI(int remainLineCount)
+    public void ActiveLineUI(int remainLineCount, int totalLineCount)
     {
-        DrawingPhase drawingPhase = FindObjectOfType<DrawingPhase>();
-        lineDisplay.GetComponent<LineUI>().text.text = remainLineCount + "/" + drawingPhase.totalLineCount;
+        lineDisplay.GetComponent<LineUI>().text.text = remainLineCount + "/" + totalLineCount;
     }
 
     //TurnUI
-    public void ActiveTurnUI(int turnCount)
+    public void ActiveTurnUI(int turnCount, int maxTurnCount)
     {
-        BattlePhase battlePhase = FindObjectOfType<BattlePhase>();
-        turnDisplay.GetComponent<TurnUI>().text.text = turnCount + "/" + battlePhase.maxTurnCount;
+        turnDisplay.GetComponent<TurnUI>().text.text = turnCount + "/" + maxTurnCount;
     }
 
     //Game over and clear control

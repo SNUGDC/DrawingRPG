@@ -35,7 +35,7 @@ public class DrawingPhase : MonoBehaviour
     public void OnLineDrawComplete(GameObject player, Vector2 position, GameObject encountedEnemy)
     {
         this.remainLineCount -= 1;
-        UIManager.Instance.ActiveLineUI(remainLineCount);
+        UIManager.Instance.ActiveLineUI(remainLineCount, totalLineCount);
         PlayerAndGoals playerAndGoals = FindPlayerAndGoals(player);
         Goal goal = new Goal(position, encountedEnemy);
         playerAndGoals.goals.Add(goal);
