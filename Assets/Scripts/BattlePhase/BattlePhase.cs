@@ -23,6 +23,7 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
             allPlayers: players.ToList(),
             allEnemies: enemies.ToList(),
             remainTurnSource: this);
+        turnCount = 1;
     }
 
     private void Update()
@@ -71,8 +72,8 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
 
             RemoveGoal();
             turnCount++;
-            
-            
+
+
 
             if (CheckAndHandleEnd())
             {
@@ -261,6 +262,6 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
 
     bool GameEndChecker.IRemainTurnSource.isRemainTurn()
     {
-        return this.turnCount < this.maxTurnCount;
+        return this.turnCount <= this.maxTurnCount;
     }
 }

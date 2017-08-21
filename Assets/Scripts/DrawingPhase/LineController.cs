@@ -30,12 +30,12 @@ public class LineController : MonoBehaviour
 
     private void Update()
     {
-        if (num == GameObject.FindObjectOfType<BattlePhase>().turnCount+1)
+        if (num == GameObject.FindObjectOfType<BattlePhase>().turnCount)
         {
             this.GetComponent<LineRenderer>().SetPosition(0, startPos);
             this.GetComponent<LineRenderer>().SetPosition(1, player.transform.position);
         }
-        else if(num < GameObject.FindObjectOfType<BattlePhase>().turnCount+1)
+        else if(num < GameObject.FindObjectOfType<BattlePhase>().turnCount)
         {
             this.GetComponent<LineRenderer>().SetPosition(1, endPos);
         }
