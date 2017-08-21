@@ -82,29 +82,14 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
 
     private bool CheckAndHandleEnd()
     {
-        var endResult = gameEndChecker.Check();
+        var endResult = gameEndChecker.Check(playerAndItsGoalsList);
 
         if (endResult != GameEndChecker.Result.NotEnd)
         {
             Debug.Log("Game end cause of " + endResult);
         }
 
-        //out of index가 생겨서 일단 이렇게 저장해둡니다
-        //int remainGoalCount = 0;
-        //foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
-        //{
-        //    if (playerAndItsGoals.goals[0] != null)
-        //    {
-        //        Debug.Log("목적있는놈있음");
-        //        remainGoalCount++;
-        //    }
-        //}
 
-        //if (remainGoalCount == 0 && endResult != GameEndChecker.Result.AllEnemyDeath)
-        //{
-        //    UIManager.Instance.GameOver();
-        //    return true;
-        //}
 
         switch (endResult)
         {
@@ -117,6 +102,9 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
                 UIManager.Instance.GameOver();
                 return true;
             case GameEndChecker.Result.TurnOver:
+                UIManager.Instance.GameOver();
+                return true;
+            case GameEndChecker.Result.NothingToDo:
                 UIManager.Instance.GameOver();
                 return true;
             default:

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
-public class GameEndChecker
+public class GameEndChecker : MonoBehaviour
 {
 
     public interface IRemainTurnSource
@@ -15,7 +16,8 @@ public class GameEndChecker
         NotEnd,
         AllEnemyDeath,
         AllPlayerDeath,
-        TurnOver
+        TurnOver,
+        NothingToDo
     }
 
     private List<Player> allPlayers;
@@ -29,7 +31,7 @@ public class GameEndChecker
         this.remainTurnSource = remainTurnSource;
     }
 
-    public Result Check()
+    public Result Check(List<PlayerAndGoals> playerAndItsGoalsList)
     {
         if (CheckAllEnemyDeath())
         {
@@ -42,6 +44,10 @@ public class GameEndChecker
         if (CheckTurnOver())
         {
             return Result.TurnOver;
+        }
+        if (CheckNothingToDo(playerAndItsGoalsList))
+        {
+            return Result.NothingToDo;
         }
 
         return Result.NotEnd;
@@ -62,4 +68,20 @@ public class GameEndChecker
         return allEnemies.All(enemy => enemy == null);
     }
 
+    private bool CheckNothingToDo(List<PlayerAndGoals> playerAndItsGoalsList)
+    {
+        int remainGoalCount = 0;
+        foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
+        {
+            if (playerAndItsGoals.goals.Count != 0)
+            {
+                remainGoalCount++;
+                Debug.Log("reaminGoalCount " + remainGoalCount);
+            }
+        }
+
+        if (remainGoalCount == 0)
+        { return true; }
+        else { return false; }
+    }
 }
