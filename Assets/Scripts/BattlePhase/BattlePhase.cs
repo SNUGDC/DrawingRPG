@@ -46,11 +46,14 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
         }
     }
 
-    public void StartBattlePhase(List<PlayerAndGoals> playerAndGoalsList, int maxTurnCount)
+    public void StartBattlePhase(List<PlayerAndGoals> playerAndGoalsList, int remainLineCount)
     {
         this.playerAndItsGoalsList = playerAndGoalsList;
         running = true;
-        this.maxTurnCount = maxTurnCount;
+
+        var maxLineCount = playerAndGoalsList.Max(goalList => goalList.goals.Count);
+
+        this.maxTurnCount = remainLineCount + maxLineCount;
         StartCoroutine(RunTurn());
     }
 
