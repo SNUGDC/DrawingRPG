@@ -62,7 +62,7 @@ public class Drawer : MonoBehaviour
             return;
         }
 
-        if (!phase.HaveDrawingTurn())
+        if (!phase.HaveRemainDrawingCount())
         {
             Debug.LogWarning("Not enough turn");
             return;

@@ -54,7 +54,7 @@ public class DrawingPhase : MonoBehaviour
         return null;
     }
 
-    public bool HaveDrawingTurn()
+    public bool HaveRemainDrawingCount()
     {
         return remainLineCount > 0;
     }
