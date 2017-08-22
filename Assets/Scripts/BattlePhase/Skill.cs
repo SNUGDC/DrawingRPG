@@ -30,6 +30,9 @@ public abstract class Skill : MonoBehaviour
 
 public class TestSkill : Skill
 {
+    public new string skillName = "테스트스킬";
+    public new string skillInfo = "스킬을 테스트한다ㅋ";
+
     public override void Use(Player player)
     {
         player.atk = player.atk * (1 + 0.1f * skillLevel);
@@ -40,16 +43,13 @@ public class TestSkill : Skill
         skillLevel++;
         Use(player);
     }
-    public TestSkill(string skillname, string skillinfo)
-    {
-        skillName = skillname;
-        skillInfo = skillinfo;
-    }
 }
 
 
 public class Strike : Skill
 {
+    public new string skillName = "일격";
+    public new string skillInfo = "공격력이 30" + "% 증가합니다"; 
     public override void Use(Player player)
     {
         player.atk = player.atk + 0.1f * skillLevel;

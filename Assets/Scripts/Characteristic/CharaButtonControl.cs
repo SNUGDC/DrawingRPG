@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharaButtonControl : MonoBehaviour {
     
@@ -9,14 +10,14 @@ public class CharaButtonControl : MonoBehaviour {
         Characteristic characteristic = GameObject.FindObjectOfType<Characteristic>();
         characteristic.characterNum = num;
         characteristic.portrait.sprite = characteristic.playerList[num].portrait;
-        characteristic.characterInfo.text = "플레이어 이름\n" + "HP : " + characteristic.playerList[num].maxHp + "/" + characteristic.playerList[num].hp;
-        foreach (GameObject objects in characteristic.characteristicPanelList)
+        characteristic.characterInfo.GetComponent<CharacterInfo>().CharacterInfomation(characteristic.playerList[num]);
+        foreach(GameObject gameobject in characteristic.characteristicPanelList)
         {
-            objects.SetActive(false);
+            gameobject.SetActive(false);
         }
         characteristic.characteristicPanelList[num].SetActive(true);
     }
-
+    
     public void OpenDetailCharacteristicInfo(CharaSkillInfo charaSkillInfo)
     {
         GameObject DetailPanel = GameObject.Find("Canvas").transform.Find("DetailPanel").gameObject;

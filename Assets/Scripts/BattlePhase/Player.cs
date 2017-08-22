@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
     public enum CharacterName { Roserian, Hesmen };
 
     public int speed;
