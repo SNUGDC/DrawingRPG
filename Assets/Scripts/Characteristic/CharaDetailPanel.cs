@@ -8,7 +8,6 @@ public class CharaDetailPanel : MonoBehaviour {
     public Image skillImage;
     public Text skillName;
     public Text skillInfo;
-    public Text skillDetailInfo;
     public Text skillNextLevelText;
 
     public Button Up;
@@ -17,5 +16,7 @@ public class CharaDetailPanel : MonoBehaviour {
     public void SkillDetail(CharaSkillInfo charaSkillInfo)
     {
         skillImage.sprite = charaSkillInfo.skillImage;
+        skillName.text = charaSkillInfo.skill.skillName;
+        skillInfo.text = charaSkillInfo.skill.skillInfo;
     }
 }

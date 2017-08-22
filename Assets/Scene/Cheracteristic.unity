@@ -194,8 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPortraitList:
-  - {fileID: 21300000, guid: 0bc18acdf043ebc46b977dad825bd41b, type: 3}
-  - {fileID: 21300000, guid: d4554dfbc09fd524c9a114e78c519d55, type: 3}
+  - {fileID: 21300000, guid: 96cbe31024f4eb34582470110749e13b, type: 3}
+  - {fileID: 21300000, guid: c907db79314c35c46847cd79ecce4905, type: 3}
   portrait: {fileID: 1651980058}
   characterName: {fileID: 641682017}
   characterLevel: {fileID: 1011233136}
@@ -290,8 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillImage: {fileID: 2082200178}
   skillName: {fileID: 666370204}
-  skillInfo: {fileID: 836610394}
-  skillDetailInfo: {fileID: 1690646145}
+  skillInfo: {fileID: 1690646145}
   skillNextLevelText: {fileID: 1356760754}
   Up: {fileID: 326699050}
   Down: {fileID: 1647776964}
@@ -614,6 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f095de8e90e5d44966e73c0e86241a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillname: Test
   skill: {fileID: 0}
   skillImage: {fileID: 21300000, guid: b6ab1f4af9974e64ebca75981bd87d77, type: 3}
 --- !u!1 &211872134
@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 550510686}
   - component: {fileID: 550510685}
   m_Layer: 5
-  m_Name: SkillDetail
+  m_Name: SkillInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2060,7 +2060,7 @@ GameObject:
   - component: {fileID: 766450323}
   - component: {fileID: 766450322}
   m_Layer: 5
-  m_Name: SkillDetailText
+  m_Name: SkillInfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3615,7 +3615,7 @@ GameObject:
   - component: {fileID: 1248729653}
   - component: {fileID: 1248729652}
   m_Layer: 5
-  m_Name: SkillInfo
+  m_Name: SkillText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4561,8 +4561,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -87.75, y: -41}
-  m_SizeDelta: {x: 143.5, y: 54}
+  m_AnchoredPosition: {x: -79.75, y: -41}
+  m_SizeDelta: {x: 159.5, y: 54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1603249138
 MonoBehaviour:
@@ -4891,7 +4891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -298.99994, y: -1.9999276}
+  m_AnchoredPosition: {x: -298.99994, y: -1.9999352}
   m_SizeDelta: {x: 181, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1651980058
@@ -5996,7 +5996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2106492871
 RectTransform:
   m_ObjectHideFlags: 0
