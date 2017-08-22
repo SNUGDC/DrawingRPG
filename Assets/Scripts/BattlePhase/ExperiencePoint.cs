@@ -26,7 +26,7 @@ public class ExperiencePoint {
             GameObject player = LastAttackPlayerList[i];
             Player playerStatus = player.gameObject.GetComponent<Player>();
             Enemy EnemyStatus = enemy.gameObject.GetComponent<Enemy>();
-            playerStatus.gainedExperiencePoint += EnemyStatus.exp/LastAttackPlayerList.Count;
+            playerStatus.gainedExperiencePoint += (EnemyStatus.exp/LastAttackPlayerList.Count);
         }
     }
 

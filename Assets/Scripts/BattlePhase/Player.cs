@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
         {
             if (this.characterName == CharacterName.Roserian)
             {
+                //여기에서 리턴값 받아서 변화
                 ExperiencePoint.CalculateExperiencePoint(levelRoserian, experiencePointRoserian, gainedExperiencePoint);
             }
             if (this.characterName == CharacterName.Hesmen)
