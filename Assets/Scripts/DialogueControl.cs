@@ -15,22 +15,22 @@ public class DialogueControl : MonoBehaviour
     public TextAsset data;
     public SortedDictionary<int, List<string>> dialogueData;
 
-    int startPos = 1;
+    int currentId = 1;
+    const int gotoSceneId = 9999;
     const int listName = 1;
+    const int listSceneNum = 1;
     const int listFileName = 2;
     const int listText = 3;
 
     // Use this for initialization
     void Start()
     {
-
         dialogueData = new SortedDictionary<int, List<string>>();
         CsvToDictionary(data.text);
 
-        //Test();
+        Test();
 
         TextInit();
-
     }
 
     public void CsvToDictionary(string data)
@@ -42,10 +42,10 @@ public class DialogueControl : MonoBehaviour
     #region
     void Test()
     {
-        for (int i = 1; i < dialogueData.Count; i++)
+        foreach (var entry in dialogueData)
         {
-            Debug.Log(i.ToString() + " ");
-            ShowContent(dialogueData[i]);
+            Debug.Log("Key is " + entry.Key);
+            ShowContent(entry.Value);
         }
     }
 
@@ -58,23 +58,22 @@ public class DialogueControl : MonoBehaviour
     }
     #endregion
 
-    void DictionaryDelegate(int index, List<string> line)
+    void DictionaryDelegate(int lineNumber, List<string> line)
     {
-
-        if (index == 0)
+        Debug.Log("Linenumber " + lineNumber);
+        if (lineNumber == 0)
         {
             return;
         }
         for (int i = 0; i < line.Count; i++)
         {
-
+            int id = int.Parse(line[0]);
             if (i == 0)
             {
                 List<string> lines = new List<string>();
-                dialogueData.Add(index, lines);
+                dialogueData.Add(id, lines);
             }
-            dialogueData[index].Add(line[i]);
-
+            dialogueData[id].Add(line[i]);
         }
     }
 
@@ -84,21 +83,26 @@ public class DialogueControl : MonoBehaviour
         npcName = transform.Find("Dialogue Box/Speaker Name").GetComponent<Text>();
         npcText = transform.Find("Dialogue Box/Text").GetComponent<Text>();
 
-        npcImage.sprite = GetSprite(dialogueData[startPos][listFileName]);
-        npcName.text = dialogueData[startPos][listName];
-        npcText.text = dialogueData[startPos][listText];
+        npcImage.sprite = GetSprite(dialogueData[currentId][listFileName]);
+        npcName.text = dialogueData[currentId][listName];
+        npcText.text = dialogueData[currentId][listText];
 
     }
 
     void NextText()
     {
-        startPos++;
+        currentId++;
 
-        if (dialogueData.ContainsKey(startPos))
+        if (dialogueData.ContainsKey(currentId))
         {
-            npcImage.sprite = GetSprite(dialogueData[startPos][listFileName]);
-            npcName.text = dialogueData[startPos][listName];
-            npcText.text = dialogueData[startPos][listText];
+            npcImage.sprite = GetSprite(dialogueData[currentId][listFileName]);
+            npcName.text = dialogueData[currentId][listName];
+            npcText.text = dialogueData[currentId][listText];
+        }
+        else
+        {
+            int sceneNum = int.Parse(dialogueData[gotoSceneId][listSceneNum]);
+            SceneLoader.LoadStage(sceneNum);
         }
     }
 
