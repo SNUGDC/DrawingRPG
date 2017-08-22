@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     public float maxHp;
     public float atk;
     public float hp;
-    public int def;
 
     public Element element;
     public CharacterName characterName;

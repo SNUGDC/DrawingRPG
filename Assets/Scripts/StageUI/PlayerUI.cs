@@ -44,10 +44,10 @@ public class PlayerUI : MonoBehaviour {
         playerHPBar.value = (float)player.hp;
     }
 
-    //About Attack, Defense
-    public void AttackDefenceText()
+    //About Attack
+    public void AttackText()
     {
-        playerInfoText.text = "공격력 : " + player.atk + "\n방어력 : " + player.def;
+        playerInfoText.text = "공격력 : " + player.atk;
     }
     
     public static void MakePanel(PlayerUI playerUI, Player player)
@@ -56,7 +56,7 @@ public class PlayerUI : MonoBehaviour {
         playerUI.MakePortrait();
         playerUI.PlayerElement();
         playerUI.MakePlayerHPBar();
-        playerUI.AttackDefenceText();
+        playerUI.AttackText();
     }
 
     private void Update()
