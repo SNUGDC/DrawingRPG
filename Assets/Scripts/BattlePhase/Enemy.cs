@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public int def;
     public int maxHp;
     public int hp;
+    public int exp;
 
     public Element element;
 

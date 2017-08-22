@@ -12,7 +12,10 @@ public class Player : MonoBehaviour
 
     public int levelRoserian;
     public int levelHesmen;
+    public int experiencePointRoserian;
+    public int experiencePointHesmen;
 
+    public int GainedExperiencePoint;
     public float maxHp;
     public float atk;
     public float hp;
@@ -27,6 +30,8 @@ public class Player : MonoBehaviour
     {
         levelHesmen = PlayerPrefs.GetInt("levelHesmen");
         levelRoserian = PlayerPrefs.GetInt("levelRoserian");
+        experiencePointRoserian = PlayerPrefs.GetInt("experiencePointRoserian");
+        experiencePointHesmen = PlayerPrefs.GetInt("experiencePointHesmen");
         SetCharacterStatus();
     }
 
@@ -55,6 +60,11 @@ public class Player : MonoBehaviour
             levelRoserian--;
             PlayerPrefs.SetInt("levelRoserian", levelRoserian);
             SetCharacterStatus();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            PlayerPrefs.SetInt("experiencePointRoserian",experiencePointRoserian);
+            PlayerPrefs.SetInt("experiencePointHesmen",experiencePointHesmen);
         }
     }
 

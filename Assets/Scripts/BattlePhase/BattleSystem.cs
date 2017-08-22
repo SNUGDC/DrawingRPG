@@ -63,6 +63,7 @@ public class ElementWeakAndStrong
     }
 }
 
+
 public static class BattleSystem
 {
 
@@ -77,6 +78,7 @@ public static class BattleSystem
     public static ElementWeakAndStrong earthStrongAndWeak =
         new ElementWeakAndStrong(myElement: Element.Earth, weakerThanMe: Element.Water, strongerThanMe: Element.Wood);
 
+    
     public static Damage CheckElement(Element attack, Element opponent)
     {
         Damage damage = new Damage();
@@ -425,12 +427,13 @@ public static class BattleSystem
         }
     }
 
-    public static bool DestroyDeadEnemy(GameObject enemy)
+    public static bool DestroyDeadEnemy(GameObject enemy, Dictionary<GameObject, List<GameObject>> whichPlayerReachEnemy)
     {
         Enemy enemyStatus = enemy.gameObject.GetComponent<Enemy>();
 
         if (enemyStatus.hp <= 0)
         {
+            ExperiencePoint.passExperiencePoint(enemy, whichPlayerReachEnemy);
             GameObject.Destroy(enemy.gameObject);
             return true;
         }
@@ -440,10 +443,11 @@ public static class BattleSystem
         }
     }
 
-    public static void Battle(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy)
+    public static void Battle(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy,
+        Dictionary<GameObject, List<GameObject>> whichPlayerReachEnemy)
     {
         AttackEnemy(player, enemy, whichElementReachEnemy);
-        bool enemyDie = DestroyDeadEnemy(enemy);
+        bool enemyDie = DestroyDeadEnemy(enemy,whichPlayerReachEnemy);
 
         if (enemyDie != true)
         {

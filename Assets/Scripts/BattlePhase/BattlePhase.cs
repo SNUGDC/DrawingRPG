@@ -67,8 +67,10 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
             yield return StartCoroutine(RunMoveTurn());
             Dictionary<GameObject, List<Element>> whichElementReachEnemy = new Dictionary<GameObject, List<Element>>();
             whichElementReachEnemy = OrganizeWhichElementReachEnemy();
+            Dictionary<GameObject, List<GameObject>> whichPlayerReachEnemy = new Dictionary<GameObject, List<GameObject>>();
+            whichPlayerReachEnemy = OrganizeWhichPlayerReachEnemy();
             Debug.Log("BattleTurn");
-            yield return StartCoroutine(RunBattleTurn(whichElementReachEnemy));
+            yield return StartCoroutine(RunBattleTurn(whichElementReachEnemy,whichPlayerReachEnemy));
 
             RemoveGoal();
             turnCount++;
@@ -202,7 +204,7 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
         }
     }
 
-    public IEnumerator RunBattleTurn(Dictionary<GameObject, List<Element>> whichElementReachEnemy)
+    public IEnumerator RunBattleTurn(Dictionary<GameObject, List<Element>> whichElementReachEnemy, Dictionary<GameObject, List<GameObject>> whichPlayerReachEnemy)
     {
         foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
         {
@@ -222,7 +224,7 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
                 continue;
             }
 
-            BattleSystem.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy, whichElementReachEnemy);
+            BattleSystem.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy, whichElementReachEnemy, whichPlayerReachEnemy);
         }
         yield return new WaitForSeconds(1.5f);
     }
@@ -258,6 +260,38 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
         }
 
         return whichElementReachEnemy;
+    }
+
+    public Dictionary<GameObject, List<GameObject>> OrganizeWhichPlayerReachEnemy()
+    {
+        Dictionary<GameObject, List<GameObject>> whichPlayerReachEnemy = new Dictionary<GameObject, List<GameObject>>();
+
+        foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
+        {
+            if (playerAndItsGoals.player == null)
+            {
+                continue;
+            }
+
+            if (playerAndItsGoals.goals.Count == 0)
+            {
+                continue;
+            }
+
+            if (playerAndItsGoals.goals[0].encountedEnemy != null)
+            {
+                Player player = playerAndItsGoals.player.gameObject.GetComponent<Player>();
+                GameObject enemy = playerAndItsGoals.goals[0].encountedEnemy;
+
+                if (whichPlayerReachEnemy.ContainsKey(enemy) == false)
+                {
+                    whichPlayerReachEnemy[enemy] = new List<GameObject>();
+                }
+                whichPlayerReachEnemy[enemy].Add(player.gameObject);
+            }
+        }
+
+        return whichPlayerReachEnemy;
     }
 
     bool GameEndChecker.IRemainTurnSource.isRemainTurn()
