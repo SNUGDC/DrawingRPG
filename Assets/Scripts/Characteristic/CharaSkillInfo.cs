@@ -14,15 +14,17 @@ public class CharaSkillInfo : MonoBehaviour {
     private void Start()
     {
         CheckSkillName();
-        skill.SkillInfomation();
-        if (PlayerPrefs.HasKey(skill.skillName))
+        if (PlayerPrefs.HasKey(skillname))
         {
+            Debug.Log(skillname);
             SetSkill();
         }
         else
             SetNewSkill();
 
         skillLevelInfo.text = skill.skillLevel + "/" + LimitLevel;
+
+        skill.SkillInfomation();
     }
     public void CheckSkillName()
     {
@@ -55,6 +57,7 @@ public class CharaSkillInfo : MonoBehaviour {
     public void SetNewSkill()
     {
         PlayerPrefs.SetInt(skillname, 0);
+        Debug.Log(skillname);
     }
 
     public void SetSkill()

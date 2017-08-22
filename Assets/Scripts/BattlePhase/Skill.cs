@@ -74,7 +74,7 @@ public class EnhanceWeakpoint : Skill
     public override void SkillInfomation()
     {
         skillName = "약점강화";
-        skillInfo = "약점 공격 시 데미지가 "+120 + 20*skillLevel+"%로 변경된다.";
+        skillInfo = "약점 공격 시 데미지가 "+(120 + 20*skillLevel)+"%로 변경된다.";
     }
     public new bool activated = false;
 
@@ -92,7 +92,7 @@ public class EnhanceChain : Skill
     public override void SkillInfomation()
     {
         skillName = "결속";
-        skillInfo = "체인 공격 시 체인의 데미지가 "+ 150 + 10*skillLevel+"%로 변경된다.";
+        skillInfo = "체인 공격 시 체인의 데미지가 "+ (150 + 10*skillLevel)+"%로 변경된다.";
     }
     public new bool activated = false;
 
@@ -115,7 +115,7 @@ public class BreakWeakpoint : Skill
     public override void SkillInfomation()
     {
         skillName = "돌파";
-        skillInfo = "강점 공격 시 데미지가 " + 80 + 20*skillLevel+"%로 변경된다.";
+        skillInfo = "강점 공격 시 데미지가 " + (80 + 20*skillLevel)+"%로 변경된다.";
     }
     public new bool activated = false;
 

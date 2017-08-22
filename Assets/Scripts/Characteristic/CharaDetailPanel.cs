@@ -34,9 +34,10 @@ public class CharaDetailPanel : MonoBehaviour {
         else
         {
             charaInfo.skill.skillLevel++;
+            charaInfo.skill.SkillInfomation();
+            SkillDetail(charaInfo);
             PlayerPrefs.SetInt(charaInfo.skillname, charaInfo.skill.skillLevel);
             charaInfo.skillLevelInfo.text = charaInfo.skill.skillLevel + "/" + charaInfo.LimitLevel;
-            charaInfo.skill.SkillInfomation();
             skillLevel.text = charaInfo.skill.skillLevel.ToString();
         }
     }
@@ -49,9 +50,12 @@ public class CharaDetailPanel : MonoBehaviour {
         else
         {
             charaInfo.skill.skillLevel--;
+
+            charaInfo.skill.SkillInfomation();
+            SkillDetail(charaInfo);
             PlayerPrefs.SetInt(charaInfo.skillname, charaInfo.skill.skillLevel);
             charaInfo.skillLevelInfo.text = charaInfo.skill.skillLevel + "/" + charaInfo.LimitLevel;
-            charaInfo.skill.SkillInfomation();
+
             skillLevel.text = charaInfo.skill.skillLevel.ToString();
         }
     }

@@ -1397,7 +1397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillname: EnhanceWeakpoint
-  LimitLevel: 5
+  LimitLevel: 4
   skill: {fileID: 0}
   skillLevelInfo: {fileID: 916066708}
   skillImage: {fileID: 21300000, guid: b6ab1f4af9974e64ebca75981bd87d77, type: 3}
@@ -2486,7 +2486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillname: ProtectWeakpoint
-  LimitLevel: 5
+  LimitLevel: 4
   skill: {fileID: 0}
   skillLevelInfo: {fileID: 1999861691}
   skillImage: {fileID: 21300000, guid: b6ab1f4af9974e64ebca75981bd87d77, type: 3}
@@ -2983,7 +2983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillname: HpRecovery
-  LimitLevel: 5
+  LimitLevel: 4
   skill: {fileID: 0}
   skillLevelInfo: {fileID: 1139911129}
   skillImage: {fileID: 21300000, guid: b6ab1f4af9974e64ebca75981bd87d77, type: 3}
