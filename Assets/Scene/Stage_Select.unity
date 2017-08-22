@@ -1672,7 +1672,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 901573018}
+      objectReference: {fileID: 1950592591}
     - target: {fileID: 224969397872775588, guid: 46695e4ddc76a4f5babda208dec0942b,
         type: 2}
       propertyPath: m_LocalScale.x
@@ -1691,7 +1691,7 @@ Prefab:
     - target: {fileID: 114153967821637650, guid: 46695e4ddc76a4f5babda208dec0942b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnProtoButton
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114153967821637650, guid: 46695e4ddc76a4f5babda208dec0942b,
         type: 2}

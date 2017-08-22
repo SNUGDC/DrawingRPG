@@ -52,13 +52,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08b7f68077f192428656d8108a329aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 3
-  def: 3
-  maxHp: 5
-  hp: 5
   speed: 1
+  levelRoserian: 0
+  levelHesmen: 0
+  maxHp: 5
+  atk: 3
+  hp: 5
   element: 0
-  portrait: {fileID: 21300000, guid: 0bc18acdf043ebc46b977dad825bd41b, type: 3}
+  characterName: 0
+  portrait: {fileID: 21300000, guid: 96cbe31024f4eb34582470110749e13b, type: 3}
+  skill: {fileID: 0}
 --- !u!212 &212479732620083524
 SpriteRenderer:
   m_ObjectHideFlags: 1

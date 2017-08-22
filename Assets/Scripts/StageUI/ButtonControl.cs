@@ -17,6 +17,10 @@ public class ButtonControl : MonoBehaviour {
     {
         SceneLoader.LoadScene_using_string("Stage_Select");
     }
+    public void CharacteristicScene()
+    {
+        SceneLoader.LoadScene_using_string("Characteristic");
+    }
     public void StageScene(int stage)
     {
         SceneLoader.LoadStage(stage);
@@ -51,4 +55,42 @@ public class ButtonControl : MonoBehaviour {
         GameObject.Find("UIManager").GetComponent<UIManager>().OnStartButtonClick();
     }
 
+    // --------------특성창 Button--------------//
+    public void CharacterChooseButton(string charaName)
+    {
+        PlayerInfoAndLevel playerInfo = new PlayerInfoAndLevel();
+        playerInfo = playerInfo.FindPlayerInfoAndLevel(charaName);
+        playerInfo.gameObject.SetActive(true);
+        CharacterInfo characterInfo = GameObject.FindObjectOfType<CharacterInfo>();
+        characterInfo.CharacterInfomation(playerInfo);
+    }
+
+    public void OpenDetailCharacteristicInfo(CharaSkillInfo charaSkillInfo)
+    {
+            GameObject DetailPanel = GameObject.Find("Canvas").transform.Find("DetailPanel").gameObject;
+            DetailPanel.SetActive(true);
+            DetailPanel.GetComponent<CharaDetailPanel>().SkillDetail(charaSkillInfo);
+        
+    }
+
+    public void CloseDetailCharacteristicInfo()
+    {
+        GameObject DetailPanel = GameObject.Find("Canvas").transform.Find("DetailPanel").gameObject;
+        DetailPanel.SetActive(false);
+    }
+
+    public void SkillLevelUp(CharaDetailPanel charaInfoDetail)
+    {
+        charaInfoDetail.SkillLevelUp();
+    }
+
+    public void SkillLevelDown(CharaDetailPanel charaInfoDetail)
+    {
+        charaInfoDetail.SkillLevelDown();
+    }
+    
+    public void Test(UnityEngine.UI.Text text)
+    {
+        text.text = PlayerPrefs.GetInt("TestSkill").ToString();
+    }
 }
