@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public int experiencePointRoserian;
     public int experiencePointHesmen;
 
-    public int GainedExperiencePoint;
+    public int gainedExperiencePoint;
     public float maxHp;
     public float atk;
     public float hp;
@@ -63,6 +63,15 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
+            if (this.characterName == CharacterName.Roserian)
+            {
+                ExperiencePoint.CalculateExperiencePoint(levelRoserian, experiencePointRoserian, gainedExperiencePoint);
+            }
+            if (this.characterName == CharacterName.Hesmen)
+            {
+                ExperiencePoint.CalculateExperiencePoint(levelHesmen, experiencePointHesmen, gainedExperiencePoint);
+            }
+
             PlayerPrefs.SetInt("experiencePointRoserian",experiencePointRoserian);
             PlayerPrefs.SetInt("experiencePointHesmen",experiencePointHesmen);
         }

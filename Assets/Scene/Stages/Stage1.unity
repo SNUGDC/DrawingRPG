@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 9
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_ShadowMaskMode: 2
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -178,6 +178,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1001 &57482600
 Prefab:
   m_ObjectHideFlags: 0
@@ -353,6 +354,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &304011182
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +545,7 @@ MonoBehaviour:
   def: 0
   maxHp: 50
   hp: 15
+  exp: 20
   element: 1
   clicked: 0
   portrait: {fileID: 0}
@@ -672,6 +675,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!4 &493295220
 Transform:
   m_ObjectHideFlags: 0
@@ -720,6 +724,7 @@ MonoBehaviour:
   def: 0
   maxHp: 50
   hp: 15
+  exp: 20
   element: 1
   clicked: 0
   portrait: {fileID: 0}
@@ -835,6 +840,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &861416735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,6 +1044,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1097637394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,6 +1115,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1262514006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1180,9 @@ MonoBehaviour:
   speed: 1
   levelRoserian: 0
   levelHesmen: 0
+  experiencePointRoserian: 0
+  experiencePointHesmen: 0
+  gainedExperiencePoint: 0
   maxHp: 0
   atk: 0
   hp: 0
@@ -1249,6 +1260,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1390959755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,6 +1331,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1452721688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,6 +1366,7 @@ MonoBehaviour:
   def: 0
   maxHp: 50
   hp: 15
+  exp: 20
   element: 1
   clicked: 0
   portrait: {fileID: 0}
@@ -1557,6 +1571,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1001 &1621136852
 Prefab:
   m_ObjectHideFlags: 0
@@ -1653,6 +1668,7 @@ MonoBehaviour:
   def: 0
   maxHp: 50
   hp: 15
+  exp: 20
   element: 1
   clicked: 0
   portrait: {fileID: 0}
@@ -1748,6 +1764,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1802586402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,6 +1835,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1802821058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1965,6 +1983,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!4 &1879610952
 Transform:
   m_ObjectHideFlags: 0
@@ -2096,6 +2115,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1990344474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,6 +2253,9 @@ MonoBehaviour:
   speed: 5
   levelRoserian: 0
   levelHesmen: 0
+  experiencePointRoserian: 0
+  experiencePointHesmen: 0
+  gainedExperiencePoint: 0
   maxHp: 0
   atk: 0
   hp: 0

@@ -20,9 +20,32 @@ public class ExperiencePoint {
 
     public static void passExperiencePoint(GameObject enemy, Dictionary<GameObject, List<GameObject>> whichPlayerReachEnemy)
     {
-        int numberOfPlayer = whichPlayerReachEnemy[enemy].Count;
-
-
+        List<GameObject> LastAttackPlayerList = whichPlayerReachEnemy[enemy];
+        for(int i = 0; i < LastAttackPlayerList.Count; i++)
+        {
+            GameObject player = LastAttackPlayerList[i];
+            Player playerStatus = player.gameObject.GetComponent<Player>();
+            Enemy EnemyStatus = enemy.gameObject.GetComponent<Enemy>();
+            playerStatus.gainedExperiencePoint += EnemyStatus.exp/LastAttackPlayerList.Count;
+        }
     }
 
+    public static Dictionary<string,int> CalculateExperiencePoint(int level, int currentExperincePoint, int gainedExperincePoint)
+    {
+        Dictionary<string, int> levelAndExperiencePoint = new Dictionary<string, int>();
+        
+        if (currentExperincePoint + gainedExperincePoint >= maxExperiencePoint[level]) {
+            levelAndExperiencePoint.Add("Level", level+1);
+            levelAndExperiencePoint.Add("ExperiencePoint", maxExperiencePoint[level] - (currentExperincePoint + gainedExperincePoint));
+            return levelAndExperiencePoint;
+        }
+        else
+        {
+            levelAndExperiencePoint.Add("Level", level + 1);
+            levelAndExperiencePoint.Add("ExperienePoint", (currentExperincePoint + gainedExperincePoint));
+            return levelAndExperiencePoint;
+        }
+    }
+
+    
 }
