@@ -17,7 +17,5 @@ public class CharaDetailPanel : MonoBehaviour {
     public void SkillDetail(CharaSkillInfo charaSkillInfo)
     {
         skillImage.sprite = charaSkillInfo.skillImage;
-        skillName.text = charaSkillInfo.skillName;
-        skillInfo.text = charaSkillInfo.skillInfo;
     }
 }

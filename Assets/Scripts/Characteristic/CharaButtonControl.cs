@@ -5,17 +5,12 @@ using UnityEngine.UI;
 
 public class CharaButtonControl : MonoBehaviour {
     
-    public void CharacterChooseButton(int num)
+    public void CharacterChooseButton(string charaName)
     {
-        Characteristic characteristic = GameObject.FindObjectOfType<Characteristic>();
-        characteristic.characterNum = num;
-        characteristic.portrait.sprite = characteristic.playerList[num].portrait;
-        characteristic.characterInfo.GetComponent<CharacterInfo>().CharacterInfomation(characteristic.playerList[num]);
-        foreach(GameObject gameobject in characteristic.characteristicPanelList)
-        {
-            gameobject.SetActive(false);
-        }
-        characteristic.characteristicPanelList[num].SetActive(true);
+        PlayerInfoAndLevel playerInfo = new PlayerInfoAndLevel();
+        playerInfo = playerInfo.FindPlayerInfoAndLevel(charaName);
+        CharacterInfo characterInfo = GameObject.FindObjectOfType<CharacterInfo>();
+        characterInfo.CharacterInfomation(playerInfo);
     }
     
     public void OpenDetailCharacteristicInfo(CharaSkillInfo charaSkillInfo)

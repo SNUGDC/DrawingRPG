@@ -5,11 +5,27 @@ using UnityEngine.UI;
 
 public class CharacterInfo : MonoBehaviour {
 
+    public List<Sprite> characterPortraitList;
+    public Image portrait;
     public Text characterName;
     public Text characterLevel;
     public Text characterHP;
     public Text characterAtk;
 
+    public void CharacterPortait(string charaName)
+    {
+        Debug.Log(charaName);
+        if (charaName == "Roserian")
+        {
+            portrait.sprite = characterPortraitList[0];
+        }
+        else if (charaName == "Hesmen")
+        {
+            portrait.sprite = characterPortraitList[1];
+        }
+        else
+            return;
+    }
     public void CharacterNameText(Player.CharacterName charaName)
     {
         characterName.text = charaName.ToString();
@@ -30,7 +46,7 @@ public class CharacterInfo : MonoBehaviour {
         characterAtk.text = "ATK " + (int)atk;
     }
 
-    public void SetCharacterStatus(Player player, int level)
+    public void SetCharacterStatus(PlayerInfoAndLevel player)
     {
         int atkDefaultRoserian = 20;
         int atkWeightRoserian = 4;
@@ -53,36 +69,32 @@ public class CharacterInfo : MonoBehaviour {
         int hpPercentageRiseHesmen = 5;
         
 
-        if (player.characterName == Player.CharacterName.Roserian)
+        if (player.characterName == "Roserian")
         {
-            int atk = (int)((atkDefaultRoserian + (atkAdditionalRiseRoserian + atkWeightRoserian) * level) * (1 + (atkPercentageRiseRoserian + atkWeightRoserian) / 100.0f * level));
-            int hp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * level) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * level));
-            int maxHp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * level) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * level));
+            int atk = (int)((atkDefaultRoserian + (atkAdditionalRiseRoserian + atkWeightRoserian) * player.level) * (1 + (atkPercentageRiseRoserian + atkWeightRoserian) / 100.0f * player.level));
+            int hp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * player.level) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * player.level));
+            int maxHp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * player.level) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * player.level));
             CharacterNameText(Player.CharacterName.Roserian);
-            CharacterLevelText(level);
+            CharacterLevelText(player.level);
             CharacterATKText(atk);
             CharacterHPText(hp, maxHp);
+            CharacterPortait(player.characterName);
         }
-        if (player.characterName == Player.CharacterName.Hesmen)
+        if (player.characterName == "Hesmen")
         {
-            int atk = (int)((atkDefaultHesmen + (atkAdditionalRiseHesmen + atkWeightHesmen) * level) * (1 + (atkPercentageRiseHesmen + atkWeightHesmen) / 100.0f * level));
-            int hp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * level) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * level));
-            int maxHp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * level) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * level));
+            int atk = (int)((atkDefaultHesmen + (atkAdditionalRiseHesmen + atkWeightHesmen) * player.level) * (1 + (atkPercentageRiseHesmen + atkWeightHesmen) / 100.0f * player.level));
+            int hp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * player.level) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * player.level));
+            int maxHp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * player.level) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * player.level));
             CharacterNameText(Player.CharacterName.Hesmen);
-            CharacterLevelText(level);
+            CharacterLevelText(player.level);
             CharacterATKText(atk);
             CharacterHPText(hp, maxHp);
+            CharacterPortait(player.characterName);
         }
     }
-    public void CharacterInfomation(Player character)
+
+    public void CharacterInfomation(PlayerInfoAndLevel character)
     {
-        if (character.characterName.ToString() == "Roserian")
-        {
-            SetCharacterStatus(character, character.levelRoserian);
-        }
-        else if (character.characterName.ToString() == "Hesmen")
-        {
-            SetCharacterStatus(character, character.levelHesmen);
-        }
+            SetCharacterStatus(character);
     }
 }
