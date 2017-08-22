@@ -5,9 +5,15 @@ using UnityEngine;
 public class PlayerInfoAndLevel : MonoBehaviour {
 
     public string characterName;
+    public int remainLevelPoint;
     public int level;
     public GameObject characterPanel;
     
+
+    public void ResetSkillPoint()
+    {
+        remainLevelPoint = 0;
+    }
     public PlayerInfoAndLevel FindPlayerInfoAndLevel(string charaName)
     {
         PlayerInfoAndLevel[] playerInfo = GameObject.FindObjectsOfType<PlayerInfoAndLevel>();

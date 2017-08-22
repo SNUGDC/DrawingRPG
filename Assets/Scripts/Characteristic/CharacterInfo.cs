@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class CharacterInfo : MonoBehaviour {
 
     public List<Sprite> characterPortraitList;
+    public List<int> characterSkillPointList;
     public Image portrait;
+    public Text characterSkillPoint;
     public Text characterName;
     public Text characterLevel;
     public Text characterHP;
@@ -22,6 +24,20 @@ public class CharacterInfo : MonoBehaviour {
         else if (charaName == "Hesmen")
         {
             portrait.sprite = characterPortraitList[1];
+        }
+        else
+            return;
+    }
+
+    public void CharacterSkillPointText(string charaName, int maxPoint)
+    {
+        if (charaName == "Roserian")
+        {
+            characterSkillPoint.text = characterSkillPointList[0] + "/" + maxPoint;
+        }
+        else if (charaName == "Hesmen")
+        {
+            characterSkillPoint.text = characterSkillPointList[1] + "/" + maxPoint;
         }
         else
             return;
@@ -45,7 +61,7 @@ public class CharacterInfo : MonoBehaviour {
     {
         characterAtk.text = "ATK " + (int)atk;
     }
-
+    
     public void SetCharacterStatus(PlayerInfoAndLevel player)
     {
         int atkDefaultRoserian = 20;
@@ -75,10 +91,11 @@ public class CharacterInfo : MonoBehaviour {
             int hp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * player.level) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * player.level));
             int maxHp = (int)((hpDefaultRoserian + (hpAdditionalRiseRoserian + hpWeightRoserian) * player.level) * (1 + (hpPercentageRiseRoserian + hpWeightRoserian) / 100.0f * player.level));
             CharacterNameText(Player.CharacterName.Roserian);
-            CharacterLevelText(player.level);
+            CharacterLevelText(player.level + 50);
             CharacterATKText(atk);
             CharacterHPText(hp, maxHp);
             CharacterPortait(player.characterName);
+            CharacterSkillPointText(player.characterName, player.level);
         }
         if (player.characterName == "Hesmen")
         {
@@ -86,10 +103,11 @@ public class CharacterInfo : MonoBehaviour {
             int hp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * player.level) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * player.level));
             int maxHp = (int)((hpDefaultHesmen + (hpAdditionalRiseHesmen + hpWeightHesmen) * player.level) * (1 + (hpPercentageRiseHesmen + hpWeightHesmen) / 100.0f * player.level));
             CharacterNameText(Player.CharacterName.Hesmen);
-            CharacterLevelText(player.level);
+            CharacterLevelText(player.level+50);
             CharacterATKText(atk);
             CharacterHPText(hp, maxHp);
             CharacterPortait(player.characterName);
+            CharacterSkillPointText(player.characterName, player.level);
         }
     }
 
