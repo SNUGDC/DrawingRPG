@@ -700,7 +700,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2111164626}
-  - component: {fileID: 2111164627}
   - component: {fileID: 2111164628}
   m_Layer: 5
   m_Name: Dialogue
@@ -729,38 +728,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2111164627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2111164625}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d59194540dbacc47aad0ea07518258d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpeakerImage: {fileID: 870579734}
-  SpeakerName: {fileID: 131960148}
-  DialogueText: {fileID: 796718732}
-  Image:
-  - {fileID: 21300000, guid: ea11fb3ca72dc4f48abc4f0787354c93, type: 3}
-  - {fileID: 21300000, guid: 7bd4cb9885dd4b947a2b3c2a1a2e3d06, type: 3}
-  - {fileID: 21300000, guid: a7eefcbfa9887d747a0304dd7060340f, type: 3}
-  Name:
-  - "\uC9C1\uC6D0"
-  - "\uB9C8\uBC95\uC18C\uB140"
-  - "\uD2B8\uB808\uC774\uC11C"
-  Text:
-  - "\uC9C1\uC6D0\uC785\uB2C8\uB2E4."
-  - "\uB9C8\uBC95\uC18C\uB140\uC785\uB2C8\uB2E4."
-  - "\uD2B8\uB808\uC774\uC11C\uC785\uB2C8\uB2E4."
-  - "\uC0AC\uC2E4 \uBC40\uC785\uB2C8\uB2E4."
-  - "\uBC40\uD55C\uD14C \uC8FD\uC744\uAEBC\uC57C\u3160\u3160"
-  - "\uC810\uBA78 \uCFE8\uD0C0\uC784\uC740 3\uCD08"
-  - "\uC138\uC0C1\uC774 \uD3C9\uD654\uB86D\uB2E4\uBA74 \uB098\uB294 \uC65C \uC874\uC7AC\uD558\uB294\uAC70\uC9C0?"
-  - "\uD751\uD751 \uB9C8\uBC95\uC18C\uB140\uAC00 \uC774\uC0C1\uD55C \uC0DD\uAC01\uD574\uC694"
-  - "\uC8FC\uAC70\uB530...."
 --- !u!114 &2111164628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,4 +747,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ea11fb3ca72dc4f48abc4f0787354c93, type: 3}
   - {fileID: 21300000, guid: 7bd4cb9885dd4b947a2b3c2a1a2e3d06, type: 3}
   - {fileID: 21300000, guid: a7eefcbfa9887d747a0304dd7060340f, type: 3}
-  data: {fileID: 4900000, guid: e06b0e89fa593c14f9b8e40238bbce16, type: 3}
+  data: {fileID: 4900000, guid: 7b2d23890d30944b1abf2086a1774f92, type: 3}

@@ -2,11 +2,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueControl : MonoBehaviour {
+public class DialogueControl : MonoBehaviour
+{
 
     public List<string> npcNames;
     public List<Sprite> npcImages;
-    Dictionary<string, Sprite> npcMatcher;
 
     Image npcImage;
     Text npcName;
@@ -17,30 +17,29 @@ public class DialogueControl : MonoBehaviour {
 
     int startPos = 1;
     const int listName = 1;
-    const int listText = 2;
+    const int listFileName = 2;
+    const int listText = 3;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         dialogueData = new SortedDictionary<int, List<string>>();
-        npcMatcher = new Dictionary<string, Sprite>();
         CsvToDictionary(data.text);
 
         //Test();
 
-        NpcMatherInit();
-
         TextInit();
-        
+
     }
-	
+
     public void CsvToDictionary(string data)
     {
         fgCSVReader.LoadFromString(data, DictionaryDelegate);
     }
 
-//Debug Section
-#region
+    //Debug Section
+    #region
     void Test()
     {
         for (int i = 1; i < dialogueData.Count; i++)
@@ -79,21 +78,13 @@ public class DialogueControl : MonoBehaviour {
         }
     }
 
-    void NpcMatherInit()
-    {
-        for (int i = 0; i < npcNames.Count; i++)
-        {
-            npcMatcher.Add(npcNames[i], npcImages[i]);
-        }
-    }
-
     void TextInit()
     {
         npcImage = transform.Find("Speaker Image").GetComponent<Image>();
         npcName = transform.Find("Dialogue Box/Speaker Name").GetComponent<Text>();
         npcText = transform.Find("Dialogue Box/Text").GetComponent<Text>();
 
-        npcImage.sprite = npcMatcher[dialogueData[startPos][listName]];
+        npcImage.sprite = GetSprite(dialogueData[startPos][listFileName]);
         npcName.text = dialogueData[startPos][listName];
         npcText.text = dialogueData[startPos][listText];
 
@@ -105,12 +96,14 @@ public class DialogueControl : MonoBehaviour {
 
         if (dialogueData.ContainsKey(startPos))
         {
-            npcImage.sprite = npcMatcher[dialogueData[startPos][listName]];
+            npcImage.sprite = GetSprite(dialogueData[startPos][listFileName]);
             npcName.text = dialogueData[startPos][listName];
             npcText.text = dialogueData[startPos][listText];
-
         }
-        
     }
 
+    private Sprite GetSprite(string fileName)
+    {
+        return Resources.Load<Sprite>("standing/" + fileName);
+    }
 }
