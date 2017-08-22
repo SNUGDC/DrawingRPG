@@ -11,11 +11,16 @@ public class PlayerInfoAndLevel : MonoBehaviour {
     public PlayerInfoAndLevel FindPlayerInfoAndLevel(string charaName)
     {
         PlayerInfoAndLevel[] playerInfo = GameObject.FindObjectsOfType<PlayerInfoAndLevel>();
-        foreach(PlayerInfoAndLevel playernewInfo in playerInfo)
+        PlayerInfoAndLevel newOne = new PlayerInfoAndLevel();
+        foreach (PlayerInfoAndLevel playernewInfo in playerInfo)
         {
+            playernewInfo.characterPanel.SetActive(false);
             if (playernewInfo.characterName == charaName)
-                return playernewInfo;
+            {
+                newOne = playernewInfo;
+            }
         }
-        return null;
+        newOne.characterPanel.SetActive(true);
+        return newOne;
     }
 }

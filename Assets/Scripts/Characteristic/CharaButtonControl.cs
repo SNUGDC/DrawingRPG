@@ -9,6 +9,7 @@ public class CharaButtonControl : MonoBehaviour {
     {
         PlayerInfoAndLevel playerInfo = new PlayerInfoAndLevel();
         playerInfo = playerInfo.FindPlayerInfoAndLevel(charaName);
+        playerInfo.gameObject.SetActive(true);
         CharacterInfo characterInfo = GameObject.FindObjectOfType<CharacterInfo>();
         characterInfo.CharacterInfomation(playerInfo);
     }
