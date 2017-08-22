@@ -13,7 +13,7 @@ public class DialogueControl : MonoBehaviour {
     Text npcText;
 
     public TextAsset data;
-    public SortedDictionary<string, List<string>> dialogueData;
+    public SortedDictionary<int, List<string>> dialogueData;
 
     int startPos = 1;
     const int listName = 1;
@@ -22,7 +22,7 @@ public class DialogueControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        dialogueData = new SortedDictionary<string, List<string>>();
+        dialogueData = new SortedDictionary<int, List<string>>();
         npcMatcher = new Dictionary<string, Sprite>();
         CsvToDictionary(data.text);
 
@@ -46,7 +46,7 @@ public class DialogueControl : MonoBehaviour {
         for (int i = 1; i < dialogueData.Count; i++)
         {
             Debug.Log(i.ToString() + " ");
-            ShowContent(dialogueData[i.ToString()]);
+            ShowContent(dialogueData[i]);
         }
     }
 
@@ -72,9 +72,9 @@ public class DialogueControl : MonoBehaviour {
             if (i == 0)
             {
                 List<string> lines = new List<string>();
-                dialogueData.Add(index.ToString(), lines);
+                dialogueData.Add(index, lines);
             }
-            dialogueData[index.ToString()].Add(line[i]);
+            dialogueData[index].Add(line[i]);
 
         }
     }
@@ -89,13 +89,13 @@ public class DialogueControl : MonoBehaviour {
 
     void TextInit()
     {
-        npcImage = GameObject.Find("Speaker Image").GetComponent<Image>();
-        npcName = GameObject.Find("Speaker Name").GetComponent<Text>();
-        npcText = GameObject.Find("Text").GetComponent<Text>();
+        npcImage = transform.Find("Speaker Image").GetComponent<Image>();
+        npcName = transform.Find("Dialogue Box/Speaker Name").GetComponent<Text>();
+        npcText = transform.Find("Dialogue Box/Text").GetComponent<Text>();
 
-        npcImage.sprite = npcMatcher[dialogueData[startPos.ToString()][listName]];
-        npcName.text = dialogueData[startPos.ToString()][listName];
-        npcText.text = dialogueData[startPos.ToString()][listText];
+        npcImage.sprite = npcMatcher[dialogueData[startPos][listName]];
+        npcName.text = dialogueData[startPos][listName];
+        npcText.text = dialogueData[startPos][listText];
 
     }
 
@@ -103,11 +103,11 @@ public class DialogueControl : MonoBehaviour {
     {
         startPos++;
 
-        if (dialogueData.ContainsKey(startPos.ToString()))
+        if (dialogueData.ContainsKey(startPos))
         {
-            npcImage.sprite = npcMatcher[dialogueData[startPos.ToString()][listName]];
-            npcName.text = dialogueData[startPos.ToString()][listName];
-            npcText.text = dialogueData[startPos.ToString()][listText];
+            npcImage.sprite = npcMatcher[dialogueData[startPos][listName]];
+            npcName.text = dialogueData[startPos][listName];
+            npcText.text = dialogueData[startPos][listText];
 
         }
         
