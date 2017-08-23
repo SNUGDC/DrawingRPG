@@ -27,6 +27,14 @@ public static class SceneLoader
     {
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
+        // Stage1 -> 1
+        int stage = int.Parse(sceneName.Substring(5));
+
+        int lastClearedStage = SaveManager.LoadLastClearedStage();
+		if (stage > lastClearedStage) {
+			SaveManager.SaveLastClearedStage(stage);
+		}
+        
         LoadScene("post_" + sceneName);
     }
 

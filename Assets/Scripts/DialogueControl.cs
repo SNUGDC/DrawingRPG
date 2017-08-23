@@ -104,6 +104,10 @@ public class DialogueControl : MonoBehaviour
                 int sceneNum = int.Parse(dialogueData[commandId][listSceneNum]);
                 SceneLoader.LoadStage(sceneNum);
             }
+            else if (command == "stageselect")
+            {
+                SceneLoader.LoadScene("Stage_Select");
+            }
             else
             {
                 Debug.LogError("Invalid command " + command);
