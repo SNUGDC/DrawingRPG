@@ -54,7 +54,17 @@ public class ExperiencePoint{
         {
             Player playerScript = playerAndItsGoals.player.GetComponent<Player>();
             playerScript.gainedExperiencePoint += stageClearExperiencePoint;
+            playerScript.LevelAndExperiencePointUp();
         }
     }
-    
+
+    public static void GetExperiencePoint(List<PlayerAndGoals> playerAndItsGoalsList)
+    {
+        foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
+        {
+            Player playerScript = playerAndItsGoals.player.GetComponent<Player>();
+            playerScript.LevelAndExperiencePointUp();
+        }
+    }
+
 }

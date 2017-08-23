@@ -110,12 +110,15 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
                 return true;
             case GameEndChecker.Result.AllPlayerDeath:
                 UIManager.Instance.GameOver();
+                ExperiencePoint.GetExperiencePoint(playerAndItsGoalsList);
                 return true;
             case GameEndChecker.Result.TurnOver:
                 UIManager.Instance.GameOver();
+                ExperiencePoint.GetExperiencePoint(playerAndItsGoalsList);
                 return true;
             case GameEndChecker.Result.NothingToDo:
                 UIManager.Instance.GameOver();
+                ExperiencePoint.GetExperiencePoint(playerAndItsGoalsList);
                 return true;
             default:
                 Debug.LogError("Invalid game end " + endResult);

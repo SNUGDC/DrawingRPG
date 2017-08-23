@@ -61,29 +61,32 @@ public class Player : MonoBehaviour
             PlayerPrefs.SetInt("levelRoserian", levelRoserian);
             SetCharacterStatus();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+    }
+
+    public void LevelAndExperiencePointUp()
+    {
+
+        if (this.characterName == CharacterName.Roserian)
         {
-            if (this.characterName == CharacterName.Roserian)
-            {
-                Dictionary<string, int> levelAndExperiencePoint;
-                levelAndExperiencePoint =ExperiencePoint.CalculateExperiencePoint(levelRoserian, experiencePointRoserian, gainedExperiencePoint);
-                gainedExperiencePoint = 0;
-                levelRoserian = levelAndExperiencePoint["Level"];
-                experiencePointRoserian = levelAndExperiencePoint["ExperiencePoint"];
-            }
-            if (this.characterName == CharacterName.Hesmen)
-            {
-                Dictionary<string, int> levelAndExperiencePoint;
-                levelAndExperiencePoint = ExperiencePoint.CalculateExperiencePoint(levelHesmen, experiencePointHesmen, gainedExperiencePoint);
-                gainedExperiencePoint = 0;
-                levelHesmen = levelAndExperiencePoint["Level"];
-                experiencePointHesmen = levelAndExperiencePoint["ExperiencePoint"];
-            }
-            PlayerPrefs.SetInt("levelHesmen", levelHesmen);
-            PlayerPrefs.SetInt("levelRoserian", levelRoserian);
-            PlayerPrefs.SetInt("experiencePointRoserian",experiencePointRoserian);
-            PlayerPrefs.SetInt("experiencePointHesmen",experiencePointHesmen);
+            Dictionary<string, int> levelAndExperiencePoint;
+            levelAndExperiencePoint = ExperiencePoint.CalculateExperiencePoint(levelRoserian, experiencePointRoserian, gainedExperiencePoint);
+            gainedExperiencePoint = 0;
+            levelRoserian = levelAndExperiencePoint["Level"];
+            experiencePointRoserian = levelAndExperiencePoint["ExperiencePoint"];
         }
+        if (this.characterName == CharacterName.Hesmen)
+        {
+            Dictionary<string, int> levelAndExperiencePoint;
+            levelAndExperiencePoint = ExperiencePoint.CalculateExperiencePoint(levelHesmen, experiencePointHesmen, gainedExperiencePoint);
+            gainedExperiencePoint = 0;
+            levelHesmen = levelAndExperiencePoint["Level"];
+            experiencePointHesmen = levelAndExperiencePoint["ExperiencePoint"];
+        }
+        PlayerPrefs.SetInt("levelHesmen", levelHesmen);
+        PlayerPrefs.SetInt("levelRoserian", levelRoserian);
+        PlayerPrefs.SetInt("experiencePointRoserian", experiencePointRoserian);
+        PlayerPrefs.SetInt("experiencePointHesmen", experiencePointHesmen);
+
     }
 
     public void SetCharacterStatus()
