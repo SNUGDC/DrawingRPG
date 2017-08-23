@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExperiencePoint {
+public class ExperiencePoint{
 
     public static List<int> maxExperiencePoint = MakeInitialData();
-
+    
     static List<int> MakeInitialData() {
 
         List<int> experiencePoint = new List<int>();
@@ -47,5 +47,14 @@ public class ExperiencePoint {
         }
     }
 
+    public static void GetStageExperiencePoint(int stageNumber, List<PlayerAndGoals> playerAndItsGoalsList)
+    {
+        int stageClearExperiencePoint = 90 + 10 * stageNumber;
+        foreach (PlayerAndGoals playerAndItsGoals in playerAndItsGoalsList)
+        {
+            Player playerScript = playerAndItsGoals.player.GetComponent<Player>();
+            playerScript.gainedExperiencePoint += stageClearExperiencePoint;
+        }
+    }
     
 }

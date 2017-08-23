@@ -8,6 +8,9 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
 
     CollisionCheck collisionCheck;
     private List<PlayerAndGoals> playerAndItsGoalsList = new List<PlayerAndGoals>();
+
+    public int stageNumber;
+
     public int maxTurnCount;
 
     public int turnCount;
@@ -103,6 +106,7 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
                 return false;
             case GameEndChecker.Result.AllEnemyDeath:
                 UIManager.Instance.Cleard();
+                ExperiencePoint.GetStageExperiencePoint(stageNumber, playerAndItsGoalsList);
                 return true;
             case GameEndChecker.Result.AllPlayerDeath:
                 UIManager.Instance.GameOver();
