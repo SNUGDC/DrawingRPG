@@ -65,14 +65,22 @@ public class Player : MonoBehaviour
         {
             if (this.characterName == CharacterName.Roserian)
             {
-                //여기에서 리턴값 받아서 변화
-                ExperiencePoint.CalculateExperiencePoint(levelRoserian, experiencePointRoserian, gainedExperiencePoint);
+                Dictionary<string, int> levelAndExperiencePoint;
+                levelAndExperiencePoint =ExperiencePoint.CalculateExperiencePoint(levelRoserian, experiencePointRoserian, gainedExperiencePoint);
+                gainedExperiencePoint = 0;
+                levelRoserian = levelAndExperiencePoint["Level"];
+                experiencePointRoserian = levelAndExperiencePoint["ExperiencePoint"];
             }
             if (this.characterName == CharacterName.Hesmen)
             {
-                ExperiencePoint.CalculateExperiencePoint(levelHesmen, experiencePointHesmen, gainedExperiencePoint);
+                Dictionary<string, int> levelAndExperiencePoint;
+                levelAndExperiencePoint = ExperiencePoint.CalculateExperiencePoint(levelHesmen, experiencePointHesmen, gainedExperiencePoint);
+                gainedExperiencePoint = 0;
+                levelHesmen = levelAndExperiencePoint["Level"];
+                experiencePointHesmen = levelAndExperiencePoint["ExperiencePoint"];
             }
-
+            PlayerPrefs.SetInt("levelHesmen", levelHesmen);
+            PlayerPrefs.SetInt("levelRoserian", levelRoserian);
             PlayerPrefs.SetInt("experiencePointRoserian",experiencePointRoserian);
             PlayerPrefs.SetInt("experiencePointHesmen",experiencePointHesmen);
         }

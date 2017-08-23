@@ -36,13 +36,13 @@ public class ExperiencePoint {
         
         if (currentExperincePoint + gainedExperincePoint >= maxExperiencePoint[level]) {
             levelAndExperiencePoint.Add("Level", level+1);
-            levelAndExperiencePoint.Add("ExperiencePoint", maxExperiencePoint[level] - (currentExperincePoint + gainedExperincePoint));
+            levelAndExperiencePoint.Add("ExperiencePoint", (currentExperincePoint + gainedExperincePoint) - maxExperiencePoint[level]);
             return levelAndExperiencePoint;
         }
         else
         {
-            levelAndExperiencePoint.Add("Level", level + 1);
-            levelAndExperiencePoint.Add("ExperienePoint", (currentExperincePoint + gainedExperincePoint));
+            levelAndExperiencePoint.Add("Level", level);
+            levelAndExperiencePoint.Add("ExperiencePoint", (currentExperincePoint + gainedExperincePoint));
             return levelAndExperiencePoint;
         }
     }
