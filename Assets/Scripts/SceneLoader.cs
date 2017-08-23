@@ -15,18 +15,20 @@ public static class SceneLoader
     {
         LoadScene("Stage" + stage);
     }
+
+    public static void RestartStage()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        LoadScene(sceneName);
+    }
+
     public static void LoadPostStage(int stage)
     {
         LoadScene("post_Stage" + stage);
     }
-    
-    public static void LoadScene_using_string(string scene)
-    {
-        LoadScene(scene);
-    }
-    
 
-    private static void LoadScene(string sceneName)
+    public static void LoadScene(string sceneName)
     {
         if (sceneLoadSetup == false)
         {
