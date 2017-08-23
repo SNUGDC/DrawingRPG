@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
             gainedExperiencePoint = 0;
             levelRoserian = levelAndExperiencePoint["Level"];
             experiencePointRoserian = levelAndExperiencePoint["ExperiencePoint"];
+            PlayerPrefs.SetInt("levelRoserian", levelRoserian);
+            PlayerPrefs.SetInt("experiencePointRoserian", experiencePointRoserian);
         }
         if (this.characterName == CharacterName.Hesmen)
         {
@@ -81,12 +83,9 @@ public class Player : MonoBehaviour
             gainedExperiencePoint = 0;
             levelHesmen = levelAndExperiencePoint["Level"];
             experiencePointHesmen = levelAndExperiencePoint["ExperiencePoint"];
+            PlayerPrefs.SetInt("levelHesmen", levelHesmen);
+            PlayerPrefs.SetInt("experiencePointHesmen", experiencePointHesmen);
         }
-        PlayerPrefs.SetInt("levelHesmen", levelHesmen);
-        PlayerPrefs.SetInt("levelRoserian", levelRoserian);
-        PlayerPrefs.SetInt("experiencePointRoserian", experiencePointRoserian);
-        PlayerPrefs.SetInt("experiencePointHesmen", experiencePointHesmen);
-
     }
 
     public void SetCharacterStatus()
