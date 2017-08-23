@@ -7,9 +7,17 @@ using UnityEngine.SceneManagement;
 public static class SceneLoader
 {
     private static bool sceneLoadSetup = false;
+    public static void LoadPreStage(int stage)
+    {
+        LoadScene("pre_Stage" + stage);
+    }
     public static void LoadStage(int stage)
     {
         LoadScene("Stage" + stage);
+    }
+    public static void LoadPostStage(int stage)
+    {
+        LoadScene("post_Stage" + stage);
     }
     
     public static void LoadScene_using_string(string scene)

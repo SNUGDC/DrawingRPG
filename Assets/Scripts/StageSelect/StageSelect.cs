@@ -19,4 +19,8 @@ public class StageSelect : MonoBehaviour
     {
         Screen.SetResolution(360, 640, false);
     }
+    public void OnStageButtonClick(int num)
+    {
+        SceneLoader.LoadPreStage(num);
+    }
 }
