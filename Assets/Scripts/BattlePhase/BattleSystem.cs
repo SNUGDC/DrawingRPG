@@ -446,6 +446,7 @@ public static class BattleSystem
     public static void Battle(GameObject player, GameObject enemy, Dictionary<GameObject, List<Element>> whichElementReachEnemy,
         Dictionary<GameObject, List<GameObject>> whichPlayerReachEnemy)
     {
+       
         AttackEnemy(player, enemy, whichElementReachEnemy);
         bool enemyDie = DestroyDeadEnemy(enemy,whichPlayerReachEnemy);
 
@@ -454,6 +455,8 @@ public static class BattleSystem
             AttackPlayer(player, enemy);
             DestroyDeadPlayer(player);
         }
+        else
+            player.GetComponent<Player>().lineNum++;
 
     }
 }

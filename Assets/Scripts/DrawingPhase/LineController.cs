@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Lines {
+    public Player player;
+    public List<LineController> lineControl;
+}
+
 public class LineController : MonoBehaviour
 {
     public Player player;
     public int num;
-    public GameObject Line;
 	public Vector2 startPos;
 	public Vector2 endPos;
-    private bool isStart = false;
 
 	private float length;
 
@@ -25,49 +28,31 @@ public class LineController : MonoBehaviour
 
     private void Start()
     {
+        this.GetComponent<LineRenderer>().SetPosition(0, startPos);
+        this.GetComponent<LineRenderer>().SetPosition(1, startPos);
         Debug.Log(GameObject.FindObjectOfType<BattlePhase>().turnCount);
     }
-
-    private void Update()
+    public static LineController FindLineWithNum(Player playerim, int linenum)
     {
-        if (num == GameObject.FindObjectOfType<BattlePhase>().turnCount)
+        LineController[] lineControl = GameObject.FindObjectsOfType<LineController>();
+        foreach(LineController line in lineControl)
         {
-            this.GetComponent<LineRenderer>().SetPosition(0, startPos);
-            this.GetComponent<LineRenderer>().SetPosition(1, player.transform.position);
+            if (line.num == linenum && line.player == playerim)
+                return line;
         }
-        else if(num < GameObject.FindObjectOfType<BattlePhase>().turnCount)
-        {
-            this.GetComponent<LineRenderer>().SetPosition(1, endPos);
-        }
-        else
-        {
-            this.GetComponent<LineRenderer>().SetPosition(0, startPos);
-            this.GetComponent<LineRenderer>().SetPosition(1, startPos);
-        }
+        return null;
     }
-        /*
-        if (isStart ==false && (startPos - new Vector2(player.transform.position.x, player.transform.position.y)).magnitude >= 0.05)
-        {
-            return;
-        }
-        else
-        {
-            
-            isStart = true;
-            
-        }
-        if (isStart == true)
-        {
-            Vector2 newOne = new Vector2(player.transform.position.x - endPos.x, player.transform.position.y - endPos.y);
-            if (newOne.magnitude >= 0.05)
-            {
-                
-                return;
-            }
-            isStart = false;
-            this.GetComponent<LineRenderer>().SetPosition(1, endPos);
-            Debug.Log(123);
+    public void PlayerMove()
+    {
+        this.GetComponent<LineRenderer>().SetPosition(1, player.transform.position);
+    }
 
-        }*/
-    
+    public void PlayerAfterMove()
+    {
+        this.GetComponent<LineRenderer>().SetPosition(1, endPos);
+    }
+    public void PlayerBeforeMove()
+    {
+        this.GetComponent<LineRenderer>().SetPosition(1, startPos);
+    }
 }

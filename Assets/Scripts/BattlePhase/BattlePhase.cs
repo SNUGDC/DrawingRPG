@@ -58,6 +58,7 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
         var maxLineCount = playerAndGoalsList.Max(goalList => goalList.goals.Count);
 
         this.maxTurnCount = remainLineCount + maxLineCount;
+        
         StartCoroutine(RunTurn());
     }
 
@@ -186,10 +187,14 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
                 Vector2 goalPosition = currentGoal.position;
                 if (PlayerPositionController.IsArrive(playerTransform, goalPosition) == false)
                 {
+                    LineController linecont = LineController.FindLineWithNum(playerAndItsGoals.player.GetComponent<Player>(), playerAndItsGoals.player.GetComponent<Player>().lineNum);
+                    linecont.PlayerMove();
                     PlayerPositionController.Move1Frame(playerTransform, goalPosition, 5.0f);
                 }
                 else
                 {
+                    LineController linecont = LineController.FindLineWithNum(playerAndItsGoals.player.GetComponent<Player>(), playerAndItsGoals.player.GetComponent<Player>().lineNum);
+                    linecont.PlayerAfterMove();
                     arriveDic[playerAndItsGoals] = true;
                 }
             }
@@ -228,10 +233,13 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
 
             if (currentGoal.encountedEnemy == null)
             {
+                playerAndItsGoals.player.GetComponent<Player>().lineNum++;
                 continue;
             }
-
+            
             BattleSystem.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy, whichElementReachEnemy, whichPlayerReachEnemy);
+           
+
         }
         yield return new WaitForSeconds(1.5f);
     }

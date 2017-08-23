@@ -6,7 +6,7 @@ using UnityEngine;
 public class Drawer : MonoBehaviour
 {
     private DrawingPhase phase;
-
+    
     public GameObject linePrefab;
     public float maxLineLength;
 
