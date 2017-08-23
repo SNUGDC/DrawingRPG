@@ -459,6 +459,7 @@ MonoBehaviour:
   def: 0
   maxHp: 30
   hp: 30
+  exp: 0
   element: 2
   clicked: 0
   portrait: {fileID: 0}
@@ -928,6 +929,7 @@ MonoBehaviour:
   def: 0
   maxHp: 30
   hp: 30
+  exp: 0
   element: 2
   clicked: 0
   portrait: {fileID: 0}
@@ -1275,6 +1277,7 @@ MonoBehaviour:
   def: 0
   maxHp: 130
   hp: 130
+  exp: 0
   element: 4
   clicked: 0
   portrait: {fileID: 0}
@@ -1420,12 +1423,15 @@ MonoBehaviour:
   speed: 5
   levelRoserian: 2
   levelHesmen: 0
+  experiencePointRoserian: 0
+  experiencePointHesmen: 0
+  gainedExperiencePoint: 0
   maxHp: 0
   atk: 0
   hp: 0
   element: 2
   characterName: 0
-  portrait: {fileID: 21300000, guid: 96cbe31024f4eb34582470110749e13b, type: 3}
+  portrait: {fileID: 21300000, guid: 1f1ad9d25036fe240b120a67343d076e, type: 3}
   skill: {fileID: 0}
 --- !u!58 &1205853692
 CircleCollider2D:
@@ -1540,6 +1546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9a609d31e45a04e9f35d39a808072f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageNumber: 0
   maxTurnCount: 0
   turnCount: 0
 --- !u!114 &1263185838
@@ -1618,12 +1625,15 @@ MonoBehaviour:
   speed: 1
   levelRoserian: 0
   levelHesmen: 2
+  experiencePointRoserian: 0
+  experiencePointHesmen: 0
+  gainedExperiencePoint: 0
   maxHp: 0
   atk: 0
   hp: 0
   element: 2
   characterName: 1
-  portrait: {fileID: 21300000, guid: c907db79314c35c46847cd79ecce4905, type: 3}
+  portrait: {fileID: 21300000, guid: 913bcb044ff8930458e6d66dbab22424, type: 3}
   skill: {fileID: 0}
 --- !u!58 &1294422937
 CircleCollider2D:
