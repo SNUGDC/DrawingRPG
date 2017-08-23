@@ -27,36 +27,43 @@ public class CharaDetailPanel : MonoBehaviour {
 
     public void SkillLevelUp()
     {
-        if (charaInfo.skill.skillLevel == charaInfo.LimitLevel)
+        PlayerInfoAndLevel[] playerInfo = GameObject.FindObjectsOfType<PlayerInfoAndLevel>();
+        foreach(PlayerInfoAndLevel player in playerInfo)
         {
-            return;
-        }
-        else
-        {
-            charaInfo.skill.skillLevel++;
-            charaInfo.skill.SkillInfomation();
-            SkillDetail(charaInfo);
-            PlayerPrefs.SetInt(charaInfo.skillname, charaInfo.skill.skillLevel);
-            charaInfo.skillLevelInfo.text = charaInfo.skill.skillLevel + "/" + charaInfo.LimitLevel;
-            skillLevel.text = charaInfo.skill.skillLevel.ToString();
-        }
+            if (charaInfo.character == player.characterName)
+            {
+                if (charaInfo.skill.skillLevel != charaInfo.LimitLevel && player.SkillLevelUP())
+                {
+                    charaInfo.skill.skillLevel++;
+                    charaInfo.skill.SkillInfomation();
+                    SkillDetail(charaInfo);
+                    PlayerPrefs.SetInt(charaInfo.skillname, charaInfo.skill.skillLevel);
+                    charaInfo.SetSkillLevelText();
+                    skillLevel.text = charaInfo.skill.skillLevel.ToString();
+                    return;
+                }
+            }
+        }return;
     }
     public void SkillLevelDown()
     {
-        if (charaInfo.skill.skillLevel == 0)
+        PlayerInfoAndLevel[] playerInfo = GameObject.FindObjectsOfType<PlayerInfoAndLevel>();
+        foreach (PlayerInfoAndLevel player in playerInfo)
         {
-            return;
+            if (charaInfo.character == player.characterName)
+            {
+                if (charaInfo.skill.skillLevel != 0 && player.SkillLevelDown())
+                {
+                    charaInfo.skill.skillLevel--;
+                    charaInfo.skill.SkillInfomation();
+                    SkillDetail(charaInfo);
+                    PlayerPrefs.SetInt(charaInfo.skillname, charaInfo.skill.skillLevel);
+                    charaInfo.SetSkillLevelText();
+                    skillLevel.text = charaInfo.skill.skillLevel.ToString();
+                    return;
+                }
+            }
         }
-        else
-        {
-            charaInfo.skill.skillLevel--;
-
-            charaInfo.skill.SkillInfomation();
-            SkillDetail(charaInfo);
-            PlayerPrefs.SetInt(charaInfo.skillname, charaInfo.skill.skillLevel);
-            charaInfo.skillLevelInfo.text = charaInfo.skill.skillLevel + "/" + charaInfo.LimitLevel;
-
-            skillLevel.text = charaInfo.skill.skillLevel.ToString();
-        }
+        return;
     }
 }

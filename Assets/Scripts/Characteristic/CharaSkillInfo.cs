@@ -5,12 +5,18 @@ using UnityEngine.UI;
 
 public class CharaSkillInfo : MonoBehaviour {
 
+    public string character;
     public string skillname;
     public int LimitLevel;
     public Skill skill;
     public Text skillLevelInfo;
     public Sprite skillImage;
 
+    public void SetSkillLevelText()
+    {
+        skillLevelInfo.text = skill.skillLevel + "/" + LimitLevel;
+
+    }
     private void Start()
     {
         CheckSkillName();
@@ -22,8 +28,7 @@ public class CharaSkillInfo : MonoBehaviour {
         else
             SetNewSkill();
 
-        skillLevelInfo.text = skill.skillLevel + "/" + LimitLevel;
-
+        SetSkillLevelText();
         skill.SkillInfomation();
     }
     public void CheckSkillName()
