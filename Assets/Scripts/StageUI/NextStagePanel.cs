@@ -6,11 +6,11 @@ public class NextStagePanel : MonoBehaviour
 {
     public void Next()
     {
-        SceneLoader.LoadScene("Stage_Select");
+		SceneLoader.LoadPostStage();
     }
 
     public void Back()
     {
-        SceneLoader.LoadScene("Stage_Select");
+		SceneLoader.LoadPostStage();
     }
 }

@@ -23,9 +23,11 @@ public static class SceneLoader
         LoadScene(sceneName);
     }
 
-    public static void LoadPostStage(int stage)
+    public static void LoadPostStage()
     {
-        LoadScene("post_Stage" + stage);
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        LoadScene("post_" + sceneName);
     }
 
     public static void LoadScene(string sceneName)
