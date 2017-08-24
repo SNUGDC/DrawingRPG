@@ -4,9 +4,13 @@ using UnityEngine.UI;
 
 public class DialogueControl : MonoBehaviour
 {
-    Image npcImage;
-    Text npcName;
-    Text npcText;
+    public Image roserianImage;
+    public Image hesmenImage;
+    public Image roserianBackground;
+    public Image hesmenBackground;
+    public Text roserianName;
+    public Text hesmenName;
+    public Text npcText;
 
     public TextAsset data;
     public SortedDictionary<int, List<string>> dialogueData;
@@ -27,7 +31,7 @@ public class DialogueControl : MonoBehaviour
 
         Test();
 
-        TextInit();
+        ShowDialogue();
     }
 
     public void CsvToDictionary(string data)
@@ -74,16 +78,37 @@ public class DialogueControl : MonoBehaviour
         }
     }
 
-    void TextInit()
+    void ShowDialogue()
     {
-        npcImage = transform.Find("Speaker Image").GetComponent<Image>();
-        npcName = transform.Find("Dialogue Box/Speaker Name").GetComponent<Text>();
-        npcText = transform.Find("Dialogue Box/Text").GetComponent<Text>();
-
-        npcImage.sprite = GetSprite(dialogueData[currentId][listFileName]);
-        npcName.text = dialogueData[currentId][listName];
+        string characterName = dialogueData[currentId][listFileName];
+        if (characterName == "roserian")
+        {
+            roserianImage.enabled = true;
+            hesmenImage.enabled = false;
+            roserianName.text = dialogueData[currentId][listName];
+            hesmenName.text = "";
+            roserianBackground.enabled = true;
+            hesmenBackground.enabled = false;
+        }
+        else if (characterName == "hesmen")
+        {
+            hesmenImage.enabled = true;
+            roserianImage.enabled = false;
+            hesmenName.text = dialogueData[currentId][listName];
+            roserianName.text = "";
+            roserianBackground.enabled = false;
+            hesmenBackground.enabled = true;
+        }
+        else
+        {
+            hesmenImage.enabled = false;
+            roserianImage.enabled = false;
+            hesmenName.text = dialogueData[currentId][listName];
+            roserianName.text = "";
+            roserianBackground.enabled = false;
+            hesmenBackground.enabled = true;
+        }
         npcText.text = dialogueData[currentId][listText];
-
     }
 
     void NextText()
@@ -92,9 +117,7 @@ public class DialogueControl : MonoBehaviour
 
         if (dialogueData.ContainsKey(currentId))
         {
-            npcImage.sprite = GetSprite(dialogueData[currentId][listFileName]);
-            npcName.text = dialogueData[currentId][listName];
-            npcText.text = dialogueData[currentId][listText];
+            ShowDialogue();
         }
         else
         {
