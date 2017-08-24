@@ -12,7 +12,7 @@ public static class SaveManager
 
     public static int LoadLastClearedStage()
     {
-        int defaultStage = 1;
+        int defaultStage = 0;
         return PlayerPrefs.GetInt(LastClearedStageString, defaultStage);
     }
 

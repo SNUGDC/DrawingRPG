@@ -29,7 +29,7 @@ public class DialogueControl : MonoBehaviour
         dialogueData = new SortedDictionary<int, List<string>>();
         CsvToDictionary(data.text);
 
-        Test();
+        // Test();
 
         ShowDialogue();
     }

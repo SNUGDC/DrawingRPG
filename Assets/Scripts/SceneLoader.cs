@@ -29,6 +29,7 @@ public static class SceneLoader
         string sceneName = currentScene.name;
         // Stage1 -> 1
         int stage = int.Parse(sceneName.Substring(5));
+        Debug.Log("Clear stage " + stage);
 
         int lastClearedStage = SaveManager.LoadLastClearedStage();
 		if (stage > lastClearedStage) {

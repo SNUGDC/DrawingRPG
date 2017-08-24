@@ -12,12 +12,12 @@ public class StageButton : MonoBehaviour
     {
         int lastClearedStage = SaveManager.LoadLastClearedStage();
         
-        if (stage == lastClearedStage)
+        if (stage == lastClearedStage + 1)
         {
             stageImage.sprite = Flags[1];
             GetComponent<Button>().interactable = true;
         }
-        else if (stage < lastClearedStage)
+        else if (stage < lastClearedStage + 1)
         {
             stageImage.sprite = Flags[1];
             GetComponent<Button>().interactable = true;
