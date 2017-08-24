@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public float atk;
     public float hp;
 
+    public int lineNum;
+
     public Element element;
     public CharacterName characterName;
     public Sprite portrait;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
         experiencePointRoserian = PlayerPrefs.GetInt("experiencePointRoserian");
         experiencePointHesmen = PlayerPrefs.GetInt("experiencePointHesmen");
         SetCharacterStatus();
+        lineNum = 1;
     }
 
     private void Update()

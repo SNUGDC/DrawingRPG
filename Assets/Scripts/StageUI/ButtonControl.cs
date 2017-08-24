@@ -7,19 +7,19 @@ public class ButtonControl : MonoBehaviour {
     // --------------씬 전환 Button--------------//
     public void MainMenuScene()
     {
-        SceneLoader.LoadScene_using_string("Main_Menu");
+        SceneLoader.LoadScene("Main_Menu");
     }
     public void OptionScene()
     {
-        SceneLoader.LoadScene_using_string("Option");
+        SceneLoader.LoadScene("Option");
     }
     public void StageSelectScene()
     {
-        SceneLoader.LoadScene_using_string("Stage_Select");
+        SceneLoader.LoadScene("Stage_Select");
     }
     public void CharacteristicScene()
     {
-        SceneLoader.LoadScene_using_string("Characteristic");
+        SceneLoader.LoadScene("Characteristic");
     }
     public void StageScene(int stage)
     {
@@ -27,7 +27,7 @@ public class ButtonControl : MonoBehaviour {
     }
     public void CreditsScene()
     {
-        SceneLoader.LoadScene_using_string("Credits");
+        SceneLoader.LoadScene("Credits");
     }
     public void QuitGame()
     {
@@ -87,10 +87,5 @@ public class ButtonControl : MonoBehaviour {
     public void SkillLevelDown(CharaDetailPanel charaInfoDetail)
     {
         charaInfoDetail.SkillLevelDown();
-    }
-    
-    public void Test(UnityEngine.UI.Text text)
-    {
-        text.text = PlayerPrefs.GetInt("TestSkill").ToString();
     }
 }

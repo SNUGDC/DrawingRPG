@@ -30,6 +30,7 @@ public class CharaSkillInfo : MonoBehaviour {
 
         SetSkillLevelText();
         skill.SkillInfomation();
+        skill.SkillNextInformation();
     }
     public void CheckSkillName()
     {

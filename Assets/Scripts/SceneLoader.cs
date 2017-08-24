@@ -7,18 +7,38 @@ using UnityEngine.SceneManagement;
 public static class SceneLoader
 {
     private static bool sceneLoadSetup = false;
+    public static void LoadPreStage(int stage)
+    {
+        LoadScene("pre_Stage" + stage);
+    }
     public static void LoadStage(int stage)
     {
         LoadScene("Stage" + stage);
     }
-    
-    public static void LoadScene_using_string(string scene)
-    {
-        LoadScene(scene);
-    }
-    
 
-    private static void LoadScene(string sceneName)
+    public static void RestartStage()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        LoadScene(sceneName);
+    }
+
+    public static void LoadPostStage()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        // Stage1 -> 1
+        int stage = int.Parse(sceneName.Substring(5));
+
+        int lastClearedStage = SaveManager.LoadLastClearedStage();
+		if (stage > lastClearedStage) {
+			SaveManager.SaveLastClearedStage(stage);
+		}
+        
+        LoadScene("post_" + sceneName);
+    }
+
+    public static void LoadScene(string sceneName)
     {
         if (sceneLoadSetup == false)
         {

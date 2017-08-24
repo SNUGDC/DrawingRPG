@@ -4,10 +4,6 @@ using UnityEngine.UI;
 
 public class DialogueControl : MonoBehaviour
 {
-
-    public List<string> npcNames;
-    public List<Sprite> npcImages;
-
     Image npcImage;
     Text npcName;
     Text npcText;
@@ -16,11 +12,12 @@ public class DialogueControl : MonoBehaviour
     public SortedDictionary<int, List<string>> dialogueData;
 
     int currentId = 1;
-    const int gotoSceneId = 9999;
+    const int commandId = 9999;
     const int listName = 1;
-    const int listSceneNum = 1;
     const int listFileName = 2;
     const int listText = 3;
+    const int listCommandNum = 1;
+    const int listSceneNum = 2;
 
     // Use this for initialization
     void Start()
@@ -101,8 +98,20 @@ public class DialogueControl : MonoBehaviour
         }
         else
         {
-            int sceneNum = int.Parse(dialogueData[gotoSceneId][listSceneNum]);
-            SceneLoader.LoadStage(sceneNum);
+            string command = dialogueData[commandId][listCommandNum];
+            if (command == "stage")
+            {
+                int sceneNum = int.Parse(dialogueData[commandId][listSceneNum]);
+                SceneLoader.LoadStage(sceneNum);
+            }
+            else if (command == "stageselect")
+            {
+                SceneLoader.LoadScene("Stage_Select");
+            }
+            else
+            {
+                Debug.LogError("Invalid command " + command);
+            }
         }
     }
 

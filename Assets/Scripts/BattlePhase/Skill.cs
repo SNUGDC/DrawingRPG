@@ -9,6 +9,7 @@ public abstract class Skill : MonoBehaviour
     public bool activated = true;
     public string skillName;
     public string skillInfo;
+    public string skillNextInfo;
 
     public abstract void Use(Player player);
     public virtual void Use(Enemy enemy) { }
@@ -18,6 +19,7 @@ public abstract class Skill : MonoBehaviour
     public abstract void SkillLevelUp(Player player);
 
     public virtual void SkillInfomation() { }
+    public virtual void SkillNextInformation() { }
     public Skill()
     {
         nextSkills = new List<Skill>();
@@ -57,6 +59,11 @@ public class Strike : Skill
         skillName = "일격";
         skillInfo = "공격력이" + 10 * skillLevel + "% 증가한다.";
     }
+
+    public override void SkillNextInformation()
+    {
+        skillNextInfo = "공격력이" + 10 * (skillLevel+1) + "% 증가한다.";
+    }
     public override void Use(Player player)
     {
         player.atk = player.atk + 0.1f * skillLevel;
@@ -76,6 +83,10 @@ public class EnhanceWeakpoint : Skill
         skillName = "약점강화";
         skillInfo = "약점 공격 시 데미지가 "+(120 + 20*skillLevel)+"%로 변경된다.";
     }
+    public override void SkillNextInformation()
+    {
+        skillNextInfo = "약점 공격 시 데미지가 " + (120 + 20 * (skillLevel+1)) + "%로 변경된다.";
+    }
     public new bool activated = false;
 
     public override void Use(Player player) { }
@@ -93,6 +104,10 @@ public class EnhanceChain : Skill
     {
         skillName = "결속";
         skillInfo = "체인 공격 시 체인의 데미지가 "+ (150 + 10*skillLevel)+"%로 변경된다.";
+    }
+    public override void SkillNextInformation()
+    {
+        skillNextInfo = "체인 공격 시 체인의 데미지가 " + (150 + 10 * (skillLevel+1)) + "%로 변경된다.";
     }
     public new bool activated = false;
 
@@ -117,6 +132,10 @@ public class BreakWeakpoint : Skill
         skillName = "돌파";
         skillInfo = "강점 공격 시 데미지가 " + (80 + 20*skillLevel)+"%로 변경된다.";
     }
+    public override void SkillNextInformation()
+    {
+        skillNextInfo = "강점 공격 시 데미지가 " + (80 + 20 * (skillLevel+1)) + "%로 변경된다.";
+    }
     public new bool activated = false;
 
     public override void Use(Player player) { }
@@ -134,6 +153,10 @@ public class BreakChain : Skill
     {
         skillName = "???";
         skillInfo = "체인이 걸리지 않을 경우 "+ skillLevel * 30+"%만큼 데미지가 증가된다.";
+    }
+    public override void SkillNextInformation()
+    {
+        skillNextInfo = "체인이 걸리지 않을 경우 " + (skillLevel+1) * 30 + "%만큼 데미지가 증가된다.";
     }
     public new bool activated = false;
 
@@ -159,6 +182,10 @@ public class EnhanceHealth : Skill
         skillName = "강화";
         skillInfo = "체력이 "+skillLevel * 20+"%만큼 증가한다.";
     }
+    public override void SkillNextInformation()
+    {
+        skillNextInfo = "체력이 " + (skillLevel+1) * 20 + "%만큼 증가한다.";
+    }
     public override void Use(Player player)
     {
         player.maxHp = player.maxHp + 0.2f * skillLevel;
@@ -177,6 +204,10 @@ public class ProtectWeakpoint : Skill
     {
         skillName = "약점 보호";
         skillInfo = "약점 피격 시 데미지가 " + skillLevel * 10+"%만큼 감소한다.";
+    }
+    public override void SkillNextInformation()
+    {
+        skillNextInfo = "약점 피격 시 데미지가 " + (skillLevel+1) * 10 + "%만큼 감소한다.";
     }
     public new bool activated = false;
 
@@ -200,6 +231,10 @@ public class Weaken : Skill
     {
         skillName = "약화";
         skillInfo = "체인 공격 시 적의 공격력을 "+ skillLevel*5+"%만큼 영구히 감소한다.";
+    }
+    public override void SkillNextInformation()
+    {
+        skillNextInfo = "체인 공격 시 적의 공격력을 " + (skillLevel+1) * 5 + "%만큼 영구히 감소한다.";
     }
     public new bool activated = false;
 
@@ -225,6 +260,10 @@ public class HpAbsorption : Skill
         skillName = "흡수";
         skillInfo = "공격 시 가한 데미지의 "+skillLevel*20 + "%만큼 체력을 회복한다.";
     }
+    public override void SkillNextInformation()
+    {
+        skillNextInfo = "공격 시 가한 데미지의 " + (skillLevel+1) * 20 + "%만큼 체력을 회복한다.";
+    }
     public new bool activated = false;
 
     public override void Use(Player player)
@@ -245,6 +284,10 @@ public class HpRecovery : Skill
     {
         skillName = "휴식";
         skillInfo = "매 이동 페이즈 시작 시 " + skillLevel*3+"%만큼  체력을 회복한다.";
+    }
+    public override void SkillNextInformation()
+    {
+        skillNextInfo = "매 이동 페이즈 시작 시 " + (skillLevel+1) * 3 + "%만큼  체력을 회복한다.";
     }
     public new bool activated = false;
 
