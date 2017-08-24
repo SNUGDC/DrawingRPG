@@ -106,11 +106,7 @@ public class UIManager : MonoBehaviour
         FadeOut block = Instantiate(blockPrefab);
         block.StartFadeOut(onEnd: () =>
         {
-            FadeOut clear = Instantiate(clearPrefab);
-            clear.StartFadeOut(onEnd: () =>
-            {
-                Instantiate(nextStagePrefab);
-            });
+            Instantiate(nextStagePrefab);
         });
     }
 
@@ -119,11 +115,7 @@ public class UIManager : MonoBehaviour
         FadeOut block = Instantiate(blockPrefab);
         block.StartFadeOut(onEnd: () =>
         {
-            FadeOut fail = Instantiate(failPrefab);
-            fail.StartFadeOut(onEnd: () =>
-            {
-                Instantiate(againStagePrefab);
-            });
+            Instantiate(againStagePrefab);
         });
     }
 }
