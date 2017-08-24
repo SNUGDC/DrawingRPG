@@ -230,6 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 162907065}
   - component: {fileID: 162907066}
+  - component: {fileID: 162907067}
   m_Layer: 0
   m_Name: image
   m_TagString: Untagged
@@ -292,6 +293,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &162907067
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 162907064}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13ad9d339cb71454897c2ddde2745689, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &385121481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,7 +1427,6 @@ GameObject:
   - component: {fileID: 1205853690}
   - component: {fileID: 1205853692}
   - component: {fileID: 1205853691}
-  - component: {fileID: 1205853693}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1474,23 +1491,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.79
---- !u!95 &1205853693
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1205853689}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 13ad9d339cb71454897c2ddde2745689, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1224718915
 GameObject:
   m_ObjectHideFlags: 0
