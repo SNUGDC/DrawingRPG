@@ -88,9 +88,4 @@ public class ButtonControl : MonoBehaviour {
     {
         charaInfoDetail.SkillLevelDown();
     }
-    
-    public void Test(UnityEngine.UI.Text text)
-    {
-        text.text = PlayerPrefs.GetInt("TestSkill").ToString();
-    }
 }

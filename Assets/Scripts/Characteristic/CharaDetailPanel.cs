@@ -23,6 +23,7 @@ public class CharaDetailPanel : MonoBehaviour {
         skillLevel.text = charaSkillInfo.skill.skillLevel.ToString();
         skillName.text = charaSkillInfo.skill.skillName;
         skillInfo.text = charaSkillInfo.skill.skillInfo;
+        skillNextLevelText.text = charaSkillInfo.skill.skillNextInfo;
     }
 
     public void SkillLevelUp()
@@ -36,6 +37,7 @@ public class CharaDetailPanel : MonoBehaviour {
                 {
                     charaInfo.skill.skillLevel++;
                     charaInfo.skill.SkillInfomation();
+                    charaInfo.skill.SkillNextInformation();
                     SkillDetail(charaInfo);
                     PlayerPrefs.SetInt(charaInfo.skillname, charaInfo.skill.skillLevel);
                     charaInfo.SetSkillLevelText();
@@ -56,6 +58,7 @@ public class CharaDetailPanel : MonoBehaviour {
                 {
                     charaInfo.skill.skillLevel--;
                     charaInfo.skill.SkillInfomation();
+                    charaInfo.skill.SkillNextInformation();
                     SkillDetail(charaInfo);
                     PlayerPrefs.SetInt(charaInfo.skillname, charaInfo.skill.skillLevel);
                     charaInfo.SetSkillLevelText();
