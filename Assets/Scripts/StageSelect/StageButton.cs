@@ -19,12 +19,12 @@ public class StageButton : MonoBehaviour
         }
         else if (stage < lastClearedStage)
         {
-            stageImage.sprite = Flags[0];
+            stageImage.sprite = Flags[1];
             GetComponent<Button>().interactable = true;
         }
         else
         {
-            stageImage.sprite = null;
+            stageImage.sprite = Flags[0];
             GetComponent<Button>().interactable = false;
         }
     }
