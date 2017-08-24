@@ -170,7 +170,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1f851a539b0d0214bb3fb92c20cead8e, type: 3}
-  m_Color: {r: 0.21118078, g: 0.9264706, b: 0.54169405, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -293,6 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 200203620}
   - component: {fileID: 200203621}
+  - component: {fileID: 200203622}
   m_Layer: 0
   m_Name: image (1)
   m_TagString: Untagged
@@ -344,7 +345,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 2c438ddca132d5d4c948394779e951b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -355,6 +356,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &200203622
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 200203619}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c93ee8d20d7637441b37d0fa74682182, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &304011182
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +563,7 @@ MonoBehaviour:
   atk: 10
   def: 0
   maxHp: 50
-  hp: 1
+  hp: 50
   exp: 20
   element: 1
   clicked: 0
@@ -724,8 +742,8 @@ MonoBehaviour:
   atk: 10
   def: 0
   maxHp: 50
-  hp: 1
-  exp: 200
+  hp: 50
+  exp: 20
   element: 1
   clicked: 0
   portrait: {fileID: 0}
@@ -833,7 +851,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 24aaa2f452659764dbf5ff5214c559b1, type: 3}
-  m_Color: {r: 0.8328601, g: 1, b: 0.24264705, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1254,7 +1272,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8713402d4ba64d94a83da80d1da3ed63, type: 3}
-  m_Color: {r: 0.41003475, g: 0.050173007, b: 0.85294116, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1367,8 +1385,8 @@ MonoBehaviour:
   atk: 10
   def: 0
   maxHp: 50
-  hp: 1
-  exp: 150
+  hp: 50
+  exp: 20
   element: 1
   clicked: 0
   portrait: {fileID: 0}
@@ -1565,7 +1583,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0f74c68cd7ba4b14c89bbab4a1a3b858, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1669,7 +1687,7 @@ MonoBehaviour:
   atk: 10
   def: 0
   maxHp: 50
-  hp: 1
+  hp: 50
   exp: 20
   element: 1
   clicked: 0
@@ -1705,6 +1723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1697614574}
   - component: {fileID: 1697614575}
+  - component: {fileID: 1697614576}
   m_Layer: 0
   m_Name: image
   m_TagString: Untagged
@@ -1756,7 +1775,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3082b780bc2b56d47b1102d94b788c71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1767,6 +1786,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &1697614576
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1697614573}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13ad9d339cb71454897c2ddde2745689, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1802586402
 GameObject:
   m_ObjectHideFlags: 0

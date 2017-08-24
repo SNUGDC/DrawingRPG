@@ -238,7 +238,10 @@ public class BattlePhase : MonoBehaviour, GameEndChecker.IRemainTurnSource
             }
             
             BattleSystem.Battle(playerAndItsGoals.player, currentGoal.encountedEnemy, whichElementReachEnemy, whichPlayerReachEnemy);
-           
+            Animator anim =playerAndItsGoals.player.GetComponentInChildren<Animator>();
+            anim.SetTrigger("Attack");
+            new WaitForSeconds(1.0f);
+            anim.SetTrigger("Idle");
 
         }
         yield return new WaitForSeconds(1.5f);
