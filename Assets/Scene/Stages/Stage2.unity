@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 1165411601190780, guid: 47b60a1d0a024ca4f97b32d1c67512d2, type: 2}
-  maxLineLength: 3.5
+  maxLineLength: 6
   num: 0
 --- !u!114 &660958469
 MonoBehaviour:
