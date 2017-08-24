@@ -212,7 +212,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4974f3dbf83d50c46bb9eab5d949d9f9, type: 3}
-  m_Color: {r: 0.6102941, g: 0.29710057, b: 0.094236605, a: 0.535}
+  m_Color: {r: 0.625, g: 0.30622467, b: 0.13327208, a: 0.535}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -480,6 +480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 594339654}
   - component: {fileID: 594339655}
+  - component: {fileID: 594339656}
   m_Layer: 0
   m_Name: image (1)
   m_TagString: Untagged
@@ -542,6 +543,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!95 &594339656
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 594339653}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c93ee8d20d7637441b37d0fa74682182, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &660958466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1409,7 @@ GameObject:
   - component: {fileID: 1205853690}
   - component: {fileID: 1205853692}
   - component: {fileID: 1205853691}
+  - component: {fileID: 1205853693}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1455,6 +1474,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.79
+--- !u!95 &1205853693
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1205853689}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13ad9d339cb71454897c2ddde2745689, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1224718915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,7 +1553,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0f74c68cd7ba4b14c89bbab4a1a3b858, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1568,7 +1604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14284795a8bf4fb4997e4128eeca6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalLineCount: 8
+  totalLineCount: 6
   drawers: []
   remainLineCount: 0
 --- !u!4 &1263185839
@@ -1721,7 +1757,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0f74c68cd7ba4b14c89bbab4a1a3b858, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1914,7 +1950,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c8842336238a4904e9a5dd6a2a5700f7, type: 3}
-  m_Color: {r: 0.41003475, g: 0.050173007, b: 0.85294116, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1990,7 +2026,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4974f3dbf83d50c46bb9eab5d949d9f9, type: 3}
-  m_Color: {r: 0.88235295, g: 0.24698724, b: 0.23356403, a: 0.535}
+  m_Color: {r: 0.5147059, g: 0.3443205, b: 0.12867647, a: 0.535}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
